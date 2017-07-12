@@ -72,9 +72,11 @@
   (ac-config-default))
 
 (use-package company
+  :defines (company-dabbrev-downcase)
   :config
   (progn
-    (setq company-global-modes '(not org-mode))
+    (setq company-global-modes '(not org-mode)
+          company-dabbrev-downcase nil)
     (global-company-mode)))
 
 (use-package flycheck
