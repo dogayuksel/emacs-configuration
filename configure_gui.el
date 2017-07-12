@@ -50,9 +50,10 @@
 (set-face-attribute 'fringe nil :background "grey8")
 
 (use-package rainbow-mode
-  :mode ("\\.css\\'"
-         "\\.sass\\'"
-         "\\.scss\\'"))
+  :config
+  (progn
+    (add-hook 'emacs-lisp-mode-hook 'rainbow-mode)
+    (add-hook 'sass-mode-hook 'rainbow-mode)))
 
 (defun my/terminal-visible-bell ()
   "A friendlier visual bell effect."
