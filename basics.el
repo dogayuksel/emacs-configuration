@@ -182,7 +182,8 @@
           (append aggressive-indent-excluded-modes
                   '(coffee-mode
                     python-mode
-                    jade-mode)))))
+                    jade-mode
+                    sass-mode)))))
 
 (use-package expand-region
   :bind ("C-c e" . er/expand-region))
