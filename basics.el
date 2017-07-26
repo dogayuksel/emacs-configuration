@@ -110,7 +110,7 @@
       (setq helm-yas-space-match-any-greedy t))))
 
 (use-package avy
-  :bind ("C-c SPC" . avy-goto-char))
+  :bind* ("C-c SPC" . avy-goto-char))
 
 (use-package magit
   :bind ("C-x g" . magit-status))
