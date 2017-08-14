@@ -33,6 +33,9 @@
     (setq js-indent-level 2))
   (add-hook 'json-mode-hook 'my/adjust-js-indentation))
 
+(use-package graphql-mode
+  :mode "\\.graphql\\'")
+
 (use-package sass-mode
   :mode "\\.sass\\'")
 
