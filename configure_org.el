@@ -56,7 +56,9 @@
        visual-fill-column-center-text t
        visual-fill-column-width 90)
       :config
-      (global-visual-fill-column-mode))
+      (add-hook 'org-mode-hook 'visual-fill-column-mode)
+      (add-hook 'org-agenda-mode-hook 'visual-fill-column-mode)
+      (add-hook 'latex-mode-hook 'visual-fill-column-mode))
     (use-package org-bullets
       :init
       (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
