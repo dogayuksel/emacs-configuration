@@ -215,4 +215,10 @@
       (message "Not killing all"))))
 (bind-key* "C-x K" 'my/nuke-all-buffers)
 
+;;; Insert name string
+(defun my/insertfullname ()
+  "Insert full name."
+  (interactive)
+  (insert user-full-name))
+
 ;;; basics.el ends here

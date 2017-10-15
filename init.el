@@ -6,7 +6,7 @@
 ;;; Code:
 
 ;; User Info
-(setq user-full-name "Doga Yuksel")
+(setq user-full-name "Doğa Yüksel")
 (setq user-mail-address "dogayuksel@gmail.com")
 
 ;; Sets garbage collection threshold to 500mb
