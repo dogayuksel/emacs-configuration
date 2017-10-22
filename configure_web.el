@@ -89,4 +89,16 @@
   (tern-mode t))
 (add-hook 'web-mode-hook 'my/tern-setup)
 
+(defun setup-tide-mode ()
+  "Setup tide mode."
+  (tide-setup)
+  (tide-hl-identifier-mode +1)
+  ;; aligns annotation to the right hand side
+  (setq company-tooltip-align-annotations t)
+  ;; formats the buffer before saving
+  (add-hook 'before-save-hook 'tide-format-before-save)
+  (setq typescript-indent-level 2)
+  (setq tide-format-options '(:indentSize 2 :tabSize 2)))
+(add-hook 'typescript-mode-hook #'setup-tide-mode)
+
 ;;; configure_web.el ends here

@@ -65,7 +65,7 @@
     ("beeb5ac6b65fcccfe434071d4624ff0308b5968bf2f0c01b567d212bcaf66054" "946e871c780b159c4bb9f580537e5d2f7dba1411143194447604ecbaf01bd90c" default)))
  '(package-selected-packages
    (quote
-    (graphql-mode org-gcal dumb-jump company-tern company helm-c-yasnippet yasnippet helm-ag bind-key auto-compile try expand-region aggressive-indent hungry-delete avy which-key rainbow-mode dash-at-point sourcemap org-pomodoro helm synonyms yaml-mode benchmark-init bookmark+ dired+ sass-mode jade-mode coffee-mode flycheck-flow web-mode visual-fill-column use-package undo-tree swiper smartparens scss-mode popwin org-bullets org neotree multiple-cursors mmm-mode magit json-mode impatient-mode iedit helm-descbinds helm-bibtex flycheck exec-path-from-shell elpy drag-stuff badwolf-theme auto-complete airline-themes))))
+    (tide graphql-mode org-gcal dumb-jump company-tern company helm-c-yasnippet yasnippet helm-ag bind-key auto-compile try expand-region aggressive-indent hungry-delete avy which-key rainbow-mode dash-at-point sourcemap org-pomodoro helm synonyms yaml-mode benchmark-init bookmark+ dired+ sass-mode jade-mode coffee-mode flycheck-flow web-mode visual-fill-column use-package undo-tree swiper smartparens scss-mode popwin org-bullets org neotree multiple-cursors mmm-mode magit json-mode impatient-mode iedit helm-descbinds helm-bibtex flycheck exec-path-from-shell elpy drag-stuff badwolf-theme auto-complete airline-themes))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

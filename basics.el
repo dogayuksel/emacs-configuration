@@ -182,6 +182,7 @@
           (append aggressive-indent-excluded-modes
                   '(coffee-mode
                     python-mode
+                    typescript-mode
                     jade-mode
                     sass-mode)))))
 
