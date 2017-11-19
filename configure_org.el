@@ -26,27 +26,30 @@
   :config
   (progn
     (setq org-agenda-files
-          (quote ("~/.doga.org"
-                  "~/laser/working.org"
-                  "~/.org/notes/journal.org"
-                  "~/.org/notes/gcal.org"))
-          org-archive-location "~/.org/archive/%s_archive::"
+          (quote ("~/Dropbox/.org/.doga.org"
+                  "~/Dropbox/.org/.working.org"
+                  "~/Dropbox/.org/journal.org"
+                  "~/Dropbox/.org/gcal.org"))
+          org-archive-location "~/Dropbox/.org/archive/%s_archive::"
           org-refile-targets '((org-agenda-files :maxlevel . 2))
           org-outline-path-complete-in-steps nil
           org-refile-use-outline-path t
           org-catch-invisible-edits (quote show-and-error)
-          org-directory "~/.org"
+          org-directory "~/Dropbox/.org"
           org-export-initial-scope (quote subtree)
           org-capture-templates
-          '(("t" "Todo" entry (file+headline "~/.doga.org" "Tasks")
+          '(("t" "Todo" entry
+             (file+headline "~/Dropbox/.org/.doga.org" "Tasks")
              "* TODO %?\n  %i\n  %a")
-            ("a" "Appointment" entry (file  "~/.org/notes/gcal.org" )
+            ("a" "Appointment" entry
+             (file  "~/Dropbox/.org/gcal.org" )
              "* %?\n %^T\n")
-            ("j" "Journal" entry (file+datetree "~/.org/notes/journal.org")
+            ("j" "Journal" entry
+             (file+datetree "~/Dropbox/.org/journal.org")
              "* %?\nEntered on %U\n  %i\n  %a"))
           org-mobile-directory "~/Dropbox/Apps/MobileOrg"
           org-mobile-encryption-password my/org-mobile-encryption-password
-          org-mobile-inbox-for-pull "~/.org/from-mobile.org"
+          org-mobile-inbox-for-pull "~/Dropbox/.org/from-mobile.org"
           org-mobile-use-encryption t)
     (add-hook 'org-mode-hook 'visual-line-mode)
     (add-hook 'latex-mode-hook 'visual-line-mode)
@@ -126,12 +129,12 @@
    "172076857986-m651ifu3fbc51usuet841lvp3m8t11g7.apps.googleusercontent.com"
    org-gcal-client-secret my/org-gcal-client-secret
    org-gcal-file-alist
-   '(("dogayuksel@gmail.com" . "~/.org/notes/gcal.org"))))
+   '(("dogayuksel@gmail.com" . "~/Dropbox/.org/gcal.org"))))
 (add-hook 'org-agenda-mode-hook (lambda () (org-gcal-sync)))
 
 (setq reftex-default-bibliography
       (quote
-       ("/Users/doga/.org/bibtex/file-1.bib"
-        "/Users/doga/.org/bibtex/file-2.bib")))
+       ("~/Dropbox/.org/bibtex/file-1.bib"
+        "~/Dropbox/.org/bibtex/file-2.bib")))
 
 ;;; configure_org.el ends here

@@ -66,15 +66,15 @@
   :commands (helm-bibtex)
   :config
   (setq bibtex-completion-bibliography
-        '("/Users/doga/.org/bibtex/file-1.bib"
-          "/Users/doga/.org/bibtex/file-2.bib")
+        '("~/Dropbox/.org/bibtex/file-1.bib"
+          "~/Dropbox/.org/bibtex/file-2.bib")
         bibtex-entry-format
         (quote
          (opts-or-alts required-fields numerical-fields realign))
         bibtex-completion-library-path
-        '("/Users/doga/Documents/bibtex-library")
+        '("~/Dropbox/Ebooks/bibtex-library")
         bibtex-completion-notes-path
-        "/Users/doga/.org/bibtex/bibtex-notes.org"
+        "~/Dropbox/.org/bibtex/bibtex-notes.org"
         bibtex-completion-pdf-symbol "⌘"
         bibtex-completion-notes-symbol "✎"
         bibtex-completion-pdf-open-function
