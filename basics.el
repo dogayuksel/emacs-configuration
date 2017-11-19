@@ -20,8 +20,6 @@
               mac-option-modifier (quote meta)
               mac-right-option-modifier nil)
 
-(bind-key* "C-x p" 'previous-buffer)
-(bind-key* "C-x n" 'next-buffer)
 (bind-key* "C-c 1" 'comment-region)
 (bind-key* "C-c 2" 'uncomment-region)
 
