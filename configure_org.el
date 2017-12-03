@@ -22,7 +22,8 @@
             my/org-mobile-encryption-password
             org-mobile-inbox-for-pull
             org-mobile-use-encryption
-            buffer-face-mode-face)
+            buffer-face-mode-face
+            org-agenda-custom-commands)
   :config
   (progn
     (setq org-agenda-files
@@ -31,7 +32,7 @@
                   "~/Dropbox/.org/journal.org"
                   "~/Dropbox/.org/gcal.org"))
           org-archive-location "~/Dropbox/.org/archive/%s_archive::"
-          org-refile-targets '((org-agenda-files :maxlevel . 2))
+          org-refile-targets '((org-agenda-files :maxlevel . 3))
           org-outline-path-complete-in-steps nil
           org-refile-use-outline-path t
           org-catch-invisible-edits (quote show-and-error)
@@ -51,6 +52,28 @@
           org-mobile-encryption-password my/org-mobile-encryption-password
           org-mobile-inbox-for-pull "~/Dropbox/.org/from-mobile.org"
           org-mobile-use-encryption t)
+    (setq org-agenda-custom-commands
+          '(("g" . "GTD contexts")
+            ("go" "Office" tags-todo "@office")
+            ("gc" "Computer" tags-todo "@hacking")
+            ("gp" "Phone" tags-todo "@phone")
+            ("gm" "E-mail" tags-todo "@email")
+            ("gh" "Home" tags-todo "@home")
+            ("ge" "Errands" tags-todo "@errands")
+            ("gt" "Travelling" tags-todo "@travelling")
+            ("G" "GTD Block Agenda"
+             ((tags-todo "@office")
+              (tags-todo "@hacking")
+              (tags-todo "@phone")
+              (tags-todo "@email")
+              (tags-todo "@home")
+              (tags-todo "@errands")
+              (tags-todo "@travelling"))
+             nil                      ;; i.e., no local settings
+             ("~/Dropbox/.org/next-actions.txt"))
+            ;; exports block to this file with C-c a e
+            ;; ..other commands here
+            ))
     (add-hook 'org-mode-hook 'visual-line-mode)
     (add-hook 'latex-mode-hook 'visual-line-mode)
     (use-package visual-fill-column
