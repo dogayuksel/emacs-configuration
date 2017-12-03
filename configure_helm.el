@@ -23,7 +23,7 @@
     (helm-mode 1)
     (setq helm-autoresize-max-height 30
           helm-autoresize-mode t
-          helm-split-window-in-side-p t
+          helm-split-window-inside-p t
           helm-recentf-fuzzy-match t
           helm-buffers-fuzzy-matching t
           helm-M-x-fuzzy-match t)))
