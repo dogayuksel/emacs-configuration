@@ -44,8 +44,8 @@
 (require 'bind-key)
 (require 'diminish)
 
-(setq use-package-verbose t
-      use-package-always-ensure t)
+(setq use-package-verbose nil)
+(setq use-package-always-ensure t)
 
 (use-package auto-compile
   :config
