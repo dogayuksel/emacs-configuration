@@ -87,7 +87,9 @@
       (set-face-attribute 'org-code nil :inherit 'fixed-pitch)
       (set-face-attribute 'org-block nil :inherit 'fixed-pitch)
       (buffer-face-mode))
-    (add-hook 'org-mode-hook 'my/buffer-face-mode-variable)))
+    (add-hook 'org-mode-hook 'my/buffer-face-mode-variable)
+    (add-hook 'after-init-hook 'org-mobile-pull)
+    (add-hook 'kill-emacs-hook 'org-mobile-push)))
 
 (use-package visual-fill-column
   :init
