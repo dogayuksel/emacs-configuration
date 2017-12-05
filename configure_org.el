@@ -75,6 +75,10 @@
             ;; exports block to this file with C-c a e
             ;; ..other commands here
             ))
+    ;; pull contents when org-mode is loaded
+    (org-mobile-pull)
+    ;; push changes when emacs is killed and org-mode is already loaded
+    (add-hook 'kill-emacs-hook 'org-mobile-push)
     (add-hook 'org-mode-hook 'visual-line-mode)
     (add-hook 'latex-mode-hook 'visual-line-mode)
     (defun my/buffer-face-mode-variable ()
@@ -87,9 +91,7 @@
       (set-face-attribute 'org-code nil :inherit 'fixed-pitch)
       (set-face-attribute 'org-block nil :inherit 'fixed-pitch)
       (buffer-face-mode))
-    (add-hook 'org-mode-hook 'my/buffer-face-mode-variable)
-    (add-hook 'after-init-hook 'org-mobile-pull)
-    (add-hook 'kill-emacs-hook 'org-mobile-push)))
+    (add-hook 'org-mode-hook 'my/buffer-face-mode-variable)))
 
 (use-package visual-fill-column
   :init
