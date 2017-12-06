@@ -20,16 +20,44 @@
               mac-option-modifier (quote meta)
               mac-right-option-modifier nil)
 
+(put 'dired-find-alternate-file 'disabled nil)
+
 (bind-key* "C-c 1" 'comment-region)
 (bind-key* "C-c 2" 'uncomment-region)
+(bind-key* "<f5>" 'revert-buffer)
 
 (windmove-default-keybindings)
 
 ;; Enable recentf mode, save files periodically
 ;; Increase the size of stored items
 (recentf-mode 1)
-(run-at-time nil (* 5 60) 'recentf-save-list)
 (setq-default recentf-max-saved-items 50)
+
+(defvar recentf-save-timer nil)
+(defvar recentf-save-idle-disable-timer nil)
+
+(defun recentf-save-enable ()
+  "Start saving recent files."
+  (setq recentf-save-timer
+        (run-at-time nil (* 2 60) 'recentf-save-list)
+        recentf-save-idle-disable-timer
+        (run-with-idle-timer (* 7 60) nil 'recentf-save-disable)))
+
+(defun recentf-save-disable ()
+  "Disable saving recent files."
+  (progn
+    (cancel-timer recentf-save-timer)
+    (setq recentf-save-timer nil)))
+
+(defun resume-recentf-save ()
+  "Resume saving recent files after idle pause."
+  (if (eq recentf-save-timer nil)
+      (progn
+        (message "Re-enable")
+        (recentf-save-enable))))
+
+(add-hook 'focus-in-hook 'resume-recentf-save)
+(recentf-save-enable)
 
 (use-package exec-path-from-shell
   :if (memq window-system '(mac ns))
