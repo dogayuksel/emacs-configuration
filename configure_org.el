@@ -34,6 +34,7 @@
                   "~/Dropbox/.org/gcal.org"))
           org-archive-location "~/Dropbox/.org/archive/%s_archive::"
           org-refile-targets '((org-agenda-files :maxlevel . 3))
+          org-reverse-note-order t
           org-outline-path-complete-in-steps nil
           org-refile-use-outline-path t
           org-catch-invisible-edits (quote show-and-error)
