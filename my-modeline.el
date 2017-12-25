@@ -91,6 +91,10 @@
          (rhs
           (list
            (powerline-raw global-mode-string center-face 'r)
+           (powerline-minor-modes center-face 'l)
+           (powerline-raw
+            (char-to-string airline-utf-glyph-subseparator-right)
+            center-face 'l)
            (powerline-major-mode center-face 'l)
            (powerline-process center-face)
            (powerline-raw " " center-face)
