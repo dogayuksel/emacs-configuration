@@ -80,8 +80,12 @@
     (org-mobile-pull)
     ;; push changes when emacs is killed and org-mode is already loaded
     (add-hook 'kill-emacs-hook 'org-mobile-push)
-    (add-hook 'org-mode-hook 'visual-line-mode)
-    (add-hook 'latex-mode-hook 'visual-line-mode)
+    (defun my/setup-visual-line-mode ()
+      (progn
+        (visual-line-mode)
+        (delight 'visual-line-mode nil t)))
+    (add-hook 'org-mode-hook 'my/setup-visual-line-mode)
+    (add-hook 'latex-mode-hook 'my/setup-visual-line-mode)
     (defun my/buffer-face-mode-variable ()
       "Set font to a variable width fonts in current buffer."
       (interactive)

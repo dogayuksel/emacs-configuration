@@ -38,14 +38,9 @@
   (interactive)
   (setq buffer-face-mode-face
         '(:family "SF Mono" :height 140))
-  (buffer-face-mode))
+  (buffer-face-mode)
+  (delight 'buffer-face-mode nil t))
 (add-hook 'prog-mode-hook 'my/buffer-face-mode-monospace)
-
-(use-package emacs
-  :delight
-  (auto-revert-mode)
-  (visual-line-mode)
-  (buffer-face-mode))
 
 (use-package badwolf-theme
   :config

@@ -66,6 +66,9 @@
 (add-hook 'focus-in-hook 'resume-recentf-save)
 (recentf-save-enable)
 
+(use-package autorevert
+  :delight auto-revert-mode)
+
 (use-package exec-path-from-shell
   :if (memq window-system '(mac ns))
   :config
