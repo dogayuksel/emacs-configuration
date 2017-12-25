@@ -7,7 +7,7 @@
 
 ;; (helm-mode t)
 (use-package helm
-  :diminish helm-mode
+  :delight
   :bind
   (("M-x" . helm-M-x)
    ("C-x C-f" . helm-find-files)

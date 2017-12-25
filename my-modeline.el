@@ -9,25 +9,22 @@
   :config
   (progn
     (powerline-default-theme)
-    (setq-default powerline-display-mule-info nil
-                  powerline-display-hud t)))
+    (setq
+     powerline-display-mule-info nil
+     powerline-display-hud t)))
 
 (use-package airline-themes
   :config
   (progn
     (load-theme 'airline-badwolf)
-    (setq airline-utf-glyph-separator-left      #xe0b0
-          airline-utf-glyph-separator-right     #xe0b2
-          airline-utf-glyph-subseparator-left   #xe0b1
-          airline-utf-glyph-subseparator-right  #xe0b3
-          airline-utf-glyph-branch              #xe0a0
-          airline-utf-glyph-readonly            #xe0a2
-          airline-utf-glyph-linenumber          #xe0a1)))
-
-(diminish 'auto-revert-mode)
-(diminish 'visual-line-mode)
-(diminish 'buffer-face-mode)
-(diminish 'auto-revert-mode)
+    (setq
+     airline-utf-glyph-separator-left      #xe0b0
+     airline-utf-glyph-separator-right     #xe0b2
+     airline-utf-glyph-subseparator-left   #xe0b1
+     airline-utf-glyph-subseparator-right  #xe0b3
+     airline-utf-glyph-branch              #xe0a0
+     airline-utf-glyph-readonly            #xe0a2
+     airline-utf-glyph-linenumber          #xe0a1)))
 
 (setq-default
  mode-line-format
@@ -87,7 +84,8 @@
              (powerline-raw which-func-format center-face 'l))
            (when
                (boundp 'erc-modified-channels-object)
-             (powerline-raw erc-modified-channels-object center-face 'l))))
+             (powerline-raw
+              erc-modified-channels-object center-face 'l))))
          (lhs
           (append lhs-mode lhs-rest))
          (rhs

@@ -20,11 +20,18 @@
               mac-option-modifier (quote meta)
               mac-right-option-modifier nil)
 
-(put 'dired-find-alternate-file 'disabled nil)
+(use-package personal
+  :load-path "lib"
+  :bind
+  (("C-c K" . my/nuke-all-buffers)
+   ("C-c p" . my/split-and-open-shell)
+   ("C-c t" . my/set-frame-alpha))
+  :bind*
+  (("C-c 1" . 'comment-region)
+   ("C-c 2" . 'uncomment-region)
+   ("<f5>" . 'revert-buffer)))
 
-(bind-key* "C-c 1" 'comment-region)
-(bind-key* "C-c 2" 'uncomment-region)
-(bind-key* "<f5>" 'revert-buffer)
+(put 'dired-find-alternate-file 'disabled nil)
 
 (windmove-default-keybindings)
 
@@ -65,7 +72,7 @@
   (exec-path-from-shell-initialize))
 
 (use-package which-key
-  :diminish which-key-mode
+  :delight
   :config
   (which-key-mode))
 
@@ -93,11 +100,12 @@
 
 (use-package auto-complete
   :disabled
-  :diminish auto-complete-mode
+  :delight
   :config
   (ac-config-default))
 
 (use-package company
+  :delight
   :defines (company-dabbrev-downcase)
   :bind ("<M-tab>" . company-complete)
   :config
@@ -108,7 +116,6 @@
     (global-company-mode)))
 
 (use-package flycheck
-  :diminish flycheck-mode
   :config
   (progn
     ;;; flycheck global on
@@ -128,6 +135,7 @@
 
 (use-package yasnippet
   :defer 7
+  :delight yas-minor-mode
   :config
   (progn
     (add-to-list 'yas-snippet-dirs "~/.emacs.d/yasnippet-snippets")
@@ -150,7 +158,7 @@
   :bind ("C-c o" . iedit-mode))
 
 (use-package drag-stuff
-  :diminish drag-stuff-mode
+  :delight
   :bind
   (("<M-down>" . drag-stuff-down)
    ("<M-up>" . drag-stuff-up))
@@ -161,7 +169,7 @@
   :bind ("C-c n" . neotree))
 
 (use-package undo-tree
-  :diminish undo-tree-mode
+  :delight
   :config
   (global-undo-tree-mode)
   (setq undo-tree-visualizer-timestamps t
@@ -172,7 +180,7 @@
              dash-at-point-with-docset))
 
 (use-package smartparens
-  :diminish smartparens-mode
+  :delight
   :config
   (progn
     (add-hook 'web-mode-hook #'smartparens-mode)
@@ -190,19 +198,21 @@
    bookmark-default-file
    bmkp-last-as-first-bookmark-file)
   :init
-  (setq bmkp-bmenu-state-file "/Users/doga/.emacs.d/.emacs-bmk-bmenu-state.el"
-        bookmark-default-file "/Users/doga/.emacs.d/bookmarks"
+  (setq bmkp-bmenu-state-file
+        "/Users/doga/.emacs.d/.emacs-bmk-bmenu-state.el"
+        bookmark-default-file
+        "/Users/doga/.emacs.d/bookmarks"
         bmkp-last-as-first-bookmark-file nil))
 
 (use-package dired+)
 
 (use-package hungry-delete
-  :diminish hungry-delete-mode
+  :delight
   :config
   (global-hungry-delete-mode))
 
 (use-package aggressive-indent
-  :diminish aggressive-indent-mode
+  :delight
   :config
   (progn
     (global-aggressive-indent-mode 1)
@@ -216,38 +226,5 @@
 
 (use-package expand-region
   :bind ("C-c e" . er/expand-region))
-
-;;; Quick access to the shell
-(defun my/split-and-open-shell ()
-  "Split window and start shell."
-  (interactive)
-  (split-window-right)
-  (other-window 1)
-  (shell))
-(bind-key* "C-c p" 'my/split-and-open-shell)
-
-(defun my/open-iterm-here ()
-  "Read default directory and open iterm there."
-  (interactive)
-  (dired-smart-shell-command "open -a iTerm -n $PWD" nil nil))
-
-;;; Buffer cleaner
-(defun my/nuke-all-buffers ()
-  "Confirm and kill all buffers."
-  (interactive)
-  (if (y-or-n-p "Do you want to kill all the buffers? ")
-      (progn
-        (mapc 'kill-buffer (buffer-list))
-        (delete-other-windows)
-        (message "Killed all the buffers.."))
-    (progn
-      (message "Not killing all"))))
-(bind-key* "C-x K" 'my/nuke-all-buffers)
-
-;;; Insert name string
-(defun my/insertfullname ()
-  "Insert full name."
-  (interactive)
-  (insert user-full-name))
 
 ;;; basics.el ends here

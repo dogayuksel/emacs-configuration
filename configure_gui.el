@@ -41,6 +41,12 @@
   (buffer-face-mode))
 (add-hook 'prog-mode-hook 'my/buffer-face-mode-monospace)
 
+(use-package emacs
+  :delight
+  (auto-revert-mode)
+  (visual-line-mode)
+  (buffer-face-mode))
+
 (use-package badwolf-theme
   :config
   (load-theme 'badwolf t))
@@ -50,10 +56,12 @@
 (set-face-attribute 'fringe nil :background "grey8")
 
 (use-package rainbow-mode
+  :delight
   :config
   (progn
     (add-hook 'emacs-lisp-mode-hook 'rainbow-mode)
-    (add-hook 'sass-mode-hook 'rainbow-mode)))
+    (add-hook 'sass-mode-hook 'rainbow-mode)
+    (add-hook 'web-mode 'rainbow-mode)))
 
 (defun my/terminal-visible-bell ()
   "A friendlier visual bell effect."
@@ -64,18 +72,5 @@
 
 (setq visible-bell nil
       ring-bell-function #'my/terminal-visible-bell)
-
-(defun my/set-frame-alpha (arg &optional active)
-  "Used to change the transparency.  ARG (1-100).  ACTIVE."
-  (interactive "nEnter alpha value (1-100): \np")
-  (let* ((elt (assoc 'alpha default-frame-alist))
-         (old (frame-parameter nil 'alpha))
-         (new (cond ((atom old)     `(,arg ,arg))
-                    ((eql 1 active) `(,arg ,(cadr old)))
-                    (t              `(,(car old) ,arg)))))
-    (if elt (setcdr elt new) (push `(alpha ,@new) default-frame-alist))
-    (set-frame-parameter nil 'alpha new)))
-
-(bind-key* "C-c t" 'my/set-frame-alpha)
 
 ;;; configure_gui.el ends here
