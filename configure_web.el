@@ -14,13 +14,15 @@
     ;; And you must set '--no-header' option
     (setq coffee-args-compile '("-c" "--no-header" "-m"))
     (use-package sourcemap)
-    (add-hook 'coffee-after-compile-hook 'sourcemap-goto-corresponding-point)
+    (add-hook 'coffee-after-compile-hook
+              'sourcemap-goto-corresponding-point)
     ;; If you want to remove sourcemap file
     ;; after jumping corresponding point
     (defun my/coffee-after-compile-hook (props)
       (sourcemap-goto-corresponding-point props)
       (delete-file (plist-get props :sourcemap)))
-    (add-hook 'coffee-after-compile-hook 'my/coffee-after-compile-hook)))
+    (add-hook 'coffee-after-compile-hook
+              'my/coffee-after-compile-hook)))
 
 (use-package yaml-mode
   :mode "\\.yml\\'")
@@ -66,9 +68,11 @@
           web-mode-enable-current-element-highlight t
           web-mode-enable-current-column-highlight t)
     (set-face-attribute
-     'web-mode-current-element-highlight-face nil :background "gray9")
+     'web-mode-current-element-highlight-face
+     nil :background "gray9")
     (set-face-attribute
-     'web-mode-current-column-highlight-face nil :background "gray15")
+     'web-mode-current-column-highlight-face
+     nil :background "gray15")
     ;;; For better jsx syntax-highlighting in web-mode.
     (defadvice web-mode-highlight-part (around tweak-jsx activate)
       "Some decoration for jsx mode."
