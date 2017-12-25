@@ -99,10 +99,12 @@
 
 (use-package company
   :defines (company-dabbrev-downcase)
+  :bind ("<M-tab>" . company-complete)
   :config
   (progn
     (setq company-global-modes '(not org-mode)
-          company-dabbrev-downcase nil)
+          company-dabbrev-downcase nil
+          company-tooltip-maximum-width 60)
     (global-company-mode)))
 
 (use-package flycheck
