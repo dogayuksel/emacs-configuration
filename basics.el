@@ -41,7 +41,7 @@
   (setq recentf-save-timer
         (run-at-time nil (* 2 60) 'recentf-save-list)
         recentf-save-idle-disable-timer
-        (run-with-idle-timer (* 7 60) nil 'recentf-save-disable)))
+        (run-with-idle-timer (* 3 60) nil 'recentf-save-disable)))
 
 (defun recentf-save-disable ()
   "Disable saving recent files."
