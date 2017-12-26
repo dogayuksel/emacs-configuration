@@ -7,29 +7,24 @@
 
 (use-package powerline
   :config
-  (progn
-    (powerline-default-theme)
-    (setq
-     powerline-display-mule-info nil
-     powerline-display-hud t)))
+  (powerline-default-theme)
+  (setq powerline-display-mule-info nil
+        powerline-display-hud t))
 
 (use-package airline-themes
   :config
-  (progn
-    (load-theme 'airline-badwolf)
-    (setq
-     airline-utf-glyph-separator-left      #xe0b0
-     airline-utf-glyph-separator-right     #xe0b2
-     airline-utf-glyph-subseparator-left   #xe0b1
-     airline-utf-glyph-subseparator-right  #xe0b3
-     airline-utf-glyph-branch              #xe0a0
-     airline-utf-glyph-readonly            #xe0a2
-     airline-utf-glyph-linenumber          #xe0a1)))
+  (load-theme 'airline-badwolf)
+  (setq airline-utf-glyph-separator-left      #xe0b0
+        airline-utf-glyph-separator-right     #xe0b2
+        airline-utf-glyph-subseparator-left   #xe0b1
+        airline-utf-glyph-subseparator-right  #xe0b3
+        airline-utf-glyph-branch              #xe0a0
+        airline-utf-glyph-readonly            #xe0a2
+        airline-utf-glyph-linenumber          #xe0a1))
 
 (setq-default
  mode-line-format
- (quote
-  ("%e"
+ '("%e"
    (:eval
     (let*
         ((active
@@ -117,6 +112,6 @@
       (concat
        (powerline-render lhs)
        (powerline-fill center-face (powerline-width rhs))
-       (powerline-render rhs)))))))
+       (powerline-render rhs))))))
 
 ;;; my-modeline.el ends here

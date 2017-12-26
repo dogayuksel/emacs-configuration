@@ -5,9 +5,7 @@
 
 ;;; Code:
 
-;; (helm-mode t)
 (use-package helm
-  :delight
   :bind
   (("M-x" . helm-M-x)
    ("C-x C-f" . helm-find-files)
@@ -19,14 +17,14 @@
             helm-buffers-fuzzy-matching
             helm-M-x-fuzzy-match)
   :config
-  (progn
-    (helm-mode 1)
-    (setq helm-autoresize-max-height 30
-          helm-autoresize-mode t
-          helm-split-window-inside-p t
-          helm-recentf-fuzzy-match t
-          helm-buffers-fuzzy-matching t
-          helm-M-x-fuzzy-match t)))
+  (helm-mode 1)
+  (setq helm-autoresize-max-height 30
+        helm-autoresize-mode t
+        helm-split-window-inside-p t
+        helm-recentf-fuzzy-match t
+        helm-buffers-fuzzy-matching t
+        helm-M-x-fuzzy-match t)
+  :delight)
 
 (use-package helm-descbinds
   :bind
@@ -69,8 +67,7 @@
         '("~/Dropbox/.org/bibtex/file-1.bib"
           "~/Dropbox/.org/bibtex/file-2.bib")
         bibtex-entry-format
-        (quote
-         (opts-or-alts required-fields numerical-fields realign))
+        '(opts-or-alts required-fields numerical-fields realign)
         bibtex-completion-library-path
         '("~/Dropbox/Ebooks/bibtex-library")
         bibtex-completion-notes-path
@@ -81,7 +78,7 @@
         (lambda (fpath)
           (call-process "open" nil 0 nil "-a" "/Applications/Skim.app" fpath))
         bibtex-completion-format-citation-functions
-        '((org-mode      . bibtex-completion-format-citation-cite)
-          (latex-mode    . bibtex-completion-format-citation-cite))))
+        '((org-mode . bibtex-completion-format-citation-cite)
+          (latex-mode . bibtex-completion-format-citation-cite))))
 
 ;;; configure_helm.el ends here

@@ -48,23 +48,20 @@
 
 (load-file "~/.emacs.d/my-modeline.elc")
 
-(set-face-attribute 'fringe nil :background "grey8")
-
 (use-package rainbow-mode
-  :delight
-  :config
-  (progn
-    (add-hook 'emacs-lisp-mode-hook 'rainbow-mode)
-    (add-hook 'sass-mode-hook 'rainbow-mode)
-    (add-hook 'web-mode 'rainbow-mode)))
+  :hook
+  (emacs-lisp-mode
+   sass-mode
+   web-mode)
+  :delight)
+
+(set-face-attribute 'fringe nil :background "grey8")
 
 (defun my/terminal-visible-bell ()
   "A friendlier visual bell effect."
   (set-face-background 'fringe "#aeee00")
-  (run-with-idle-timer 0.1 nil
-                       (lambda ()
-                         (set-face-background 'fringe "grey8"))))
-
+  (run-with-idle-timer
+   0.1 nil (lambda () (set-face-background 'fringe "grey8"))))
 (setq visible-bell nil
       ring-bell-function #'my/terminal-visible-bell)
 

@@ -8,10 +8,9 @@
 (use-package elpy
   :defer 10
   :config
-  (progn
-    (setq elpy-rpc-backend "jedi")
-    (setq elpy-rpc-python-command "python")
-    (elpy-enable)))
+  (setq elpy-rpc-backend "jedi")
+  (setq elpy-rpc-python-command "python")
+  (elpy-enable))
 
 ;; (defun my-fix-tabs ()
 ;;   "Fix tab spaces for python."

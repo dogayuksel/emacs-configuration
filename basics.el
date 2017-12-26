@@ -177,10 +177,10 @@
              dash-at-point-with-docset))
 
 (use-package smartparens
-  :hook
-  (web-mode-hook
-   emacs-lisp-mode-hook
-   lisp-interaction-mode-hook)
+  :config
+  (add-hook 'web-mode-hook #'smartparens-mode)
+  (add-hook 'emacs-lisp-mode-hook #'smartparens-mode)
+  (add-hook 'lisp-interaction-mode-hook #'smartparens-mode)
   :delight)
 
 (use-package multiple-cursors
