@@ -6,6 +6,7 @@
 ;;; Code:
 
 (use-package helm
+  :demand
   :bind
   (("M-x" . helm-M-x)
    ("C-x C-f" . helm-find-files)
@@ -28,7 +29,8 @@
 
 (use-package helm-descbinds
   :bind
-  ("C-h b" . helm-descbinds))
+  ("C-h b" . helm-descbinds)
+  :after (helm))
 
 (use-package dumb-jump
   :bind (("M-g o" . dumb-jump-go-other-window)
@@ -36,13 +38,15 @@
          ("M-g i" . dumb-jump-go-prompt)
          ("M-g x" . dumb-jump-go-prefer-external)
          ("M-g z" . dumb-jump-go-prefer-external-other-window))
+  :after (helm)
   :config
   (setq dumb-jump-selector 'helm))
 
 (use-package helm-ag
   :bind ("M-g s" . helm-do-ag-project-root)
   :commands (helm-do-ag
-             helm-ag))
+             helm-ag)
+  :after (helm))
 
 (defun *-popwin-help-mode-off ()
   "Turn `popwin-mode' off for *Help* buffers."
@@ -62,6 +66,7 @@
 
 (use-package helm-bibtex
   :commands (helm-bibtex)
+  :after (helm)
   :config
   (setq bibtex-completion-bibliography
         '("~/Dropbox/.org/bibtex/file-1.bib"

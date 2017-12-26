@@ -1,0 +1,90 @@
+* Introduction
+My configuration files for Emacs.
+Using them with this mac port: [[https://bitbucket.org/mituharu/emacs-mac][mituharu/emacs-mac]].
+* General requirements
+  - SF Mono fonts
+  - Hack fonts
+* Bootstrapped package that ensures that rest
+** use-package
+   [[https://github.com/jwiegley/use-package][jwiegley/use-package]]
+* Ensured packages with external dependencies
+** synonyms
+   [[https://www.emacswiki.org/emacs/Synonyms][package wiki]]
+   dependency: [[https://archive.org/details/mobythesauruslis03202gut][thesaurus file]]
+** yasnippet
+   - uses snippets in the folder /yasnippet-snippets
+   - snippets repo: [[https://github.com/AndreaCrotti/yasnippet-snippets][AndreaCrotti/yasnippet-snippets]]
+** magit
+   [[https://magit.vc/][magit documentation]] - obviously requires git
+** dash-at-point
+   needs dash software: [[https://kapeli.com/dash][web page]]
+** TODO org
+   - should prompt - mobile org secret
+   - should prompt - agenda files
+   - avenir book font
+   - uses latexmk for PDF export
+** TODO org-gcal
+   - should prompt - gcal client secret
+** company-tern
+   - needs tern repository
+   - [[http://ternjs.net/][ternjs webpage]]
+** helm-ag
+   - uses silver surfer
+   - repo here: [[https://github.com/ggreer/the_silver_searcher][ggreer/the_silver_searcher]]
+** helm-bibtex
+   - uses skim app to open PDFs
+   - points at bibtex-library
+** elpy
+   - bunch of dependencies on python side
+   - refer to: [[https://github.com/jorgenschaefer/elpy][jorgenschaefer/elpy]]
+* Ensured with use-package
+** delight
+** auto-compile
+** try
+** which-key
+** popwin
+** org-pomodoro
+** company
+** flycheck
+** flycheck-flow
+** helm-c-yasnippet
+** avy
+** swiper
+** iedit
+** drag-stuff
+** neotree
+** undo-tree
+** smartparens
+** multiple-cursors
+** bookmark+
+** dired+
+** hungry-delete
+** aggressive-indent
+** expand-region
+** badwolf-theme
+** rainbow-mode
+** visual-fill-column
+** org-bullets
+** coffee-mode
+** sourcemap
+** yaml-mode
+** json-mode
+** graphql-mode
+** sass-mode
+** scss-mode
+** impatient-mode
+** web-mode
+** tide
+   [[https://github.com/ananthakumaran/tide][ananthakumaran/tide]]
+** helm
+** helm-descbinds
+** dumb-jump
+** airline-themes
+** alert
+** powerline
+* Platform specific ensured packages
+** exec-path-from-shell
+* Currently disabled packages
+** benchmark-init
+** auto-complete
+** mmm-mode

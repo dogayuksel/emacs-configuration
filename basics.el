@@ -215,7 +215,6 @@
                 '(coffee-mode
                   python-mode
                   typescript-mode
-                  jade-mode
                   sass-mode)))
   :delight)
 
