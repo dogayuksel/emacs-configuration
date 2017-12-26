@@ -17,8 +17,10 @@
               initial-scratch-message nil
               calendar-week-start-day 1
               mac-command-modifier nil
-              mac-option-modifier (quote meta)
+              mac-option-modifier 'meta
               mac-right-option-modifier nil)
+
+(put 'dired-find-alternate-file 'disabled nil)
 
 (use-package personal
   :load-path "lib"
@@ -31,12 +33,8 @@
    ("C-c 2" . 'uncomment-region)
    ("<f5>" . 'revert-buffer)))
 
-(put 'dired-find-alternate-file 'disabled nil)
-
 (windmove-default-keybindings)
 
-;; Enable recentf mode, save files periodically
-;; Increase the size of stored items
 (use-package recentf
   :config
   (setq recentf-max-saved-items 50)
@@ -78,9 +76,9 @@
   (exec-path-from-shell-initialize))
 
 (use-package which-key
-  :delight
   :config
-  (which-key-mode))
+  (which-key-mode)
+  :delight)
 
 (use-package synonyms
   :commands (synonyms)
@@ -93,63 +91,56 @@
   (popwin-mode 1))
 
 (use-package org-pomodoro
+  :defines (org-pomodoro-play-sounds)
   :commands (org-pomodoro)
+  :after (org)
   :config
-  (progn
-    (use-package alert
-      :defines (org-pomodoro-play-sounds
-                alert-default-style)
-      :config
-      (setq
-       alert-default-style (quote osx-notifier)
-       org-pomodoro-play-sounds nil))))
+  (setq org-pomodoro-play-sounds nil))
 
-(use-package auto-complete
-  :disabled
-  :delight
+(use-package alert
+  :if (memq window-system '(mac ns))
+  :defines (alert-default-style)
   :config
-  (ac-config-default))
+  (setq alert-default-style 'osx-notifier))
 
 (use-package company
-  :delight
   :defines (company-dabbrev-downcase)
   :bind ("<M-tab>" . company-complete)
   :config
-  (progn
-    (setq company-global-modes '(not org-mode)
-          company-dabbrev-downcase nil
-          company-tooltip-maximum-width 60)
-    (global-company-mode)))
+  (setq company-global-modes '(not org-mode)
+        company-dabbrev-downcase nil
+        company-tooltip-maximum-width 60)
+  (global-company-mode)
+  :delight)
 
 (use-package flycheck
+  :init (global-flycheck-mode)
   :config
-  (progn
-    ;;; flycheck global on
-    (add-hook 'after-init-hook #'global-flycheck-mode)
-    ;;; turn off jshint
-    (setq flycheck-disabled-checkers
-          (append flycheck-disabled-checkers
-                  '(javascript-jshint)
-                  '(python-pycompile)))
-    ;;; webmode eslint
-    (use-package flycheck-flow)
-    (flycheck-add-mode 'javascript-eslint 'web-mode)
-    (flycheck-add-mode 'javascript-flow 'web-mode)
-    (flycheck-add-next-checker 'javascript-flow 'javascript-eslint)
-    ;;; flycheck temp file
-    (setq flycheck-temp-prefix ".flycheck")))
+  (setq flycheck-disabled-checkers
+        (append flycheck-disabled-checkers
+                '(javascript-jshint)
+                '(python-pycompile)))
+  (setq flycheck-temp-prefix ".flycheck")
+  (flycheck-add-mode 'javascript-eslint 'web-mode))
+
+(use-package flycheck-flow
+  :after (flycheck)
+  :config
+  (flycheck-add-mode 'javascript-flow 'web-mode)
+  (flycheck-add-next-checker 'javascript-flow 'javascript-eslint))
 
 (use-package yasnippet
   :defer 7
-  :delight yas-minor-mode
   :config
-  (progn
-    (add-to-list 'yas-snippet-dirs "~/.emacs.d/yasnippet-snippets")
-    (yas-global-mode 1)
-    (use-package helm-c-yasnippet
-      :bind ("C-c y" . helm-yas-complete)
-      :config
-      (setq helm-yas-space-match-any-greedy t))))
+  (add-to-list 'yas-snippet-dirs "~/.emacs.d/yasnippet-snippets")
+  (yas-global-mode 1)
+  :delight yas-minor-mode)
+
+(use-package helm-c-yasnippet
+  :bind ("C-c y" . helm-yas-complete)
+  :after (yasnippet)
+  :config
+  (setq helm-yas-space-match-any-greedy t))
 
 (use-package avy
   :bind* ("C-c SPC" . avy-goto-char))
@@ -164,34 +155,33 @@
   :bind ("C-c o" . iedit-mode))
 
 (use-package drag-stuff
-  :delight
   :bind
   (("<M-down>" . drag-stuff-down)
    ("<M-up>" . drag-stuff-up))
   :config
-  (drag-stuff-global-mode 1))
+  (drag-stuff-global-mode 1)
+  :delight)
 
 (use-package neotree
   :bind ("C-c n" . neotree))
 
 (use-package undo-tree
-  :delight
   :config
   (global-undo-tree-mode)
   (setq undo-tree-visualizer-timestamps t
-        undo-tree-visualizer-diff t))
+        undo-tree-visualizer-diff t)
+  :delight)
 
 (use-package dash-at-point
   :commands (dash-at-point
              dash-at-point-with-docset))
 
 (use-package smartparens
-  :delight
-  :config
-  (progn
-    (add-hook 'web-mode-hook #'smartparens-mode)
-    (add-hook 'emacs-lisp-mode-hook #'smartparens-mode)
-    (add-hook 'lisp-interaction-mode-hook #'smartparens-mode)))
+  :hook
+  (web-mode-hook
+   emacs-lisp-mode-hook
+   lisp-interaction-mode-hook)
+  :delight)
 
 (use-package multiple-cursors
   :bind
@@ -213,22 +203,21 @@
 (use-package dired+)
 
 (use-package hungry-delete
-  :delight
   :config
-  (global-hungry-delete-mode))
+  (global-hungry-delete-mode)
+  :delight)
 
 (use-package aggressive-indent
-  :delight
   :config
-  (progn
-    (global-aggressive-indent-mode 1)
-    (setq aggressive-indent-excluded-modes
-          (append aggressive-indent-excluded-modes
-                  '(coffee-mode
-                    python-mode
-                    typescript-mode
-                    jade-mode
-                    sass-mode)))))
+  (global-aggressive-indent-mode 1)
+  (setq aggressive-indent-excluded-modes
+        (append aggressive-indent-excluded-modes
+                '(coffee-mode
+                  python-mode
+                  typescript-mode
+                  jade-mode
+                  sass-mode)))
+  :delight)
 
 (use-package expand-region
   :bind ("C-c e" . er/expand-region))
