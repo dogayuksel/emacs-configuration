@@ -37,34 +37,37 @@
 
 ;; Enable recentf mode, save files periodically
 ;; Increase the size of stored items
-(recentf-mode 1)
-(setq-default recentf-max-saved-items 50)
-
-(defvar recentf-save-timer nil)
-(defvar recentf-save-idle-disable-timer nil)
-
-(defun recentf-save-enable ()
-  "Start saving recent files."
-  (setq recentf-save-timer
-        (run-at-time nil (* 2 60) 'recentf-save-list)
-        recentf-save-idle-disable-timer
-        (run-with-idle-timer (* 3 60) nil 'recentf-save-disable)))
-
-(defun recentf-save-disable ()
-  "Disable saving recent files."
-  (progn
-    (cancel-timer recentf-save-timer)
-    (setq recentf-save-timer nil)))
-
-(defun resume-recentf-save ()
-  "Resume saving recent files after idle pause."
-  (if (eq recentf-save-timer nil)
-      (progn
-        (message "Re-enable")
-        (recentf-save-enable))))
-
-(add-hook 'focus-in-hook 'resume-recentf-save)
-(recentf-save-enable)
+(use-package recentf
+  :config
+  (setq recentf-max-saved-items 50)
+  (setq recentf-exclude '("recentf$"
+                          "bookmarks$"
+                          "mobileorg\.org"
+                          "\.org-gcal-token$"
+                          "orgtmpcrypt$"
+                          "\.emacs-bmk-bmenu-state\.el$"))
+  (recentf-mode 1)
+  (defvar recentf-save-timer nil)
+  (defvar recentf-save-idle-disable-timer nil)
+  (defun recentf-save-enable ()
+    "Start saving recent files."
+    (setq recentf-save-timer
+          (run-at-time nil (* 2 60) 'recentf-save-list)
+          recentf-save-idle-disable-timer
+          (run-with-idle-timer (* 3 60) nil 'recentf-save-disable)))
+  (defun recentf-save-disable ()
+    "Disable saving recent files."
+    (progn
+      (cancel-timer recentf-save-timer)
+      (setq recentf-save-timer nil)))
+  (defun resume-recentf-save ()
+    "Resume saving recent files after idle pause."
+    (if (eq recentf-save-timer nil)
+        (progn
+          (message "Re-enable")
+          (recentf-save-enable))))
+  (add-hook 'focus-in-hook 'resume-recentf-save)
+  (recentf-save-enable))
 
 (use-package autorevert
   :delight auto-revert-mode)
