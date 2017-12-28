@@ -148,28 +148,29 @@
         org-latex-pdf-process
         '("latexmk -pdflatex='pdflatex -interaction nonstopmode' -pdf -bibtex -f  %f")))
 
+(setq reftex-default-bibliography
+      '("~/Dropbox/.org/bibtex/file-1.bib"
+        "~/Dropbox/.org/bibtex/file-2.bib"))
+
 (use-package ox-md
   :ensure org
   :after (org))
 
 (use-package org-gcal
+  :if (boundp 'my/org-gcal-client-secret)
   :defines (org-gcal-client-id
             org-gcal-client-secret
+            my/org-gcal-client-id
             my/org-gcal-client-secret
             org-gcal-file-alist)
   :init
   (setq
-   org-gcal-client-id
-   "172076857986-m651ifu3fbc51usuet841lvp3m8t11g7.apps.googleusercontent.com"
+   org-gcal-client-id my/org-gcal-client-id
    org-gcal-client-secret my/org-gcal-client-secret
    org-gcal-file-alist
    '(("dogayuksel@gmail.com" . "~/Dropbox/.org/gcal.org")))
   :after (org)
   :config
   (add-hook 'org-agenda-mode-hook (lambda () (org-gcal-sync))))
-
-(setq reftex-default-bibliography
-      '("~/Dropbox/.org/bibtex/file-1.bib"
-        "~/Dropbox/.org/bibtex/file-2.bib"))
 
 ;;; configure_org.el ends here

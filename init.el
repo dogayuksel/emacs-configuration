@@ -69,7 +69,9 @@
  ;; If there is more than one, they won't work right.
  )
 
-(load-file "~/.emacs.d/.emacs_secrets.elc")
+(if (file-exists-p "~/.emacs.d/.emacs_secrets.elc")
+    (load-file "~/.emacs.d/.emacs_secrets.elc"))
+
 (load-file "~/.emacs.d/basics.elc")
 (load-file "~/.emacs.d/configure_gui.elc")
 (load-file "~/.emacs.d/configure_org.elc")

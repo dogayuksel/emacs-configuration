@@ -195,9 +195,9 @@
    bmkp-last-as-first-bookmark-file)
   :init
   (setq bmkp-bmenu-state-file
-        "/Users/doga/.emacs.d/.emacs-bmk-bmenu-state.el"
+        "~/.emacs.d/.emacs-bmk-bmenu-state.el"
         bookmark-default-file
-        "/Users/doga/.emacs.d/bookmarks"
+        "~/.emacs.d/bookmarks"
         bmkp-last-as-first-bookmark-file nil))
 
 (use-package dired+)
