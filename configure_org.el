@@ -49,10 +49,6 @@
           ("j" "Journal" entry
            (file+datetree "~/Dropbox/.org/journal.org")
            "* %?\nEntered on %U\n  %i\n  %a"))
-        org-mobile-directory "~/Dropbox/Apps/MobileOrg"
-        org-mobile-encryption-password my/org-mobile-encryption-password
-        org-mobile-inbox-for-pull "~/Dropbox/.org/from-mobile.org"
-        org-mobile-use-encryption t
         org-agenda-custom-commands
         '(("g" . "GTD contexts")
           ("go" "Office" tags-todo "@office")
@@ -76,9 +72,18 @@
           ;; ..other commands here
           ))
   ;; pull contents when org-mode is loaded
-  (org-mobile-pull)
-  ;; push changes when emacs is killed and org-mode is already loaded
-  (add-hook 'kill-emacs-hook 'org-mobile-push)
+  (if (boundp 'my/org-mobile-encryption-password)
+      (progn
+        (setq org-mobile-directory "~/Dropbox/Apps/MobileOrg"
+              org-mobile-encryption-password
+              my/org-mobile-encryption-password
+              org-mobile-inbox-for-pull
+              "~/Dropbox/.org/from-mobile.org"
+              org-mobile-use-encryption t)
+        (org-mobile-pull)
+        ;; push changes when emacs is killed
+        ;; and org-mode is already loaded
+        (add-hook 'kill-emacs-hook 'org-mobile-push)))
   (defun my/setup-visual-line-mode ()
     (progn
       (visual-line-mode)

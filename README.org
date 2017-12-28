@@ -19,12 +19,15 @@ Using them with this mac port: [[https://bitbucket.org/mituharu/emacs-mac][mituh
 ** dash-at-point
    needs dash software: [[https://kapeli.com/dash][web page]]
 ** TODO org
-   - should prompt - mobile org secret
    - should prompt - agenda files
+   - mobile-org
+     [[https://mobileorg.github.io/documentation/][documentation]]
    - avenir book font
    - uses latexmk for PDF export
-** TODO org-gcal
-   - should prompt - gcal client secret
+** org-gcal
+   - requires calendar setup
+   - loaded only when secrets exist
+   - [[https://github.com/myuhe/org-gcal.el][github repo]]
 ** company-tern
    - needs tern repository
    - [[http://ternjs.net/][ternjs webpage]]
