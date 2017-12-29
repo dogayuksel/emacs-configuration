@@ -27,7 +27,7 @@
     (progn
       (message "Not killing all"))))
 
-(defun my/insertfullname ()
+(defun my/insert-fullname ()
   "Insert full name."
   (interactive)
   (insert user-full-name))

@@ -23,7 +23,10 @@
 (put 'dired-find-alternate-file 'disabled nil)
 
 (use-package personal
-  :load-path "lib"
+  :load-path "lib/personal"
+  :commands
+  (my/open-iterm-here
+   my/insert-fullname)
   :bind
   (("C-c K" . my/nuke-all-buffers)
    ("C-c p" . my/split-and-open-shell)
