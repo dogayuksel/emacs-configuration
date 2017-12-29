@@ -9,28 +9,27 @@
 (menu-bar-mode 0)
 
 (setq default-frame-alist
-      '(
-        (width . 80)   ; character
+      '((width . 80)   ; character
         (height . 310)   ; lines
         (font . "Hack 14")))
+
+(defun my/prepare-ui ()
+  (setq ns-use-native-fullscreen nil)
+  (menu-bar-mode 1)
+  (scroll-bar-mode 0)
+  (fringe-mode 8))
 
 ;; Runs for standalone GUI
 (if (display-graphic-p)
     (progn
-      (setq ns-use-native-fullscreen nil)
-      (menu-bar-mode 1)
-      (scroll-bar-mode 0)
-      (fringe-mode 4)
+      (my/prepare-ui)
       (message "Standalone GUI settings done!")))
 
 ;; Runs for emacs client frame
 (add-hook 'after-make-frame-functions
           (lambda (frame)
             (when (display-graphic-p frame)
-              (setq ns-use-native-fullscreen nil)
-              (menu-bar-mode 1)
-              (scroll-bar-mode 0)
-              (fringe-mode 4)
+              (my/prepare-ui)
               (message "Client GUI settings done!"))))
 
 (defun my/buffer-face-mode-monospace ()

@@ -22,6 +22,8 @@
 
 (put 'dired-find-alternate-file 'disabled nil)
 
+(windmove-default-keybindings)
+
 (use-package personal
   :load-path "lib/personal"
   :commands
@@ -35,8 +37,6 @@
   (("C-c 1" . 'comment-region)
    ("C-c 2" . 'uncomment-region)
    ("<f5>" . 'revert-buffer)))
-
-(windmove-default-keybindings)
 
 (use-package recentf
   :config
@@ -92,13 +92,6 @@
 (use-package popwin
   :config
   (popwin-mode 1))
-
-(use-package org-pomodoro
-  :defines (org-pomodoro-play-sounds)
-  :commands (org-pomodoro)
-  :after (org)
-  :config
-  (setq org-pomodoro-play-sounds nil))
 
 (use-package alert
   :if (memq window-system '(mac ns))

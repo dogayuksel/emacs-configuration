@@ -117,6 +117,13 @@
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
   :after (org))
 
+(use-package org-pomodoro
+  :defines (org-pomodoro-play-sounds)
+  :commands (org-pomodoro)
+  :after (org)
+  :config
+  (setq org-pomodoro-play-sounds nil))
+
 (use-package ox-latex
   :ensure org
   :after (org)
@@ -153,9 +160,11 @@
         org-latex-pdf-process
         '("latexmk -pdflatex='pdflatex -interaction nonstopmode' -pdf -bibtex -f  %f")))
 
-(setq reftex-default-bibliography
-      '("~/Dropbox/.org/bibtex/file-1.bib"
-        "~/Dropbox/.org/bibtex/file-2.bib"))
+(use-package reftex
+  :config
+  (setq reftex-default-bibliography
+        '("~/Dropbox/.org/bibtex/file-1.bib"
+          "~/Dropbox/.org/bibtex/file-2.bib")))
 
 (use-package ox-md
   :ensure org
