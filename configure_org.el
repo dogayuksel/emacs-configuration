@@ -84,6 +84,12 @@
         ;; push changes when emacs is killed
         ;; and org-mode is already loaded
         (add-hook 'kill-emacs-hook 'org-mobile-push)))
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((emacs-lisp . t)
+     (js . t)
+     (python . t)
+     (ditaa . t)))
   (defun my/setup-visual-line-mode ()
     (progn
       (visual-line-mode)
