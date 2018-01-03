@@ -13,6 +13,13 @@
         (height . 310)   ; lines
         (font . "Hack 14")))
 
+;; if dired-directory then dired-dir else %b
+(setq frame-title-format
+      (setq icon-title-format
+            '(buffer-file-name "%f"
+                               (dired-directory
+                                dired-directory "%b"))))
+
 (defun my/prepare-ui ()
   (setq ns-use-native-fullscreen nil)
   (menu-bar-mode 1)
