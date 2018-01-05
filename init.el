@@ -15,10 +15,10 @@
 (require 'package)
 (setq package-enable-at-startup nil)
 
-(add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/"))
-(add-to-list 'package-archives
-             '("elpy" . "http://jorgenschaefer.github.io/packages/"))
+(mapc (lambda (x) (add-to-list 'package-archives x))
+      '(("melpa" . "https://melpa.org/packages/")
+        ("elpy" . "http://jorgenschaefer.github.io/packages/")
+        ("org" . "http://orgmode.org/elpa/")))
 
 (setq load-prefer-newer t)
 (package-initialize)
