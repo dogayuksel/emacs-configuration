@@ -69,15 +69,15 @@
  ;; If there is more than one, they won't work right.
  )
 
-(if (file-exists-p "~/.emacs.d/.emacs_secrets.elc")
-    (load-file "~/.emacs.d/.emacs_secrets.elc"))
+(if (file-exists-p "~/.emacs.d/.emacs_secrets.el")
+    (load "~/.emacs.d/.emacs_secrets"))
 
-(load-file "~/.emacs.d/basics.elc")
-(load-file "~/.emacs.d/configure_gui.elc")
-(load-file "~/.emacs.d/configure_org.elc")
-(load-file "~/.emacs.d/configure_web.elc")
-(load-file "~/.emacs.d/configure_helm.elc")
-(load-file "~/.emacs.d/configure_elpy.elc")
+(load "~/.emacs.d/basics")
+(load "~/.emacs.d/configure_gui")
+(load "~/.emacs.d/configure_org")
+(load "~/.emacs.d/configure_web")
+(load "~/.emacs.d/configure_helm")
+(load "~/.emacs.d/configure_elpy")
 
 ;; Sets garbage collection threshold back to 5mb
 (setq gc-cons-threshold (* 5 1024 1024))

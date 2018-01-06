@@ -5,7 +5,7 @@
 
 ;;; Code:
 
-(load-file "~/.emacs.d/constants.elc")
+(load "~/.emacs.d/constants")
 
 (use-package org
   :mode

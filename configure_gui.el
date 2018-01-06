@@ -52,7 +52,7 @@
   :config
   (load-theme 'badwolf t))
 
-(load-file "~/.emacs.d/my-modeline.elc")
+(load "~/.emacs.d/my-modeline")
 
 (use-package rainbow-mode
   :hook
