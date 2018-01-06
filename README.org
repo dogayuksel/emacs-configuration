@@ -12,10 +12,9 @@ Using them with this mac port: [[https://bitbucket.org/mituharu/emacs-mac][mituh
    [[https://www.emacswiki.org/emacs/Synonyms][package wiki]]
    dependency: [[https://archive.org/details/mobythesauruslis03202gut][thesaurus file]]
 ** yasnippet
-   - uses snippets in the folder /yasnippet-snippets
-   - snippets repo: [[https://github.com/AndreaCrotti/yasnippet-snippets][AndreaCrotti/yasnippet-snippets]]
+   - credits to snippets repo: [[https://github.com/AndreaCrotti/yasnippet-snippets][AndreaCrotti/yasnippet-snippets]]
 ** magit
-   [[https://magit.vc/][magit documentation]] - obviously requires git
+   [[https://magit.vc/][magit documentation]] - git porcelain
 ** dash-at-point
    needs dash software: [[https://kapeli.com/dash][web page]]
 ** TODO org
