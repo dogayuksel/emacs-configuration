@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: mocha_test_coffee_file
+# key: mochacoffee
+# --
+./node_modules/mocha/bin/mocha --compilers coffee:coffee-script/register -r yamlify ${1:file name} --grep "${2:test name}"$0
