@@ -64,7 +64,8 @@
         web-mode-block-padding 0
         web-mode-attr-indent-offset 2
         web-mode-enable-current-element-highlight t
-        web-mode-enable-current-column-highlight t)
+        web-mode-enable-current-column-highlight t
+        web-mode-enable-auto-quoting nil)
   (set-face-attribute
    'web-mode-current-element-highlight-face
    nil :background "gray9")
