@@ -248,6 +248,7 @@
         (append aggressive-indent-excluded-modes
                 '(coffee-mode
                   python-mode
+                  web-mode
                   typescript-mode
                   sass-mode)))
   :delight)
