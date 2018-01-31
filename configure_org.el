@@ -26,51 +26,52 @@
             buffer-face-mode-face
             org-agenda-custom-commands)
   :config
-  (setq org-agenda-files
-        '("~/Dropbox/.org/.doga.org"
-          "~/Dropbox/.org/.working.org"
-          "~/Dropbox/.org/journal.org"
-          "~/Dropbox/.org/gcal.org")
-        org-archive-location "~/Dropbox/.org/archive/%s_archive::"
-        org-refile-targets '((org-agenda-files :maxlevel . 3))
+  (setq org-refile-targets '((org-agenda-files :maxlevel . 3))
         org-reverse-note-order t
         org-outline-path-complete-in-steps nil
         org-refile-use-outline-path t
         org-catch-invisible-edits 'show-and-error
-        org-directory "~/Dropbox/.org"
-        org-export-initial-scope 'subtree
-        org-capture-templates
-        '(("t" "Todo" entry
-           (file+headline "~/Dropbox/.org/.doga.org" "Tasks")
-           "* TODO %?\n  %i\n  %a")
-          ("a" "Appointment" entry
-           (file  "~/Dropbox/.org/gcal.org" )
-           "* %?\n %^T\n")
-          ("j" "Journal" entry
-           (file+datetree "~/Dropbox/.org/journal.org")
-           "* %?\nEntered on %U\n  %i\n  %a"))
-        org-agenda-custom-commands
-        '(("g" . "GTD contexts")
-          ("go" "Office" tags-todo "@office")
-          ("gc" "Computer" tags-todo "@hacking")
-          ("gp" "Phone" tags-todo "@phone")
-          ("gm" "E-mail" tags-todo "@email")
-          ("gh" "Home" tags-todo "@home")
-          ("ge" "Errands" tags-todo "@errands")
-          ("gt" "Travelling" tags-todo "@travelling")
-          ("G" "GTD Block Agenda"
-           ((tags-todo "@office")
-            (tags-todo "@hacking")
-            (tags-todo "@phone")
-            (tags-todo "@email")
-            (tags-todo "@home")
-            (tags-todo "@errands")
-            (tags-todo "@travelling"))
-           nil                      ;; i.e., no local settings
-           ("~/Dropbox/.org/next-actions.txt"))
-          ;; exports block to this file with C-c a e
-          ;; ..other commands here
-          ))
+        org-export-initial-scope 'subtree)
+  (if (file-exists-p "~/Dropbox/.org/.doga.org")
+      (setq org-agenda-files
+            '("~/Dropbox/.org/.doga.org"
+              "~/Dropbox/.org/.working.org"
+              "~/Dropbox/.org/journal.org"
+              "~/Dropbox/.org/gcal.org")
+            org-archive-location "~/Dropbox/.org/archive/%s_archive::"
+            org-directory "~/Dropbox/.org"
+            org-capture-templates
+            '(("t" "Todo" entry
+               (file+headline "~/Dropbox/.org/.doga.org" "Tasks")
+               "* TODO %?\n  %i\n  %a")
+              ("a" "Appointment" entry
+               (file  "~/Dropbox/.org/gcal.org" )
+               "* %?\n %^T\n")
+              ("j" "Journal" entry
+               (file+datetree "~/Dropbox/.org/journal.org")
+               "* %?\nEntered on %U\n  %i\n  %a"))
+            org-agenda-custom-commands
+            '(("g" . "GTD contexts")
+              ("go" "Office" tags-todo "@office")
+              ("gc" "Computer" tags-todo "@hacking")
+              ("gp" "Phone" tags-todo "@phone")
+              ("gm" "E-mail" tags-todo "@email")
+              ("gh" "Home" tags-todo "@home")
+              ("ge" "Errands" tags-todo "@errands")
+              ("gt" "Travelling" tags-todo "@travelling")
+              ("G" "GTD Block Agenda"
+               ((tags-todo "@office")
+                (tags-todo "@hacking")
+                (tags-todo "@phone")
+                (tags-todo "@email")
+                (tags-todo "@home")
+                (tags-todo "@errands")
+                (tags-todo "@travelling"))
+               nil                      ;; i.e., no local settings
+               ("~/Dropbox/.org/next-actions.txt"))
+              ;; exports block to this file with C-c a e
+              ;; ..other commands here
+              )))
   ;; pull contents when org-mode is loaded
   (if (boundp 'my/org-mobile-encryption-password)
       (progn
