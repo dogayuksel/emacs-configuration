@@ -80,6 +80,7 @@ Using them with this mac port: [[https://bitbucket.org/mituharu/emacs-mac][mituh
 ** airline-themes
 ** alert
 ** powerline
+** markdown-mode
 * Platform specific ensured packages
 ** exec-path-from-shell
 * Packages in site-lisp directory
