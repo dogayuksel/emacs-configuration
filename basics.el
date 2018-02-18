@@ -153,7 +153,8 @@
   (setq flycheck-temp-prefix ".flycheck")
   (flycheck-add-mode 'javascript-eslint 'web-mode)
   (add-hook 'flycheck-mode-hook
-            #'my/use-eslint-from-node-modules-for-flycheck))
+            #'my/use-eslint-from-node-modules-for-flycheck)
+  (flycheck-add-mode 'typescript-tslint 'web-mode))
 
 (use-package flycheck-flow
   :after (flycheck)
