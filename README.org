@@ -2,8 +2,9 @@
 My configuration files for Emacs.
 Using them with this mac port: [[https://bitbucket.org/mituharu/emacs-mac][mituharu/emacs-mac]].
 * General requirements
-  - SF Mono fonts
-  - Hack fonts
+  - Hack fonts - [[https://github.com/source-foundry/Hack][github]]
+  - SF Mono fonts (comes in mac os terminal)
+  - Avenir book fonts (comes with mac os)
 * Bootstrapped package that ensures that rest
 ** use-package
    [[https://github.com/jwiegley/use-package][jwiegley/use-package]]
@@ -14,11 +15,9 @@ Using them with this mac port: [[https://bitbucket.org/mituharu/emacs-mac][mituh
    [[https://magit.vc/][magit documentation]] - git porcelain
 ** dash-at-point
    needs dash software: [[https://kapeli.com/dash][web page]]
-** TODO org
-   - should prompt - agenda files
+** org
    - mobile-org
-     [[https://mobileorg.github.io/documentation/][documentation]]
-   - avenir book font
+   [[https://mobileorg.github.io/documentation/][documentation]]
    - uses latexmk for PDF export
 ** org-gcal
    - requires calendar setup
@@ -43,7 +42,9 @@ Using them with this mac port: [[https://bitbucket.org/mituharu/emacs-mac][mituh
 ** which-key
 ** popwin
 ** org-pomodoro
+** org-jira
 ** company
+** company-flow
 ** flycheck
 ** flycheck-flow
 ** helm-c-yasnippet
