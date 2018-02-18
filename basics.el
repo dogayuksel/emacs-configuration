@@ -235,7 +235,8 @@
         "~/.emacs.d/bookmarks"
         bmkp-last-as-first-bookmark-file nil))
 
-(use-package dired+)
+(use-package dired+
+  :load-path "~/.emacs.d/site-lisp/dired+/")
 
 (use-package hungry-delete
   :config
