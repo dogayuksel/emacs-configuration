@@ -224,6 +224,7 @@
    ("C-," . mc/mark-previous-like-this)))
 
 (use-package bookmark+
+  :load-path "site-lisp/bookmark+/"
   :defines
   (bmkp-bmenu-state-file
    bookmark-default-file
