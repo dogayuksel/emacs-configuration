@@ -84,6 +84,7 @@
   :delight)
 
 (use-package synonyms
+  :load-path "site-lisp/synonyms/"
   :commands (synonyms)
   :init
   (setq synonyms-file "~/.emacs.d/synonyms/mthesaur.txt")

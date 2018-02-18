@@ -8,9 +8,6 @@ Using them with this mac port: [[https://bitbucket.org/mituharu/emacs-mac][mituh
 ** use-package
    [[https://github.com/jwiegley/use-package][jwiegley/use-package]]
 * Ensured packages with external dependencies
-** synonyms
-   [[https://www.emacswiki.org/emacs/Synonyms][package wiki]]
-   dependency: [[https://archive.org/details/mobythesauruslis03202gut][thesaurus file]]
 ** yasnippet
    - credits to snippets repo: [[https://github.com/AndreaCrotti/yasnippet-snippets][AndreaCrotti/yasnippet-snippets]]
 ** magit
@@ -58,8 +55,6 @@ Using them with this mac port: [[https://bitbucket.org/mituharu/emacs-mac][mituh
 ** undo-tree
 ** smartparens
 ** multiple-cursors
-** bookmark+
-** dired+
 ** hungry-delete
 ** aggressive-indent
 ** expand-region
@@ -86,6 +81,12 @@ Using them with this mac port: [[https://bitbucket.org/mituharu/emacs-mac][mituh
 ** powerline
 * Platform specific ensured packages
 ** exec-path-from-shell
+* Packages in site-lisp directory
+  Copyrighted libraries from emacs-wiki
+** bookmark+
+** dired+
+** synonyms
+   [[https://www.emacswiki.org/emacs/Synonyms][package wiki]]
 * Currently disabled packages
 ** benchmark-init
 ** auto-complete
