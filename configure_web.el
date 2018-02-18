@@ -92,9 +92,9 @@
   (setq tide-format-options '(:indentSize 2 :tabSize 2)))
 
 (use-package tide
-  :after (web-mode)
   :init
-  (add-hook 'typescript-mode-hook #'setup-tide-mode)
+  (add-hook
+   'typescript-mode-hook #'setup-tide-mode)
   (add-hook
    'web-mode-hook
    (lambda ()
