@@ -49,12 +49,13 @@
 (use-package web-mode
   :mode ("\\.html\\'"
          "\\.css\\'"
-         "\\.jsx?\\'")
+         "\\.jsx?\\'"
+         "\\.tsx\\'")
   :defines web-mode-content-types-alist
   :init
   (setq web-mode-content-types-alist
         '(("json" . "\\.json\\'")
-          ("jsx"  . "\\.jsx\\'")))
+          ("jsx" . "\\.jsx\\'")))
   :config
   (setq web-mode-markup-indent-offset 2
         web-mode-code-indent-offset 2
@@ -80,6 +81,27 @@
           ad-do-it)
       ad-do-it)))
 
+(defun setup-tide-mode ()
+  "Setup tide mode."
+  (tide-setup)
+  (tide-hl-identifier-mode +1)
+  ;; aligns annotation to the right hand side
+  (setq company-tooltip-align-annotations t)
+  ;; formats the buffer before saving
+  (add-hook 'before-save-hook 'tide-format-before-save)
+  (setq tide-format-options '(:indentSize 2 :tabSize 2)))
+
+(use-package tide
+  :after (web-mode)
+  :init
+  (add-hook 'typescript-mode-hook #'setup-tide-mode)
+  (add-hook
+   'web-mode-hook
+   (lambda ()
+     (when (string-equal
+            "tsx" (file-name-extension buffer-file-name))
+       (setup-tide-mode)))))
+
 ;;; Enable tern for javascript suggestions
 (add-to-list 'load-path "~/.emacs.d/tern-project/emacs/")
 (autoload 'tern-mode "tern.el" nil t)
@@ -92,18 +114,5 @@
   "Start tern mode."
   (tern-mode t))
 (add-hook 'web-mode-hook 'my/tern-setup)
-
-(use-package tide
-  :init
-  (defun setup-tide-mode ()
-    "Setup tide mode."
-    (tide-setup)
-    (tide-hl-identifier-mode +1)
-    ;; aligns annotation to the right hand side
-    (setq company-tooltip-align-annotations t)
-    ;; formats the buffer before saving
-    (add-hook 'before-save-hook 'tide-format-before-save)
-    (setq tide-format-options '(:indentSize 2 :tabSize 2)))
-  (add-hook 'typescript-mode-hook #'setup-tide-mode))
 
 ;;; configure_web.el ends here
