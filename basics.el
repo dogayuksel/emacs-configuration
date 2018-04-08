@@ -122,6 +122,12 @@
    flycheck-javascript-eslint-executable
    (my/get-executable-at-dir "node_modules/eslint/bin/eslint.js")))
 
+(defun my/use-stylint-from-node-modules-for-flycheck ()
+  "Check parent folders for local stylint."
+  (setq-local
+   flycheck-css-stylelint-executable
+   (my/get-executable-at-dir "node_modules/stylelint/bin/stylelint.js")))
+
 (defun my/use-flow-from-node-modules-for-flycheck ()
   "Check parent folders for local flow."
   (setq-local
@@ -163,12 +169,13 @@
   (flycheck-add-mode 'javascript-eslint 'web-mode)
   (add-hook 'flycheck-mode-hook
             #'my/use-eslint-from-node-modules-for-flycheck)
+  (add-hook 'flycheck-mode-hook
+            #'my/use-stylint-from-node-modules-for-flycheck)
   (flycheck-add-mode 'typescript-tslint 'web-mode))
 
 (use-package flycheck-flow
   :after (flycheck)
   :config
-  (setq flycheck-javascript-flow-args nil)
   (flycheck-add-mode 'javascript-flow 'web-mode)
   (flycheck-add-next-checker 'javascript-flow 'javascript-eslint)
   (add-hook 'flycheck-mode-hook
@@ -195,7 +202,8 @@
 
 (use-package git-gutter
   :config
-  (global-git-gutter-mode 1))
+  (global-git-gutter-mode 1)
+  :delight)
 
 (use-package git-timemachine)
 

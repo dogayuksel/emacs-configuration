@@ -43,12 +43,15 @@
 (use-package scss-mode
   :mode "\\.scss\\'")
 
+(use-package css-mode
+  :config
+  (setq css-indent-offset 2))
+
 (use-package impatient-mode
   :commands (impatient-mode))
 
 (use-package web-mode
   :mode ("\\.html\\'"
-         "\\.css\\'"
          "\\.jsx?\\'"
          "\\.tsx\\'")
   :defines web-mode-content-types-alist
@@ -60,19 +63,12 @@
   (setq web-mode-markup-indent-offset 2
         web-mode-code-indent-offset 2
         web-mode-css-indent-offset 2
-        web-mode-script-padding 1
-        web-mode-style-padding 1
-        web-mode-block-padding 0
-        web-mode-attr-indent-offset 2
         web-mode-enable-current-element-highlight t
         web-mode-enable-current-column-highlight t
         web-mode-enable-auto-quoting nil)
   (set-face-attribute
    'web-mode-current-element-highlight-face
-   nil :background "gray9")
-  (set-face-attribute
-   'web-mode-current-column-highlight-face
-   nil :background "gray15")
+   nil :foreground "#aeee00")
   ;;; For better jsx syntax-highlighting in web-mode.
   (defadvice web-mode-highlight-part (around tweak-jsx activate)
     "Some decoration for jsx mode."
