@@ -168,6 +168,7 @@
 (use-package flycheck-flow
   :after (flycheck)
   :config
+  (setq flycheck-javascript-flow-args nil)
   (flycheck-add-mode 'javascript-flow 'web-mode)
   (flycheck-add-next-checker 'javascript-flow 'javascript-eslint)
   (add-hook 'flycheck-mode-hook
@@ -191,6 +192,12 @@
 
 (use-package magit
   :bind ("C-x g" . magit-status))
+
+(use-package git-gutter
+  :config
+  (global-git-gutter-mode 1))
+
+(use-package git-timemachine)
 
 (use-package swiper
   :bind ("C-s" . swiper))
