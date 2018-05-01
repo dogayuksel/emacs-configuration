@@ -58,7 +58,9 @@
   :hook
   (emacs-lisp-mode
    sass-mode
-   web-mode)
+   scss-mode
+   web-mode
+   css-mode)
   :delight)
 
 (set-face-attribute 'fringe nil :background "grey8")
