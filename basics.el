@@ -83,6 +83,8 @@
   (which-key-mode)
   :delight)
 
+(use-package hydra)
+
 (use-package synonyms
   :load-path "site-lisp/synonyms/"
   :commands (synonyms)
@@ -254,9 +256,28 @@
   :delight)
 
 (use-package multiple-cursors
+  :after (hydra)
+  :init
+  (defhydra multiple-cursors-hydra (:hint nil)
+    "
+     ^Up^            ^Down^        ^Miscellaneous^
+----------------------------------------------
+[_p_]   Next    [_n_]   Next    [_l_] Edit lines
+[_P_]   Skip    [_N_]   Skip    [_a_] Mark all
+[_M-p_] Unmark  [_M-n_] Unmark  [_q_] Quit"
+  ("l" mc/edit-lines :exit t)
+  ("a" mc/mark-all-like-this :exit t)
+  ("n" mc/mark-next-like-this)
+  ("N" mc/skip-to-next-like-this)
+  ("M-n" mc/unmark-next-like-this)
+  ("p" mc/mark-previous-like-this)
+  ("P" mc/skip-to-previous-like-this)
+  ("M-p" mc/unmark-previous-like-this)
+  ("q" nil))
   :bind
   (("C-." . mc/mark-next-like-this)
-   ("C-," . mc/mark-previous-like-this)))
+   ("C-," . mc/mark-previous-like-this)
+   ("C-c ." . multiple-cursors-hydra/body)))
 
 (use-package bookmark+
   :load-path "site-lisp/bookmark+/"

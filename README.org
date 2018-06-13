@@ -83,6 +83,7 @@ Using them with this mac port: [[https://bitbucket.org/mituharu/emacs-mac][mituh
 ** alert
 ** powerline
 ** markdown-mode
+** hydra
 * Platform specific ensured packages
 ** exec-path-from-shell
 * Packages in site-lisp directory
