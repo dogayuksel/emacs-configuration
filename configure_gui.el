@@ -9,9 +9,11 @@
 (menu-bar-mode 0)
 
 (setq default-frame-alist
-      '((width . 80)   ; character
-        (height . 310)   ; lines
-        (font . "Hack 14")))
+      '((width . 80)
+        (height . 310)
+        (font . "Hack 14")
+        (ns-transparent-titlebar . t)
+        (ns-appearance . dark)))
 
 ;; if dired-directory then dired-dir else %b
 (setq frame-title-format
