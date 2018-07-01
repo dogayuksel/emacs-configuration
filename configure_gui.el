@@ -15,12 +15,8 @@
         (ns-transparent-titlebar . t)
         (ns-appearance . dark)))
 
-;; if dired-directory then dired-dir else %b
-(setq frame-title-format
-      (setq icon-title-format
-            '(buffer-file-name "%f"
-                               (dired-directory
-                                dired-directory "%b"))))
+(setq ns-use-proxy-icon  nil)
+(setq frame-title-format nil)
 
 (defun my/prepare-ui ()
   (setq ns-use-native-fullscreen nil)
