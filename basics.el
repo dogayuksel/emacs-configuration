@@ -213,7 +213,7 @@
 (use-package magit
   :bind ("C-x g" . magit-status))
 
-(use-package git-gutter
+(use-package git-gutter-fringe
   :config
   (global-git-gutter-mode 1)
   :delight)

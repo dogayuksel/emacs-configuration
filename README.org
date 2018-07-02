@@ -13,7 +13,7 @@ Using them with this mac port: [[https://bitbucket.org/mituharu/emacs-mac][mituh
    - credits to snippets repo: [[https://github.com/AndreaCrotti/yasnippet-snippets][AndreaCrotti/yasnippet-snippets]]
 ** magit
    [[https://magit.vc/][magit documentation]] - git porcelain
-** git-gutter
+** git-gutter-fringe
 ** git-timemachine
 ** dash-at-point
    needs dash software: [[https://kapeli.com/dash][web page]]
