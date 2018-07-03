@@ -234,8 +234,13 @@
   (drag-stuff-global-mode 1)
   :delight)
 
+(use-package all-the-icons)
+
 (use-package neotree
-  :bind ("C-c n" . neotree))
+  :after (all-the-icons)
+  :bind ("C-c n" . neotree)
+  :config
+  (setq neo-theme (if (display-graphic-p) 'icons 'arrow)))
 
 (use-package undo-tree
   :config
