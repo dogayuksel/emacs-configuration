@@ -216,7 +216,7 @@
 (use-package git-gutter-fringe
   :config
   (global-git-gutter-mode 1)
-  :delight)
+  :delight git-gutter-mode)
 
 (use-package git-timemachine)
 
