@@ -15,7 +15,7 @@
         (ns-transparent-titlebar . t)
         (ns-appearance . dark)))
 
-(setq ns-use-proxy-icon  nil)
+(setq ns-use-proxy-icon nil)
 (setq frame-title-format nil)
 
 (defun my/prepare-ui ()
