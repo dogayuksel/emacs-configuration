@@ -13,7 +13,7 @@
 
 (use-package airline-themes
   :config
-  (load-theme 'airline-badwolf)
+  (load-theme 'airline-gruvbox-dark)
   (setq airline-utf-glyph-separator-left      #xe0b0
         airline-utf-glyph-separator-right     #xe0b2
         airline-utf-glyph-subseparator-left   #xe0b1

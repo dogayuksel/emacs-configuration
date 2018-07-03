@@ -46,9 +46,9 @@
   (delight 'buffer-face-mode nil t))
 (add-hook 'prog-mode-hook 'my/buffer-face-mode-monospace)
 
-(use-package badwolf-theme
+(use-package gruvbox-theme
   :config
-  (load-theme 'badwolf t))
+  (load-theme 'gruvbox-dark-medium t))
 
 (load "~/.emacs.d/my-modeline")
 
@@ -61,13 +61,13 @@
    css-mode)
   :delight)
 
-(set-face-attribute 'fringe nil :background "grey8")
+(set-face-attribute 'fringe nil :background "#282828")
 
 (defun my/terminal-visible-bell ()
   "A friendlier visual bell effect."
-  (set-face-background 'fringe "#aeee00")
+  (set-face-background 'fringe "#3c3836")
   (run-with-idle-timer
-   0.1 nil (lambda () (set-face-background 'fringe "grey8"))))
+   0.1 nil (lambda () (set-face-background 'fringe "#282828"))))
 (setq visible-bell nil
       ring-bell-function #'my/terminal-visible-bell)
 
