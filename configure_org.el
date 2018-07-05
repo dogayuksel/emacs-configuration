@@ -30,7 +30,13 @@
         org-outline-path-complete-in-steps nil
         org-refile-use-outline-path t
         org-catch-invisible-edits 'show-and-error
-        org-export-initial-scope 'subtree)
+        org-export-initial-scope 'subtree
+        org-todo-keywords '((sequence
+                             "TODO(t)"
+                             "WAITING(w)"
+                             "|"
+                             "DONE(d)"
+                             "CANCELLED(c)")))
   (if (file-exists-p "~/Dropbox/.org/.doga.org")
       (setq org-agenda-files
             '("~/Dropbox/.org/.doga.org"
@@ -49,6 +55,13 @@
               ("j" "Journal" entry
                (file+datetree "~/Dropbox/.org/journal.org")
                "* %?\nEntered on %U\n  %i\n  %a"))
+            org-tag-alist '(("@office")
+                            ("@hacking")
+                            ("@phone")
+                            ("@email")
+                            ("@home")
+                            ("@errands")
+                            ("@travelling"))
             org-agenda-custom-commands
             '(("g" . "GTD contexts")
               ("go" "Office" tags-todo "@office")
