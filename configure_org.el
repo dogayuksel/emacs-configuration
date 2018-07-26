@@ -189,6 +189,12 @@
   :ensure org
   :after (org))
 
+(use-package ox-reveal
+  :ensure org
+  :after (org)
+  :config
+  (setq org-reveal-root "~/Dropbox/.org/reveal.js"))
+
 (use-package org-gcal
   :if (boundp 'my/org-gcal-client-secret)
   :defines (org-gcal-client-id
