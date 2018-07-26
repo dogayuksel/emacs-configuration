@@ -193,7 +193,7 @@
   :ensure org
   :after (org)
   :config
-  (setq org-reveal-root "~/Dropbox/.org/reveal.js"))
+  (setq org-reveal-root "./reveal.js"))
 
 (use-package org-gcal
   :if (boundp 'my/org-gcal-client-secret)
