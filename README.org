@@ -21,6 +21,8 @@ Using them with this mac port: [[https://bitbucket.org/mituharu/emacs-mac][mituh
    - mobile-org
    [[https://mobileorg.github.io/documentation/][documentation]]
    - uses latexmk for PDF export
+** ox-reveal
+   - depends on local Reveal.js [[https://github.com/yjwen/org-reveal/][repository]]
 ** org-gcal
    - requires calendar setup
    - loaded only when secrets exist
@@ -37,6 +39,8 @@ Using them with this mac port: [[https://bitbucket.org/mituharu/emacs-mac][mituh
 ** elpy
    - bunch of dependencies on python side
    - refer to: [[https://github.com/jorgenschaefer/elpy][jorgenschaefer/elpy]]
+** emacs-solidity
+   loaded only when local copy of the library exists
 * Ensured with use-package
 ** delight
 ** auto-compile

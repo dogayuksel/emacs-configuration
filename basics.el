@@ -111,6 +111,10 @@
 (use-package toml-mode
   :mode ("\\.toml\\'" . toml-mode))
 
+(use-package solidity-mode
+  :if (file-exists-p "~/.emacs.d/emacs-solidity/solidity-mode.el")
+  :load-path "~/.emacs.d/emacs-solidity")
+
 (use-package popwin
   :config
   (popwin-mode 1))
