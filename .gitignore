@@ -5,6 +5,7 @@
 tramp
 recentf
 bookmarks
+projectile-bookmarks.eld
 .emacs-bmk-bmenu-state.el
 org-gcal/
 .org-id-locations

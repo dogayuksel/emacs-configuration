@@ -42,6 +42,9 @@ Using them with this mac port: [[https://bitbucket.org/mituharu/emacs-mac][mituh
 ** emacs-solidity
    loaded only when local copy of the library exists
 * Ensured with use-package
+** evil-mode
+** counsel-projectile
+** eyebrowse
 ** delight
 ** auto-compile
 ** try

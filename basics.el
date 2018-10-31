@@ -24,6 +24,8 @@
 
 (windmove-default-keybindings)
 
+(evil-mode 1)
+
 (use-package personal
   :load-path "lib/personal"
   :commands
@@ -31,7 +33,7 @@
    my/insert-fullname)
   :bind
   (("C-c K" . my/nuke-all-buffers)
-   ("C-c p" . my/split-and-open-shell)
+   ("C-c s" . my/split-and-open-shell)
    ("C-c t" . my/set-frame-alpha))
   :bind*
   (("C-c 1" . 'comment-region)
@@ -91,6 +93,12 @@
   :init
   (setq synonyms-file "~/.emacs.d/synonyms/mthesaur.txt")
   (setq synonyms-cache-file  "~/.emacs.d/synonyms/mthesaur_cache.txt"))
+
+(use-package counsel-projectile
+  :bind-keymap
+  ("C-c p" . projectile-command-map)
+  :config
+  (counsel-projectile-mode +1))
 
 (use-package markdown-mode
   :commands (markdown-mode gfm-mode)
