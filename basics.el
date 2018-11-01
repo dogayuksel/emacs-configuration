@@ -24,7 +24,15 @@
 
 (windmove-default-keybindings)
 
-(evil-mode 1)
+(use-package evil
+  :config
+  (evil-mode 1))
+
+(use-package evil-surround
+  :after (evil)
+  :ensure t
+  :config
+  (global-evil-surround-mode 1))
 
 (use-package personal
   :load-path "lib/personal"

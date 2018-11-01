@@ -43,6 +43,7 @@ Using them with this mac port: [[https://bitbucket.org/mituharu/emacs-mac][mituh
    loaded only when local copy of the library exists
 * Ensured with use-package
 ** evil-mode
+** evil-surround
 ** counsel-projectile
 ** eyebrowse
 ** delight
