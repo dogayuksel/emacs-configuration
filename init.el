@@ -77,7 +77,7 @@
 (load "~/.emacs.d/configure_org")
 (load "~/.emacs.d/configure_web")
 (load "~/.emacs.d/configure_helm")
-(load "~/.emacs.d/configure_elpy")
+(load "~/.emacs.d/configure_nonweb")
 
 ;; Sets garbage collection threshold back to 5mb
 (setq gc-cons-threshold (* 5 1024 1024))

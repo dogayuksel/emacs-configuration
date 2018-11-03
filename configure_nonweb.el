@@ -1,7 +1,7 @@
 ;;; .emacs --- My emacs configuration file
 
 ;;; Commentary:
-;;; elpy and python configurations
+;;; nonweb language configurations
 
 ;;; Code:
 
@@ -11,13 +11,6 @@
   (setq elpy-rpc-backend "jedi")
   (setq elpy-rpc-python-command "python")
   (elpy-enable))
-
-;; (defun my-fix-tabs ()
-;;   "Fix tab spaces for python."
-;;   (setq tab-width 4)
-;; )
-
-;; (add-hook 'elpy-mode-hook #'my-fix-tabs)
 
 ;; (require 'mmm-mode)
 ;; (setq mmm-global-mode 'maybe)
@@ -43,4 +36,19 @@
 
 ;; (setq-default mmm-submode-decoration-level 0)
 
-;;; configure_elpy.el ends here
+(use-package flycheck-rust)
+
+(use-package rust-mode
+  :after (flycheck-rust rust-mode)
+  :mode ("\\.rs\\'" . rust-mode)
+  :config
+  (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
+
+(use-package toml-mode
+  :mode ("\\.toml\\'" . toml-mode))
+
+(use-package solidity-mode
+  :if (file-exists-p "~/.emacs.d/emacs-solidity/solidity-mode.el")
+  :load-path "~/.emacs.d/emacs-solidity")
+
+;;; configure_nonweb.el ends here
