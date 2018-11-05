@@ -34,6 +34,17 @@
   :config
   (global-evil-surround-mode 1))
 
+(defun my/setup-nlinum ()
+  "Enable nlinum and adjust font size."
+  (progn
+    (nlinum-relative-mode)
+    (set-face-attribute 'linum nil :height 100)))
+
+(use-package nlinum-relative
+  :config
+  (nlinum-relative-setup-evil)
+  (add-hook 'prog-mode-hook 'my/setup-nlinum))
+
 (use-package personal
   :load-path "lib/personal"
   :commands
