@@ -238,7 +238,14 @@
   (global-git-gutter-mode 1)
   :delight git-gutter-mode)
 
-(use-package git-timemachine)
+(use-package git-timemachine
+  :after (evil)
+  :commands (git-timemachine)
+  :config
+  (progn
+    (evil-make-overriding-map git-timemachine-mode-map 'normal)
+    ;; force update evil keymaps after git-timemachine-mode loaded
+    (add-hook 'git-timemachine-mode-hook #'evil-normalize-keymaps)))
 
 (use-package swiper
   :bind ("C-s" . swiper))
