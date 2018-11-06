@@ -8,15 +8,17 @@
 (tool-bar-mode 0)
 (menu-bar-mode 0)
 
+(setq-default
+ ns-use-proxy-icon nil
+ frame-title-format nil
+ frame-background-mode nil)
+
 (setq default-frame-alist
-      '((width . 80)
+      '((width . 85)
         (height . 310)
         (font . "Hack 14")
         (ns-transparent-titlebar . t)
         (ns-appearance . dark)))
-
-(setq ns-use-proxy-icon nil)
-(setq frame-title-format nil)
 
 (defun my/prepare-ui ()
   (setq ns-use-native-fullscreen nil)

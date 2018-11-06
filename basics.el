@@ -6,21 +6,25 @@
 ;;; Code:
 
 ;; customize basic behavior
-(setq-default comint-completion-autolist t
-              comint-move-point-for-output t
-              comint-scroll-to-bottom-on-input t
-              indent-tabs-mode nil
-              tab-width 2
-              visible-mark-max 1
-              frame-background-mode nil
-              inhibit-startup-screen t
-              initial-scratch-message nil
-              calendar-week-start-day 1
-              mac-command-modifier nil
-              mac-option-modifier 'meta
-              mac-right-option-modifier nil)
 
-(put 'dired-find-alternate-file 'disabled nil)
+(setq-default
+ inhibit-startup-screen t
+ initial-scratch-message nil
+ calendar-week-start-day 1)
+
+(setq-default
+ comint-completion-autolist t
+ comint-move-point-for-output t
+ comint-scroll-to-bottom-on-input t)
+
+(setq-default
+ indent-tabs-mode nil
+ tab-width 2)
+
+(setq-default
+ mac-command-modifier nil
+ mac-option-modifier 'meta
+ mac-right-option-modifier nil)
 
 (windmove-default-keybindings)
 
@@ -323,7 +327,9 @@
         bmkp-last-as-first-bookmark-file nil))
 
 (use-package dired+
-  :load-path "~/.emacs.d/site-lisp/dired+/")
+  :load-path "~/.emacs.d/site-lisp/dired+/"
+  :config
+  (put 'dired-find-alternate-file 'disabled nil))
 
 (use-package hungry-delete
   :config
