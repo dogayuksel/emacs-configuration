@@ -34,20 +34,18 @@
 
 (use-package evil-surround
   :after (evil)
-  :ensure t
   :config
   (global-evil-surround-mode 1))
-
-(defun my/setup-nlinum ()
-  "Enable nlinum and adjust font size."
-  (progn
-    (nlinum-relative-mode)
-    (set-face-attribute 'linum nil :height 100)))
 
 (use-package nlinum-relative
   :config
   (nlinum-relative-setup-evil)
-  (add-hook 'prog-mode-hook 'my/setup-nlinum))
+  (add-hook
+   'prog-mode-hook
+   '(lambda ()
+      (progn
+        (nlinum-relative-mode)
+        (set-face-attribute 'linum nil :height 100)))))
 
 (use-package personal
   :load-path "lib/personal"
@@ -96,7 +94,9 @@
   (recentf-save-enable))
 
 (use-package autorevert
-  :delight auto-revert-mode)
+  :delight auto-revert-mode
+  :config
+  (auto-revert-mode))
 
 (use-package exec-path-from-shell
   :if (memq window-system '(mac ns))
