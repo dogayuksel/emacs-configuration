@@ -114,8 +114,8 @@
   :load-path "site-lisp/synonyms/"
   :commands (synonyms)
   :init
-  (setq synonyms-file "~/.emacs.d/synonyms/mthesaur.txt")
-  (setq synonyms-cache-file  "~/.emacs.d/synonyms/mthesaur_cache.txt"))
+  (setq synonyms-file "~/.emacs.d/synonyms/mthesaur.txt"
+        synonyms-cache-file  "~/.emacs.d/synonyms/mthesaur_cache.txt"))
 
 (use-package counsel-projectile
   :bind-keymap
