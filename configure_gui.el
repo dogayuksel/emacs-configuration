@@ -14,8 +14,8 @@
  frame-background-mode nil)
 
 (setq default-frame-alist
-      '((width . 85)
-        (height . 310)
+      '((width . 84)
+        (height . 44)
         (font . "Hack 14")
         (ns-transparent-titlebar . t)
         (ns-appearance . dark)))
