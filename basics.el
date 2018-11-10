@@ -167,12 +167,6 @@
    flycheck-javascript-flow-executable
    (my/get-executable-at-dir "node_modules/flow-bin/vendor/flow")))
 
-(defun my/use-flow-from-node-modules-for-company ()
-  "Check parent folders for local flow."
-  (setq-local
-   company-flow-executable
-   (my/get-executable-at-dir "node_modules/flow-bin/vendor/flow")))
-
 (use-package company
   :demand
   :defines (company-dabbrev-downcase)
@@ -183,13 +177,6 @@
         company-tooltip-maximum-width 60)
   (global-company-mode)
   :delight)
-
-(use-package company-flow
-  :after (company)
-  :config
-  (add-to-list 'company-backends 'company-flow)
-  (add-hook 'company-mode-hook
-            #'my/use-flow-from-node-modules-for-company))
 
 (use-package flycheck
   :init (global-flycheck-mode)

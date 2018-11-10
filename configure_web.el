@@ -77,6 +77,38 @@
           ad-do-it)
       ad-do-it)))
 
+(defun my/get-executable-at-dir (bin-dir)
+  "Check for executable in parent folders at BIN-DIR."
+  (let* ((root (locate-dominating-file
+                (or (buffer-file-name) default-directory)
+                "node_modules"))
+         (exec (and root (expand-file-name bin-dir root))))
+    (if (and exec (file-executable-p exec)) exec)))
+
+(use-package company-flow
+  :after (company)
+  :config
+  (add-hook
+   'web-mode-hook
+   '(lambda ()
+      (setq-local
+       company-flow-executable
+       (my/get-executable-at-dir
+        "node_modules/flow-bin/vendor/flow")))))
+
+;;; Enable tern for javascript suggestions
+(add-to-list 'load-path "~/.emacs.d/tern-project/emacs/")
+(autoload 'tern-mode "tern.el" nil t)
+(use-package company-tern
+  :after (company)
+  :config
+  (add-to-list 'company-backends '(company-tern company-flow)))
+
+(defun my/tern-setup ()
+  "Start tern mode."
+  (tern-mode t))
+(add-hook 'web-mode-hook 'my/tern-setup)
+
 (defun setup-tide-mode ()
   "Setup tide mode."
   (tide-setup)
@@ -97,18 +129,5 @@
      (when (string-equal
             "tsx" (file-name-extension buffer-file-name))
        (setup-tide-mode)))))
-
-;;; Enable tern for javascript suggestions
-(add-to-list 'load-path "~/.emacs.d/tern-project/emacs/")
-(autoload 'tern-mode "tern.el" nil t)
-(use-package company-tern
-  :after (company)
-  :config
-  (add-to-list 'company-backends 'company-tern))
-
-(defun my/tern-setup ()
-  "Start tern mode."
-  (tern-mode t))
-(add-hook 'web-mode-hook 'my/tern-setup)
 
 ;;; configure_web.el ends here
