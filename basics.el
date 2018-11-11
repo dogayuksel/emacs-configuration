@@ -141,32 +141,6 @@
   :config
   (setq alert-default-style 'osx-notifier))
 
-(defun my/get-executable-at-dir (bin-dir)
-  "Check for executable in parent folders at BIN-DIR."
-  (let* ((root (locate-dominating-file
-                (or (buffer-file-name) default-directory)
-                "node_modules"))
-         (exec (and root (expand-file-name bin-dir root))))
-    (if (and exec (file-executable-p exec)) exec)))
-
-(defun my/use-eslint-from-node-modules-for-flycheck ()
-  "Check parent folders for local eslint."
-  (setq-local
-   flycheck-javascript-eslint-executable
-   (my/get-executable-at-dir "node_modules/eslint/bin/eslint.js")))
-
-(defun my/use-stylint-from-node-modules-for-flycheck ()
-  "Check parent folders for local stylint."
-  (setq-local
-   flycheck-css-stylelint-executable
-   (my/get-executable-at-dir "node_modules/stylelint/bin/stylelint.js")))
-
-(defun my/use-flow-from-node-modules-for-flycheck ()
-  "Check parent folders for local flow."
-  (setq-local
-   flycheck-javascript-flow-executable
-   (my/get-executable-at-dir "node_modules/flow-bin/vendor/flow")))
-
 (use-package company
   :demand
   :defines (company-dabbrev-downcase)
@@ -186,20 +160,7 @@
                 '(javascript-jshint)
                 '(python-pycompile)))
   (setq flycheck-temp-prefix ".flycheck")
-  (flycheck-add-mode 'javascript-eslint 'web-mode)
-  (add-hook 'flycheck-mode-hook
-            #'my/use-eslint-from-node-modules-for-flycheck)
-  (add-hook 'flycheck-mode-hook
-            #'my/use-stylint-from-node-modules-for-flycheck)
   (flycheck-add-mode 'typescript-tslint 'web-mode))
-
-(use-package flycheck-flow
-  :after (flycheck)
-  :config
-  (flycheck-add-mode 'javascript-flow 'web-mode)
-  (flycheck-add-next-checker 'javascript-flow 'javascript-eslint)
-  (add-hook 'flycheck-mode-hook
-            #'my/use-flow-from-node-modules-for-flycheck))
 
 (use-package yasnippet
   :defer 7

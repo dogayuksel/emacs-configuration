@@ -45,21 +45,44 @@
 
 (use-package css-mode
   :config
-  (setq css-indent-offset 2))
+  (setq css-indent-offset 2)
+  (add-hook
+   'css-mode-hook
+   '(lambda ()
+      (setq-local
+       flycheck-css-stylelint-executable
+       (my/get-executable-at-dir
+        "node_modules/stylelint/bin/stylelint.js")))))
 
 (use-package impatient-mode
   :commands (impatient-mode))
 
+(defun my/get-executable-at-dir (bin-dir)
+  "Check for executable in parent folders at BIN-DIR."
+  (let* ((root (locate-dominating-file
+                (or (buffer-file-name) default-directory)
+                "node_modules"))
+         (exec (and root (expand-file-name bin-dir root))))
+    (if (and exec (file-executable-p exec)) exec)))
+
 (use-package web-mode
+  :after (flycheck company)
   :mode ("\\.html\\'"
          "\\.jsx?\\'"
          "\\.tsx\\'")
   :defines web-mode-content-types-alist
   :init
   (setq web-mode-content-types-alist
-        '(("json" . "\\.json\\'")
-          ("jsx" . "\\.jsx\\'")))
+        '(("jsx" . "\\.jsx\\'")))
   :config
+  (flycheck-add-mode 'javascript-eslint 'web-mode)
+  (add-hook
+   'web-mode-hook
+   '(lambda ()
+      (setq-local
+       flycheck-javascript-eslint-executable
+       (my/get-executable-at-dir
+        "node_modules/eslint/bin/eslint.js"))))
   (setq web-mode-markup-indent-offset 2
         web-mode-code-indent-offset 2
         web-mode-css-indent-offset 2
@@ -77,13 +100,18 @@
           ad-do-it)
       ad-do-it)))
 
-(defun my/get-executable-at-dir (bin-dir)
-  "Check for executable in parent folders at BIN-DIR."
-  (let* ((root (locate-dominating-file
-                (or (buffer-file-name) default-directory)
-                "node_modules"))
-         (exec (and root (expand-file-name bin-dir root))))
-    (if (and exec (file-executable-p exec)) exec)))
+(use-package flycheck-flow
+  :after (flycheck)
+  :config
+  (flycheck-add-mode 'javascript-flow 'web-mode)
+  (flycheck-add-next-checker 'javascript-flow 'javascript-eslint)
+  (add-hook
+   'web-mode-hook
+   '(lambda ()
+      (setq-local
+       flycheck-javascript-flow-executable
+       (my/get-executable-at-dir
+        "node_modules/flow-bin/vendor/flow")))))
 
 (use-package company-flow
   :after (company)
