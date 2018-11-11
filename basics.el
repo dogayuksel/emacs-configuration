@@ -216,15 +216,22 @@
   :bind ("C-c n" . neotree)
   :config
   (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
-  (evil-define-key 'normal neotree-mode-map (kbd "TAB") 'neotree-enter)
-  (evil-define-key 'normal neotree-mode-map (kbd "SPC") 'neotree-quick-look)
-  (evil-define-key 'normal neotree-mode-map (kbd "q") 'neotree-hide)
-  (evil-define-key 'normal neotree-mode-map (kbd "RET") 'neotree-enter)
-  (evil-define-key 'normal neotree-mode-map (kbd "g") 'neotree-refresh)
-  (evil-define-key 'normal neotree-mode-map (kbd "n") 'neotree-next-line)
-  (evil-define-key 'normal neotree-mode-map (kbd "p") 'neotree-previous-line)
-  (evil-define-key 'normal neotree-mode-map (kbd "A") 'neotree-stretch-toggle)
-  (evil-define-key 'normal neotree-mode-map (kbd "H") 'neotree-hidden-file-toggle))
+  (defvar my/neotree-keybindings
+    '(("TAB" . neotree-enter)
+      ("SPC" . neotree-quick-look)
+      ("RET" . neotree-enter)
+      ("q" . neotree-hide)
+      ("g" . neotree-refresh)
+      ("n" . neotree-next-line)
+      ("p" . neotree-previous-line)
+      ("A" . neotree-stretch-toggle)
+      ("H" . neotree-hidden-file-toggle)))
+  (mapc (lambda (element)
+          (let ((key (car element))
+                (value (cdr element)))
+            (evil-define-key 'normal
+              neotree-mode-map (kbd key) value)))
+        my/neotree-keybindings))
 
 (use-package undo-tree
   :config
