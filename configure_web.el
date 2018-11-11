@@ -5,23 +5,8 @@
 
 ;;; Code:
 
-(use-package coffee-mode
-  :mode "\\.coffee\\'"
-  :config
-  (setq coffee-tab-width 2)
-  ;; generating sourcemap by '-m' option.
-  ;; And you must set '--no-header' option
-  (setq coffee-args-compile '("-c" "--no-header" "-m"))
-  (use-package sourcemap)
-  (add-hook 'coffee-after-compile-hook
-            'sourcemap-goto-corresponding-point)
-  ;; If you want to remove sourcemap file
-  ;; after jumping corresponding point
-  (defun my/coffee-after-compile-hook (props)
-    (sourcemap-goto-corresponding-point props)
-    (delete-file (plist-get props :sourcemap)))
-  (add-hook 'coffee-after-compile-hook
-            'my/coffee-after-compile-hook))
+(use-package impatient-mode
+  :commands (impatient-mode))
 
 (use-package yaml-mode
   :mode "\\.yml\\'")
@@ -54,11 +39,9 @@
        (my/get-executable-at-dir
         "node_modules/stylelint/bin/stylelint.js")))))
 
-(use-package impatient-mode
-  :commands (impatient-mode))
-
 (defun my/get-executable-at-dir (bin-dir)
-  "Check for executable in parent folders at BIN-DIR."
+  "Check for executable at BIN-DIR relative to project root.
+Project root is assumed to be the folder with node_modules folder."
   (let* ((root (locate-dominating-file
                 (or (buffer-file-name) default-directory)
                 "node_modules"))
@@ -68,8 +51,7 @@
 (use-package web-mode
   :after (flycheck company)
   :mode ("\\.html\\'"
-         "\\.jsx?\\'"
-         "\\.tsx\\'")
+         "\\.jsx?\\'")
   :defines web-mode-content-types-alist
   :init
   (setq web-mode-content-types-alist
@@ -113,6 +95,7 @@
        (my/get-executable-at-dir
         "node_modules/flow-bin/vendor/flow")))))
 
+;;; Company-flow is added to backends below grouped with tern.
 (use-package company-flow
   :after (company)
   :config
@@ -124,7 +107,7 @@
        (my/get-executable-at-dir
         "node_modules/flow-bin/vendor/flow")))))
 
-;;; Enable tern for javascript suggestions
+;;; Enable tern for javascript suggestions.
 (add-to-list 'load-path "~/.emacs.d/tern-project/emacs/")
 (autoload 'tern-mode "tern.el" nil t)
 (use-package company-tern
@@ -149,13 +132,24 @@
 
 (use-package tide
   :init
-  (add-hook
-   'typescript-mode-hook #'setup-tide-mode)
-  (add-hook
-   'web-mode-hook
-   (lambda ()
-     (when (string-equal
-            "tsx" (file-name-extension buffer-file-name))
-       (setup-tide-mode)))))
+  (add-hook 'typescript-mode-hook #'setup-tide-mode))
+
+(use-package coffee-mode
+  :mode "\\.coffee\\'"
+  :config
+  (setq coffee-tab-width 2)
+  ;; generating sourcemap by '-m' option.
+  ;; And you must set '--no-header' option
+  (setq coffee-args-compile '("-c" "--no-header" "-m"))
+  (use-package sourcemap)
+  (add-hook 'coffee-after-compile-hook
+            'sourcemap-goto-corresponding-point)
+  ;; If you want to remove sourcemap file
+  ;; after jumping corresponding point
+  (defun my/coffee-after-compile-hook (props)
+    (sourcemap-goto-corresponding-point props)
+    (delete-file (plist-get props :sourcemap)))
+  (add-hook 'coffee-after-compile-hook
+            'my/coffee-after-compile-hook))
 
 ;;; configure_web.el ends here
