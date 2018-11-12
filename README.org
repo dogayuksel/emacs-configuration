@@ -51,6 +51,7 @@ Using them with this mac port: [[https://bitbucket.org/mituharu/emacs-mac][mituh
 ** evil-surround
 ** evil-mc
    multiple cursors for evil-mode
+** projectile
 ** counsel-projectile
 ** eyebrowse
 ** delight

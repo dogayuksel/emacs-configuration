@@ -37,23 +37,31 @@
   "
    Space: %s`default-directory
 
-    ^Find^              ^Manage
-  --------------------------------------
-    _f_ Find Files      _m_ Mode Command
-    _b_ Helm Mini       _g_ Git
+    ^Navigate^          ^Manage
+  ---------------------------------------------
+    _f_ Files           _m_ Mode Command
+    _b_ Helm Mini       _g_ Magit
+    _p_ Projectile      _._ Multiple Cursors
 "
 
   ("f" helm-find-files)
   ("b" helm-mini)
-  ("g" magit-status)
-  ("m" matcha-run-mode-command))
+  ("p" matcha-projectile/body)
+  ("m" matcha-run-mode-command)
+  ("g" matcha-magit/body)
+  ("." matcha-evil-mc/body)
+  ("h" evil-window-left)
+  ("l" evil-window-right)
+  ("k" evil-window-up)
+  ("j" evil-window-down)
+  ("." evil-next-buffer)
+  ("," evil-prev-buffer))
 
 (use-package general
-  :ensure t
   :config
   (general-override-mode)
   (general-define-key
-   :states '(normal)
+   :states '(normal motion)
    :keymaps 'override
    "SPC" 'hydra-space/body))
 
@@ -65,6 +73,11 @@
   :after (evil)
   :config
   (global-evil-surround-mode 1))
+
+(use-package evil-mc
+  :after (hydra)
+  :config
+  (evil-mc-mode 1))
 
 (use-package nlinum-relative
   :config
@@ -145,6 +158,8 @@
   :init
   (setq synonyms-file "~/.emacs.d/synonyms/mthesaur.txt"
         synonyms-cache-file  "~/.emacs.d/synonyms/mthesaur_cache.txt"))
+
+(use-package projectile)
 
 (use-package counsel-projectile
   :bind-keymap
@@ -279,9 +294,6 @@
   (add-hook 'emacs-lisp-mode-hook #'smartparens-mode)
   (add-hook 'lisp-interaction-mode-hook #'smartparens-mode)
   :delight)
-
-(use-package evil-mc
-  :after (hydra))
 
 (use-package bookmark+
   :load-path "site-lisp/bookmark+/"
