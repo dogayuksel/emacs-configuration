@@ -41,7 +41,7 @@
   ---------------------------------------------
     _f_ Files           _m_ Mode Command
     _b_ Helm Mini       _g_ Magit
-    _p_ Projectile      _._ Multiple Cursors
+    _p_ Projectile      _/_ Multiple Cursors
 "
 
   ("f" helm-find-files)
@@ -49,7 +49,7 @@
   ("p" matcha-projectile/body)
   ("m" matcha-run-mode-command)
   ("g" matcha-magit/body)
-  ("." matcha-evil-mc/body)
+  ("/" matcha-evil-mc/body)
   ("h" evil-window-left)
   ("l" evil-window-right)
   ("k" evil-window-up)
