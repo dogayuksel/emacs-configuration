@@ -41,9 +41,16 @@ Using them with this mac port: [[https://bitbucket.org/mituharu/emacs-mac][mituh
    - refer to: [[https://github.com/jorgenschaefer/elpy][jorgenschaefer/elpy]]
 ** emacs-solidity
    loaded only when local copy of the library exists
+** matcha
+  collection of hydras and an interface to lunch them: [[https://github.com/jojojames/matcha][github repo]]
+
 * Ensured with use-package
+** general
+   generic key bindings manager that works well with evil and use-package
 ** evil-mode
 ** evil-surround
+** evil-mc
+   multiple cursors for evil-mode
 ** counsel-projectile
 ** eyebrowse
 ** delight
@@ -65,7 +72,6 @@ Using them with this mac port: [[https://bitbucket.org/mituharu/emacs-mac][mituh
 ** neotree
 ** undo-tree
 ** smartparens
-** multiple-cursors
 ** hungry-delete
 ** aggressive-indent
 ** expand-region
