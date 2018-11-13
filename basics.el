@@ -77,7 +77,8 @@
 (use-package evil-mc
   :after (hydra)
   :config
-  (global-evil-mc-mode 1))
+  (global-evil-mc-mode 1)
+  :delight)
 
 (use-package nlinum-relative
   :config
@@ -160,7 +161,8 @@
   (setq synonyms-file "~/.emacs.d/synonyms/mthesaur.txt"
         synonyms-cache-file  "~/.emacs.d/synonyms/mthesaur_cache.txt"))
 
-(use-package projectile)
+(use-package projectile
+  :delight)
 
 (use-package counsel-projectile
   :config
@@ -238,10 +240,11 @@
   :after (evil)
   :commands (git-timemachine)
   :config
-  (progn
-    (evil-make-overriding-map git-timemachine-mode-map 'normal)
-    ;; force update evil keymaps after git-timemachine-mode loaded
-    (add-hook 'git-timemachine-mode-hook #'evil-normalize-keymaps)))
+  (evil-set-initial-state 'git-timemachine-mode 'emacs)
+  (general-define-key
+   :definer 'minor-mode
+   :states 'emacs
+   :keymaps 'git-timemachine-mode))
 
 (use-package swiper
   :general ("C-s" 'swiper))
