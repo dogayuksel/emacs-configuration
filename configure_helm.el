@@ -7,13 +7,13 @@
 
 (use-package helm
   :demand
-  :bind
-  (("M-x" . helm-M-x)
-   ("C-x C-f" . helm-find-files)
-   ("C-x C-b" . helm-mini)
-   ("C-c C-o" . helm-imenu)
-   ("C-x c a" . helm-apropos)
-   ("C-c m" . helm-all-mark-rings))
+  :general
+  ("M-x" 'helm-M-x
+   "C-x C-f" 'helm-find-files
+   "C-x C-b" 'helm-mini
+   "C-c C-o" 'helm-imenu
+   "C-x c a" 'helm-apropos
+   "C-c m" 'helm-all-mark-rings)
   :defines (helm-recentf-fuzzy-match
             helm-buffers-fuzzy-matching
             helm-M-x-fuzzy-match)
@@ -28,22 +28,23 @@
   :delight)
 
 (use-package helm-descbinds
-  :bind
-  ("C-h b" . helm-descbinds)
+  :general
+  ("C-h b" 'helm-descbinds)
   :after (helm))
 
 (use-package dumb-jump
-  :bind (("M-g o" . dumb-jump-go-other-window)
-         ("M-g j" . dumb-jump-go)
-         ("M-g i" . dumb-jump-go-prompt)
-         ("M-g x" . dumb-jump-go-prefer-external)
-         ("M-g z" . dumb-jump-go-prefer-external-other-window))
+  :general
+  ("M-g o" 'dumb-jump-go-other-window
+   "M-g j" 'dumb-jump-go
+   "M-g i" 'dumb-jump-go-prompt
+   "M-g x" 'dumb-jump-go-prefer-external
+   "M-g z" 'dumb-jump-go-prefer-external-other-window)
   :after (helm)
   :config
   (setq dumb-jump-selector 'helm))
 
 (use-package helm-ag
-  :bind ("M-g s" . helm-do-ag-project-root)
+  :general ("M-g s" 'helm-do-ag-project-root)
   :commands (helm-do-ag
              helm-ag)
   :after (helm))

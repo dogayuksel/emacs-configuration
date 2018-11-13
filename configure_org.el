@@ -11,10 +11,10 @@
   :mode
   (("\\.org$\\'" . org-mode)
    ("\\.md$\\'" . org-mode))
-  :bind
-  (("C-c l" . org-store-link)
-   ("C-c a" . org-agenda)
-   ("C-c c" . org-capture))
+  :general
+  ("C-c l" 'org-store-link
+   "C-c a" 'org-agenda
+   "C-c c" 'org-capture)
   :defines (org-export-initial-scope
             org-capture-templates
             org-mobile-directory
