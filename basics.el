@@ -77,7 +77,7 @@
 (use-package evil-mc
   :after (hydra)
   :config
-  (evil-mc-mode 1))
+  (global-evil-mc-mode 1))
 
 (use-package nlinum-relative
   :config
@@ -94,14 +94,15 @@
   :commands
   (my/open-iterm-here
    my/insert-fullname)
-  :bind
-  (("C-c K" . my/nuke-all-buffers)
-   ("C-c s" . my/split-and-open-shell)
-   ("C-c t" . my/set-frame-alpha))
-  :bind*
-  (("C-c 1" . 'comment-region)
-   ("C-c 2" . 'uncomment-region)
-   ("<f5>" . 'revert-buffer)))
+  :general
+  ((normal emacs)
+   "C-c K" 'my/nuke-all-buffers
+   "C-c s" 'my/split-and-open-shell
+   "C-c t" 'my/set-frame-alpha)
+  ((override)
+   "C-c 1" 'comment-region
+   "C-c 2" 'uncomment-region
+   "<f5>" 'revert-buffer))
 
 (use-package recentf
   :config
@@ -162,9 +163,10 @@
 (use-package projectile)
 
 (use-package counsel-projectile
-  :bind-keymap
-  ("C-c p" . projectile-command-map)
   :config
+  (general-define-key
+   "C-c p"
+   '(:keymap projectile-command-map :package counsel-projectile))
   (counsel-projectile-mode +1))
 
 (use-package markdown-mode
@@ -188,7 +190,7 @@
 (use-package company
   :demand
   :defines (company-dabbrev-downcase)
-  :bind ("<M-tab>" . company-complete)
+  :general ("<M-tab>" 'company-complete)
   :config
   (setq company-global-modes '(not org-mode)
         company-dabbrev-downcase nil
@@ -214,13 +216,15 @@
   :delight yas-minor-mode)
 
 (use-package helm-c-yasnippet
-  :bind ("C-c y" . helm-yas-complete)
+  :general ("C-c y" 'helm-yas-complete)
   :after (yasnippet)
   :config
   (setq helm-yas-space-match-any-greedy t))
 
 (use-package avy
-  :bind* ("C-c SPC" . avy-goto-char))
+  :general
+  ((override)
+   "C-c SPC" 'avy-goto-char))
 
 (use-package magit
   :general ("C-x g" 'magit-status))
@@ -240,15 +244,15 @@
     (add-hook 'git-timemachine-mode-hook #'evil-normalize-keymaps)))
 
 (use-package swiper
-  :bind ("C-s" . swiper))
+  :general ("C-s" 'swiper))
 
 (use-package iedit
-  :bind ("C-c o" . iedit-mode))
+  :general ("C-c o" 'iedit-mode))
 
 (use-package drag-stuff
-  :bind
-  (("<M-down>" . drag-stuff-down)
-   ("<M-up>" . drag-stuff-up))
+  :general
+  ("<M-down>" 'drag-stuff-down
+   "<M-up>" 'drag-stuff-up)
   :config
   (drag-stuff-global-mode 1)
   :delight)
@@ -257,25 +261,23 @@
 
 (use-package neotree
   :after (all-the-icons evil)
-  :bind ("C-c n" . neotree)
+  :general
+  ("C-c n" 'neotree)
   :config
   (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
-  (defvar my/neotree-keybindings
-    '(("TAB" . neotree-enter)
-      ("SPC" . neotree-quick-look)
-      ("RET" . neotree-enter)
-      ("q" . neotree-hide)
-      ("g" . neotree-refresh)
-      ("n" . neotree-next-line)
-      ("p" . neotree-previous-line)
-      ("A" . neotree-stretch-toggle)
-      ("H" . neotree-hidden-file-toggle)))
-  (mapc (lambda (element)
-          (let ((key (car element))
-                (value (cdr element)))
-            (evil-define-key 'normal
-              neotree-mode-map (kbd key) value)))
-        my/neotree-keybindings))
+  (evil-set-initial-state 'neotree-mode 'emacs)
+  (general-define-key
+   :definer 'minor-mode
+   :keymaps 'neotree-mode
+   "TAB" 'neotree-enter
+   "RET" 'neotree-enter
+   "l" 'neotree-quick-look
+   "q" 'neotree-hide
+   "g" 'neotree-refresh
+   "n" 'neotree-next-line
+   "p" 'neotree-previous-line
+   "A" 'neotree-stretch-toggle
+   "H" 'neotree-hidden-file-toggle))
 
 (use-package undo-tree
   :config
@@ -331,6 +333,6 @@
   :delight)
 
 (use-package expand-region
-  :bind ("C-c e" . er/expand-region))
+  :general ("C-c e" 'er/expand-region))
 
 ;;; basics.el ends here
