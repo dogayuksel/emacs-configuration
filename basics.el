@@ -167,13 +167,13 @@
         synonyms-cache-file  "~/.emacs.d/synonyms/mthesaur_cache.txt"))
 
 (use-package projectile
+  :general
+  ("C-c p"
+   '(:keymap projectile-command-map :package counsel-projectile))
   :delight)
 
 (use-package counsel-projectile
   :config
-  (general-define-key
-   "C-c p"
-   '(:keymap projectile-command-map :package counsel-projectile))
   (counsel-projectile-mode +1))
 
 (use-package markdown-mode
@@ -267,19 +267,7 @@
   ("C-c n" 'neotree)
   :config
   (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
-  (evil-set-initial-state 'neotree-mode 'emacs)
-  (general-define-key
-   :definer 'minor-mode
-   :keymaps 'neotree-mode
-   "TAB" 'neotree-enter
-   "RET" 'neotree-enter
-   "l" 'neotree-quick-look
-   "q" 'neotree-hide
-   "g" 'neotree-refresh
-   "n" 'neotree-next-line
-   "p" 'neotree-previous-line
-   "A" 'neotree-stretch-toggle
-   "H" 'neotree-hidden-file-toggle))
+  (evil-set-initial-state 'neotree-mode 'emacs))
 
 (use-package undo-tree
   :config
