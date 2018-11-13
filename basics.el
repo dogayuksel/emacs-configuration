@@ -33,17 +33,18 @@
   :config
   (matcha-setup))
 
-(defhydra hydra-space (:color blue :hint nil :idle .2)
+(defhydra hydra-space (:color blue :hint nil :idle .8)
   "
    Space: %s`default-directory
 
-    ^Navigate^          ^Manage
-  ---------------------------------------------
-    _f_ Files           _m_ Mode Command
-    _b_ Helm Mini       _g_ Magit
-    _p_ Projectile      _/_ Multiple Cursors
+    ^Navigate^        ^Manage
+  ----------------------------------------
+    _SPC_ Jump        _m_ Mode Command
+    _f_ Files         _g_ Magit
+    _b_ Helm Mini     _/_ Multiple Cursors
+    _p_ Projectile
 "
-
+  ("SPC" avy-goto-char)
   ("f" helm-find-files)
   ("b" helm-mini)
   ("p" matcha-projectile/body)
@@ -63,7 +64,11 @@
   (general-define-key
    :states '(normal motion)
    :keymaps 'override
-   "SPC" 'hydra-space/body))
+   "SPC" 'hydra-space/body)
+  (general-define-key
+   :states 'emacs
+   :keymaps 'override
+   "C-SPC" 'hydra-space/body))
 
 (use-package evil
   :config
@@ -238,13 +243,7 @@
 
 (use-package git-timemachine
   :after (evil)
-  :commands (git-timemachine)
-  :config
-  (evil-set-initial-state 'git-timemachine-mode 'emacs)
-  (general-define-key
-   :definer 'minor-mode
-   :states 'emacs
-   :keymaps 'git-timemachine-mode))
+  :commands (git-timemachine))
 
 (use-package swiper
   :general ("C-s" 'swiper))
