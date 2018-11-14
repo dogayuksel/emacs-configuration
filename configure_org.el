@@ -123,6 +123,18 @@
     (buffer-face-mode))
   (add-hook 'org-mode-hook 'my/buffer-face-mode-variable))
 
+(use-package evil-org
+  :after (org)
+  :config
+  (add-hook 'org-mode-hook 'evil-org-mode)
+  (add-hook
+   'evil-org-mode-hook
+   (lambda ()
+     (evil-org-set-key-theme
+      '(textobjects insert navigation additional todo return heading))))
+  (require 'evil-org-agenda)
+  (evil-org-agenda-set-keys))
+
 (use-package visual-fill-column
   :init
   (setq visual-fill-column-center-text t
