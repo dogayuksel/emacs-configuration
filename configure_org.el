@@ -8,6 +8,7 @@
 (load "~/.emacs.d/constants")
 
 (use-package org
+  :after (alert)
   :mode
   (("\\.org$\\'" . org-mode)
    ("\\.md$\\'" . org-mode))
@@ -36,7 +37,8 @@
                              "WAITING(w)"
                              "|"
                              "DONE(d)"
-                             "CANCELLED(c)")))
+                             "CANCELLED(c)"))
+        org-show-notification-handler '(lambda (msg) (alert msg)))
   (if (file-exists-p "~/Dropbox/.org/.doga.org")
       (setq org-agenda-files
             '("~/Dropbox/.org/.doga.org"
