@@ -72,7 +72,11 @@
 
 (use-package evil
   :config
-  (evil-mode 1))
+  (progn
+    (evil-mode 1)
+    (mapc
+     #'(lambda (mode) (evil-set-initial-state mode 'emacs))
+     '(comint-mode eshell-mode term-mode))))
 
 (use-package evil-surround
   :after (evil)
