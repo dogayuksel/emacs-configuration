@@ -38,11 +38,12 @@
    Space: %s`default-directory
 
     ^Navigate^        ^Manage
-  ----------------------------------------
-    _SPC_ Jump        _m_ Mode Command
-    _f_ Files         _g_ Magit
-    _b_ Helm Mini     _/_ Multiple Cursors
-    _p_ Projectile
+  ^^^^--------------------------------------
+    _f_ Files         _m_ Mode Command
+    _b_ Helm Mini     _g_ Magit
+    _p_ Projectile    _/_ Multiple Cursors
+
+    _SPC_ Jump
 "
   ("SPC" avy-goto-char)
   ("f" helm-find-files)
@@ -86,8 +87,44 @@
 (use-package evil-mc
   :after (hydra)
   :config
-  (global-evil-mc-mode 1)
-  :delight)
+  (progn
+    (global-evil-mc-mode 1)
+    (setq evil-mc-one-cursor-show-mode-line-text nil)
+    (defhydra matcha-evil-mc (:color blue :hint nil)
+      "
+
+    Multiple Cursors:
+  ^^^^----------------------------------------------------------
+    _m_ Make all Cursors   _u_ Undo all Cursors
+    _s_ Pause Cursors      _r_ Resume Cursors
+
+      ^^          first _f_
+        _k_             _p_                  _P_
+      ^LINE^         CURSOR _h_ here       ^MATCH
+        _j_             _n_                  _N_
+      ^^           last _l_             skip _S_
+
+    _=_ Make in Defun
+    _<_ Insert Vertical Cursors
+    _>_ Append Vertical Cursors
+"
+      ("=" evil-mc-make-cursors-in-defun)
+      ("<" evil-mc-insert-vertical-cursors)
+      (">" evil-mc-append-vertical-cursors)
+      ("m" evil-mc-make-all-cursors)
+      ("u" evil-mc-undo-all-cursors )
+      ("s" evil-mc-pause-cursors)
+      ("r" evil-mc-resume-cursors)
+      ("f" evil-mc-make-and-goto-first-cursor)
+      ("l" evil-mc-make-and-goto-last-cursor)
+      ("h" evil-mc-make-cursor-here)
+      ("j" evil-mc-make-cursor-move-next-line)
+      ("k" evil-mc-make-cursor-move-prev-line)
+      ("n" evil-mc-make-and-goto-next-cursor)
+      ("p" evil-mc-make-and-goto-prev-cursor)
+      ("S" evil-mc-skip-and-goto-next-match)
+      ("N" evil-mc-make-and-goto-next-match)
+      ("P" evil-mc-make-and-goto-prev-match))))
 
 (use-package nlinum-relative
   :config
