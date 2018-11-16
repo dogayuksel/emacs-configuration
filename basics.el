@@ -215,7 +215,48 @@
 
 (use-package counsel-projectile
   :config
-  (counsel-projectile-mode +1))
+  (counsel-projectile-mode +1)
+  (defhydra matcha-projectile (:color blue :hint nil :idle 0)
+    "
+
+    Projectile: %s(matcha-projectile-root)
+
+    ^Files^           ^Search^        ^Buffer^          ^Do^
+  ^^^^^^^^----------------------------------------------------------------------
+    _f_ File          _a_ Ag          _b_ Switch        _g_ Magit
+    _d_ Dir           _A_ Grep        _K_ Kill all      _I_ Info
+    _o_ Other         ^^              ^^                _p_ Switch Project
+    _u_ Test file
+    _h_ Root
+
+    ^^                ^Run^           ^Cache^
+  ^^^^^^^^----------------------------------------------------------------------
+    ^^                _U_ Test        _kc_ Clear
+    ^^                _m_ Compile     _kk_ Add Current
+    ^^                _c_ Shell       _ks_ Cleanup
+    ^^                _C_ Command     _kd_ Remove
+
+"
+    ("f" counsel-projectile-find-file)
+    ("d" counsel-projectile-find-dir)
+    ("o" projectile-find-other-file)
+    ("u" projectile-find-test-file)
+    ("h" projectile-dired)
+    ("a" counsel-projectile-ag)
+    ("A" counsel-projectile-grep)
+    ("b" counsel-projectile-switch-to-buffer)
+    ("K" projectile-kill-buffers)
+    ("g" projectile-vc)
+    ("I" projectile-project-info)
+    ("p" counsel-projectile-switch-project)
+    ("U" projectile-test-project)
+    ("m" projectile-compile-project)
+    ("c" projectile-run-async-shell-command-in-root)
+    ("C" projectile-run-command-in-root)
+    ("kc" projectile-invalidate-cache)
+    ("kk" projectile-cache-current-file)
+    ("ks" projectile-cleanup-known-projects)
+    ("kd" projectile-remove-known-project)))
 
 (use-package markdown-mode
   :commands (markdown-mode gfm-mode)
