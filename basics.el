@@ -127,7 +127,8 @@
       ("p" evil-mc-make-and-goto-prev-cursor)
       ("S" evil-mc-skip-and-goto-next-match)
       ("N" evil-mc-make-and-goto-next-match)
-      ("P" evil-mc-make-and-goto-prev-match))))
+      ("P" evil-mc-make-and-goto-prev-match)))
+  :delight)
 
 (use-package nlinum-relative
   :config
