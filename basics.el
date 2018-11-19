@@ -127,7 +127,14 @@
       ("p" evil-mc-make-and-goto-prev-cursor)
       ("S" evil-mc-skip-and-goto-next-match)
       ("N" evil-mc-make-and-goto-next-match)
-      ("P" evil-mc-make-and-goto-prev-match)))
+      ("P" evil-mc-make-and-goto-prev-match))
+    (mapc
+     #'(lambda (x)
+         (progn
+           (define-key evil-mc-key-map (kbd x) nil)
+           (evil-define-key 'normal evil-mc-key-map (kbd x) nil)
+           (evil-define-key 'visual evil-mc-key-map (kbd x) nil)))
+     '("C-p" "C-n" "C-t" "M-p" "M-n")))
   :delight)
 
 (use-package nlinum-relative
