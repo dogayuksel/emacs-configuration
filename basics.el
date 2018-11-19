@@ -42,7 +42,7 @@
     _f_ Files         _m_ Mode Command
     _b_ Helm Mini     _g_ Magit
     _p_ Projectile    _/_ Multiple Cursors
-    _r_ Bookmarks
+    _r_ Bookmarks     _a_ Org Agenda
 
     _SPC_ Jump
 "
@@ -54,6 +54,7 @@
   ("m" matcha-run-mode-command)
   ("g" matcha-magit/body)
   ("/" matcha-evil-mc/body)
+  ("a" org-agenda)
   ("h" evil-window-left)
   ("l" evil-window-right)
   ("k" evil-window-up)
