@@ -47,10 +47,16 @@ Using them with this mac port: [[https://bitbucket.org/mituharu/emacs-mac][mituh
 * Ensured with use-package
 ** general
    generic key bindings manager that works well with evil and use-package
-** evil-mode
+** evil
 ** evil-surround
 ** evil-mc
    multiple cursors for evil-mode
+** evil-org
+   evil bindings for org-mode: [[https://github.com/edwtjo/evil-org-mode][package repo]]
+** nlinum-relative
+   display relative line numbers
+** all-the-icons-dired
+   displays file type icons on dired-mode
 ** projectile
 ** counsel-projectile
 ** eyebrowse
