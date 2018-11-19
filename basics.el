@@ -42,6 +42,7 @@
     _f_ Files         _m_ Mode Command
     _b_ Helm Mini     _g_ Magit
     _p_ Projectile    _/_ Multiple Cursors
+    _r_ Bookmarks
 
     _SPC_ Jump
 "
@@ -49,6 +50,7 @@
   ("f" helm-find-files)
   ("b" helm-mini)
   ("p" matcha-projectile/body)
+  ("r" bookmark-jump)
   ("m" matcha-run-mode-command)
   ("g" matcha-magit/body)
   ("/" matcha-evil-mc/body)
