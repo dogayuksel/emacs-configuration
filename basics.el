@@ -385,7 +385,12 @@
 (use-package dired+
   :load-path "~/.emacs.d/site-lisp/dired+/"
   :config
-  (put 'dired-find-alternate-file 'disabled nil))
+  (progn
+    (put 'dired-find-alternate-file 'disabled nil)
+    (setq dired-use-ls-dired nil)))
+
+(use-package all-the-icons-dired
+  :config (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
 
 (use-package hungry-delete
   :config
