@@ -80,7 +80,8 @@
     (evil-mode 1)
     (mapc
      #'(lambda (mode) (evil-set-initial-state mode 'emacs))
-     '(comint-mode eshell-mode term-mode))))
+     '(comint-mode eshell-mode term-mode))
+    (setq evil-want-fine-undo t)))
 
 (use-package evil-surround
   :after (evil)
