@@ -133,7 +133,13 @@
      (evil-org-set-key-theme
       '(textobjects insert navigation additional todo return heading))))
   (require 'evil-org-agenda)
-  (evil-org-agenda-set-keys))
+  (evil-org-agenda-set-keys)
+  (general-define-key
+   :definer 'minor-mode
+   :states '(normal visual)
+   :keymaps 'evil-org-mode
+   "j" 'evil-next-visual-line
+   "k" 'evil-previous-visual-line))
 
 (use-package visual-fill-column
   :init
