@@ -74,6 +74,12 @@
    :keymaps 'override
    "C-SPC" 'hydra-space/body))
 
+(defun my/append-semicolon-to-the-end-of-line ()
+  "Add a semicolon to the end of the line."
+  (interactive)
+  (end-of-line)
+  (insert ";"))
+
 (use-package evil
   :config
   (progn
@@ -81,7 +87,10 @@
     (mapc
      #'(lambda (mode) (evil-set-initial-state mode 'emacs))
      '(comint-mode eshell-mode term-mode))
-    (setq evil-want-fine-undo t)))
+    (setq evil-want-fine-undo t)
+    (general-define-key
+     :states 'insert
+     "C-;" 'my/append-semicolon-to-the-end-of-line)))
 
 (use-package evil-surround
   :after (evil)
