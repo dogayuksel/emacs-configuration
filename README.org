@@ -53,6 +53,7 @@ Using them with this mac port: [[https://bitbucket.org/mituharu/emacs-mac][mituh
    multiple cursors for evil-mode
 ** evil-org
    evil bindings for org-mode: [[https://github.com/edwtjo/evil-org-mode][package repo]]
+** evil-magit
 ** nlinum-relative
    display relative line numbers
 ** all-the-icons-dired

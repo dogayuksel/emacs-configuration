@@ -339,6 +339,9 @@
 (use-package magit
   :general ("C-x g" 'magit-status))
 
+(use-package evil-magit
+  :after (evil magit))
+
 (use-package git-gutter-fringe
   :config
   (global-git-gutter-mode 1)
