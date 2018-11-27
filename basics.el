@@ -103,7 +103,7 @@
   (progn
     (global-evil-mc-mode 1)
     (setq evil-mc-one-cursor-show-mode-line-text nil)
-    (defhydra matcha-evil-mc (:color blue :hint nil)
+    (defhydra matcha-evil-mc (:color red :hint nil)
       "
 
     Multiple Cursors:
@@ -125,7 +125,7 @@
       ("<" evil-mc-insert-vertical-cursors)
       (">" evil-mc-append-vertical-cursors)
       ("m" evil-mc-make-all-cursors)
-      ("u" evil-mc-undo-all-cursors )
+      ("u" evil-mc-undo-all-cursors :color blue)
       ("s" evil-mc-pause-cursors)
       ("r" evil-mc-resume-cursors)
       ("f" evil-mc-make-and-goto-first-cursor)
