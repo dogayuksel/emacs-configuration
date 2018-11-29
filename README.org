@@ -58,6 +58,8 @@ Using them with this mac port: [[https://bitbucket.org/mituharu/emacs-mac][mituh
    display relative line numbers
 ** all-the-icons-dired
    displays file type icons on dired-mode
+** beacon
+   highlight cursor position on scroll
 ** projectile
 ** counsel-projectile
 ** eyebrowse

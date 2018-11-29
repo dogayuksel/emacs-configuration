@@ -115,7 +115,7 @@
     "Set font to a variable width fonts in current buffer."
     (interactive)
     (setq buffer-face-mode-face
-          '(:family "Avenir Book" :height 150 :weight light))
+          '(:family "Avenir Book" :height 130 :weight light))
     (setq line-spacing '0.15)
     (set-face-attribute 'org-table nil :inherit 'fixed-pitch)
     (set-face-attribute 'org-code nil :inherit 'fixed-pitch)

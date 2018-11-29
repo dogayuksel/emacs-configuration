@@ -214,10 +214,9 @@
   :config
   (exec-path-from-shell-initialize))
 
-(use-package which-key
-  :config
-  (which-key-mode)
-  :delight)
+(use-package beacon :config (beacon-mode 1))
+
+(use-package which-key :config (which-key-mode) :delight)
 
 (use-package hydra)
 
