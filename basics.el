@@ -155,7 +155,7 @@
    '(lambda ()
       (progn
         (nlinum-relative-mode)
-        (set-face-attribute 'linum nil :height 100)))))
+        (set-face-attribute 'linum nil :height 90)))))
 
 (use-package personal
   :load-path "lib/personal"
