@@ -8,6 +8,8 @@
 (tool-bar-mode 0)
 (menu-bar-mode 0)
 
+(global-prettify-symbols-mode t)
+
 (setq-default
  ns-use-proxy-icon nil
  frame-title-format nil
