@@ -44,11 +44,11 @@
 
 (use-package auto-compile
   :config
-  (auto-compile-on-load-mode)
-  (auto-compile-on-save-mode))
+  (progn
+    (auto-compile-on-load-mode)
+    (auto-compile-on-save-mode)))
 
-(use-package try
-  :defer t)
+(use-package try :defer t)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.

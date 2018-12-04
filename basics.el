@@ -28,10 +28,7 @@
 
 (windmove-default-keybindings)
 
-(use-package matcha
-  :load-path "~/.emacs.d/matcha/"
-  :config
-  (matcha-setup))
+(use-package matcha :load-path "~/.emacs.d/matcha/" :config (matcha-setup))
 
 (defhydra hydra-space (:color blue :hint nil :idle .8)
   "
@@ -92,10 +89,7 @@
      :states 'insert
      "C-;" 'my/append-semicolon-to-the-end-of-line)))
 
-(use-package evil-surround
-  :after (evil)
-  :config
-  (global-evil-surround-mode 1))
+(use-package evil-surround :after (evil) :config (global-evil-surround-mode 1))
 
 (use-package evil-mc
   :after (hydra)
@@ -204,10 +198,7 @@
   (add-hook 'focus-in-hook 'resume-recentf-save)
   (recentf-save-enable))
 
-(use-package autorevert
-  :delight auto-revert-mode
-  :config
-  (auto-revert-mode))
+(use-package autorevert :delight auto-revert-mode :config (auto-revert-mode))
 
 (use-package exec-path-from-shell
   :if (memq window-system '(mac ns))
@@ -330,31 +321,22 @@
   :config
   (setq helm-yas-space-match-any-greedy t))
 
-(use-package avy
-  :general
-  ((override)
-   "C-c SPC" 'avy-goto-char))
+(use-package avy :general ((override) "C-c SPC" 'avy-goto-char))
 
-(use-package magit
-  :general ("C-x g" 'magit-status))
+(use-package magit :general ("C-x g" 'magit-status))
 
-(use-package evil-magit
-  :after (evil magit))
+(use-package evil-magit :after (evil magit))
 
 (use-package git-gutter-fringe
   :config
   (global-git-gutter-mode 1)
   :delight git-gutter-mode)
 
-(use-package git-timemachine
-  :after (evil)
-  :commands (git-timemachine))
+(use-package git-timemachine :after (evil) :commands (git-timemachine))
 
-(use-package swiper
-  :general ("C-s" 'swiper))
+(use-package swiper :general ("C-s" 'swiper))
 
-(use-package iedit
-  :general ("C-c o" 'iedit-mode))
+(use-package iedit :general ("C-c o" 'iedit-mode))
 
 (use-package drag-stuff
   :general
@@ -381,9 +363,7 @@
         undo-tree-visualizer-diff t)
   :delight)
 
-(use-package dash-at-point
-  :commands (dash-at-point
-             dash-at-point-with-docset))
+(use-package dash-at-point :commands (dash-at-point dash-at-point-with-docset))
 
 (use-package smartparens
   :config
@@ -415,10 +395,7 @@
 (use-package all-the-icons-dired
   :config (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
 
-(use-package hungry-delete
-  :config
-  (global-hungry-delete-mode)
-  :delight)
+(use-package hungry-delete :config (global-hungry-delete-mode) :delight)
 
 (use-package aggressive-indent
   :config
@@ -432,7 +409,6 @@
                   sass-mode)))
   :delight)
 
-(use-package expand-region
-  :general ("C-c e" 'er/expand-region))
+(use-package expand-region :general ("C-c e" 'er/expand-region))
 
 ;;; basics.el ends here

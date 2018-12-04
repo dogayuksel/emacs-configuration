@@ -50,9 +50,7 @@
   (delight 'buffer-face-mode nil t))
 (add-hook 'prog-mode-hook 'my/buffer-face-mode-monospace)
 
-(use-package gruvbox-theme
-  :config
-  (load-theme 'gruvbox-dark-medium t))
+(use-package gruvbox-theme :config (load-theme 'gruvbox-dark-medium t))
 
 (load "~/.emacs.d/my-modeline")
 

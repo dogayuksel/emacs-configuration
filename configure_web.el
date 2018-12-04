@@ -5,11 +5,9 @@
 
 ;;; Code:
 
-(use-package impatient-mode
-  :commands (impatient-mode))
+(use-package impatient-mode :commands (impatient-mode))
 
-(use-package yaml-mode
-  :mode "\\.yml\\'")
+(use-package yaml-mode :mode "\\.yml\\'")
 
 (use-package json-mode
   :mode "\\.json$\\'"
@@ -19,14 +17,11 @@
     (setq js-indent-level 2))
   (add-hook 'json-mode-hook 'my/adjust-js-indentation))
 
-(use-package graphql-mode
-  :mode "\\.graphql\\'")
+(use-package graphql-mode :mode "\\.graphql\\'")
 
-(use-package sass-mode
-  :mode "\\.sass\\'")
+(use-package sass-mode :mode "\\.sass\\'")
 
-(use-package scss-mode
-  :mode "\\.scss\\'")
+(use-package scss-mode :mode "\\.scss\\'")
 
 (use-package css-mode
   :config
@@ -130,9 +125,7 @@ Project root is assumed to be the folder with node_modules folder."
   (add-hook 'before-save-hook 'tide-format-before-save)
   (setq tide-format-options '(:indentSize 2 :tabSize 2)))
 
-(use-package tide
-  :init
-  (add-hook 'typescript-mode-hook #'setup-tide-mode))
+(use-package tide :init (add-hook 'typescript-mode-hook #'setup-tide-mode))
 
 (use-package coffee-mode
   :mode "\\.coffee\\'"

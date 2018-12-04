@@ -209,9 +209,7 @@
         '("~/Dropbox/.org/bibtex/file-1.bib"
           "~/Dropbox/.org/bibtex/file-2.bib")))
 
-(use-package ox-md
-  :ensure org
-  :after (org))
+(use-package ox-md :ensure org :after (org))
 
 (use-package ox-reveal
   :ensure org

@@ -27,10 +27,7 @@
         helm-M-x-fuzzy-match t)
   :delight)
 
-(use-package helm-descbinds
-  :general
-  ("C-h b" 'helm-descbinds)
-  :after (helm))
+(use-package helm-descbinds :general ("C-h b" 'helm-descbinds) :after (helm))
 
 (use-package dumb-jump
   :general
