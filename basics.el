@@ -209,6 +209,8 @@
 
 (use-package which-key :config (which-key-mode) :delight)
 
+(use-package eyebrowse :after (evil) :config (eyebrowse-mode t))
+
 (use-package hydra)
 
 (use-package synonyms
@@ -277,9 +279,7 @@
   :init
   (setq markdown-command "multimarkdown"))
 
-(use-package popwin
-  :config
-  (popwin-mode 1))
+(use-package popwin :config (popwin-mode 1))
 
 (use-package alert
   :if (memq window-system '(mac ns))
