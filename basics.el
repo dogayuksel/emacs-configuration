@@ -399,16 +399,17 @@
 (use-package hungry-delete :config (global-hungry-delete-mode) :delight)
 
 (use-package aggressive-indent
+  :delight
   :config
-  (global-aggressive-indent-mode 1)
-  (setq aggressive-indent-excluded-modes
-        (append aggressive-indent-excluded-modes
-                '(coffee-mode
-                  python-mode
-                  web-mode
-                  typescript-mode
-                  sass-mode)))
-  :delight)
+  (progn
+    (global-aggressive-indent-mode 1)
+    (setq aggressive-indent-excluded-modes
+          (append aggressive-indent-excluded-modes
+                  '(coffee-mode
+                    python-mode
+                    web-mode
+                    typescript-mode
+                    sass-mode)))))
 
 (use-package expand-region :general ("C-c e" 'er/expand-region))
 
