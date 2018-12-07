@@ -209,7 +209,12 @@
 
 (use-package which-key :config (which-key-mode) :delight)
 
-(use-package eyebrowse :after (evil) :config (eyebrowse-mode t))
+(use-package eyebrowse
+  :after (evil)
+  :config
+  (progn
+    (set-face-attribute 'eyebrowse-mode-line-active nil :underline t :weight 'bold)
+    (eyebrowse-mode t)))
 
 (use-package hydra)
 
