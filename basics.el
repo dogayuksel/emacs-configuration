@@ -390,7 +390,8 @@
   :config
   (progn
     (put 'dired-find-alternate-file 'disabled nil)
-    (setq dired-use-ls-dired nil)))
+    (setq dired-use-ls-dired nil
+          dired-listing-switches "-alh")))
 
 (use-package all-the-icons-dired
   :config (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
