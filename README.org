@@ -56,6 +56,8 @@ Using them with this mac port: [[https://bitbucket.org/mituharu/emacs-mac][mituh
 ** evil-magit
 ** nlinum-relative
    display relative line numbers
+** browse-kill-ring
+   paste by selecting from a buffer that lists the items in the kill ring
 ** all-the-icons-dired
    displays file type icons on dired-mode
 ** beacon

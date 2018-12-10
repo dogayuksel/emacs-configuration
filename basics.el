@@ -141,6 +141,12 @@
      '("C-p" "C-n" "C-t" "M-p" "M-n")))
   :delight)
 
+(use-package browse-kill-ring
+  :config
+  (general-define-key
+   :states 'normal
+   "C-P" 'browse-kill-ring))
+
 (use-package nlinum-relative
   :config
   (nlinum-relative-setup-evil)
