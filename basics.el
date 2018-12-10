@@ -214,7 +214,8 @@
   :config
   (progn
     (set-face-attribute 'eyebrowse-mode-line-active nil :underline t :weight 'bold)
-    (eyebrowse-mode t)))
+    (eyebrowse-mode t)
+    (eyebrowse-setup-opinionated-keys)))
 
 (use-package hydra)
 
