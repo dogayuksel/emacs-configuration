@@ -78,16 +78,24 @@
   (insert ";"))
 
 (use-package evil
+  :init
+  (setq
+   evil-want-integration t
+   evil-want-keybinding nil)
   :config
   (progn
     (evil-mode 1)
-    (mapc
-     #'(lambda (mode) (evil-set-initial-state mode 'emacs))
-     '(comint-mode eshell-mode term-mode))
     (setq evil-want-fine-undo t)
     (general-define-key
      :states 'insert
      "C-;" 'my/append-semicolon-to-the-end-of-line)))
+
+(use-package evil-collection
+  :after (evil)
+  :custom
+  (evil-collection-setup-minibuffer t)
+  :config
+  (evil-collection-init))
 
 (use-package evil-surround :after (evil) :config (global-evil-surround-mode 1))
 
@@ -365,8 +373,7 @@
   :general
   ("C-c n" 'neotree)
   :config
-  (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
-  (evil-set-initial-state 'neotree-mode 'emacs))
+  (setq neo-theme (if (display-graphic-p) 'icons 'arrow)))
 
 (use-package undo-tree
   :config

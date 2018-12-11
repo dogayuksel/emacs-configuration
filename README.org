@@ -54,6 +54,8 @@ Using them with this mac port: [[https://bitbucket.org/mituharu/emacs-mac][mituh
 ** evil-org
    evil bindings for org-mode: [[https://github.com/edwtjo/evil-org-mode][package repo]]
 ** evil-magit
+** evil-collection
+   evil-bindings for common packages
 ** nlinum-relative
    display relative line numbers
 ** browse-kill-ring
