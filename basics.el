@@ -345,7 +345,9 @@
 
 (use-package avy :general ((override) "C-c SPC" 'avy-goto-char))
 
-(use-package magit :general ("C-x g" 'magit-status))
+(use-package magit
+  :general ("C-x g" 'magit-status)
+  :config (setq magit-section-visibility-indicator nil))
 
 (use-package evil-magit :after (evil magit))
 
