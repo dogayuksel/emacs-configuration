@@ -356,7 +356,7 @@
 
 (use-package git-timemachine :after (evil) :commands (git-timemachine))
 
-(use-package swiper :general ("C-s" 'swiper))
+(use-package swiper-helm :general ("C-s" 'swiper-helm))
 
 (use-package iedit :general ("C-c o" 'iedit-mode))
 

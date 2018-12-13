@@ -81,7 +81,7 @@ Using them with this mac port: [[https://bitbucket.org/mituharu/emacs-mac][mituh
 ** flycheck-flow
 ** helm-c-yasnippet
 ** avy
-** swiper
+** swiper-helm
 ** iedit
 ** drag-stuff
 ** neotree
