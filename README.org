@@ -65,7 +65,8 @@ Using them with this mac port: [[https://bitbucket.org/mituharu/emacs-mac][mituh
 ** beacon
    highlight cursor position on scroll
 ** projectile
-** counsel-projectile
+** helm-projectile
+   helm interface to projectile
 ** eyebrowse
 ** delight
 ** auto-compile

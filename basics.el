@@ -241,16 +241,18 @@
         synonyms-cache-file  "~/.emacs.d/synonyms/mthesaur_cache.txt"))
 
 (use-package projectile
-  :general
-  ("C-c p"
-   '(:keymap projectile-command-map :package counsel-projectile))
+  :config
+  (progn
+    (setq projectile-completion-system 'helm)
+    (projectile-mode +1))
   :delight)
 
-(use-package counsel-projectile
+(use-package helm-projectile
   :config
-  (counsel-projectile-mode +1)
-  (defhydra matcha-projectile (:color blue :hint nil :idle 0)
-    "
+  (progn
+    (helm-projectile-on)
+    (defhydra matcha-projectile (:color blue :hint nil :idle 0)
+      "
 
     Projectile: %s(matcha-projectile-root)
 
@@ -270,26 +272,26 @@
     ^^                _C_ Command     _kd_ Remove
 
 "
-    ("f" counsel-projectile-find-file)
-    ("d" counsel-projectile-find-dir)
-    ("o" projectile-find-other-file)
-    ("u" projectile-find-test-file)
-    ("h" projectile-dired)
-    ("a" counsel-projectile-ag)
-    ("A" counsel-projectile-grep)
-    ("b" counsel-projectile-switch-to-buffer)
-    ("K" projectile-kill-buffers)
-    ("g" projectile-vc)
-    ("I" projectile-project-info)
-    ("p" counsel-projectile-switch-project)
-    ("U" projectile-test-project)
-    ("m" projectile-compile-project)
-    ("c" projectile-run-async-shell-command-in-root)
-    ("C" projectile-run-command-in-root)
-    ("kc" projectile-invalidate-cache)
-    ("kk" projectile-cache-current-file)
-    ("ks" projectile-cleanup-known-projects)
-    ("kd" projectile-remove-known-project)))
+      ("f" helm-projectile-find-file)
+      ("d" helm-projectile-find-dir)
+      ("o" projectile-find-other-file)
+      ("u" projectile-find-test-file)
+      ("h" projectile-dired)
+      ("a" helm-projectile-ag)
+      ("A" helm-projectile-grep)
+      ("b" helm-projectile-switch-to-buffer)
+      ("K" projectile-kill-buffers)
+      ("g" projectile-vc)
+      ("I" projectile-project-info)
+      ("p" helm-projectile-switch-project)
+      ("U" projectile-test-project)
+      ("m" projectile-compile-project)
+      ("c" projectile-run-async-shell-command-in-root)
+      ("C" projectile-run-command-in-root)
+      ("kc" projectile-invalidate-cache)
+      ("kk" projectile-cache-current-file)
+      ("ks" projectile-cleanup-known-projects)
+      ("kd" projectile-remove-known-project))))
 
 (use-package markdown-mode
   :commands (markdown-mode gfm-mode)
