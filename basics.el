@@ -358,7 +358,13 @@
 
 (use-package git-timemachine :after (evil) :commands (git-timemachine))
 
-(use-package swiper-helm :general ("C-s" 'swiper-helm))
+(use-package helm-swoop
+  :after (helm)
+  :general ("C-s" 'helm-swoop)
+  :config
+  (progn
+    (setq helm-swoop-split-with-multiple-windows t
+          helm-swoop-split-direction 'split-window-vertically)))
 
 (use-package iedit :general ("C-c o" 'iedit-mode))
 
