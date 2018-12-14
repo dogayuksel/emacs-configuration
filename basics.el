@@ -41,9 +41,10 @@
     _p_ Projectile    _/_ Multiple Cursors
     _r_ Bookmarks     _a_ Org Agenda
 
-    _SPC_ Jump
+    _SPC_ Jump        _s_ Swoop
 "
   ("SPC" avy-goto-char)
+  ("s" helm-swoop)
   ("f" helm-find-files)
   ("b" helm-mini)
   ("p" matcha-projectile/body)
