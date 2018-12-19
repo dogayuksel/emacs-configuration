@@ -58,7 +58,9 @@
   ("k" evil-window-up)
   ("j" evil-window-down)
   ("." evil-next-buffer)
-  ("," evil-prev-buffer))
+  ("," evil-prev-buffer)
+  ("w" save-buffer)
+  ("x" kill-buffer))
 
 (use-package general
   :config
