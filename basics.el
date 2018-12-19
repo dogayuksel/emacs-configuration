@@ -372,7 +372,8 @@
   :config
   (progn
     (setq helm-swoop-split-with-multiple-windows t
-          helm-swoop-split-direction 'split-window-vertically)))
+          helm-swoop-split-direction 'split-window-vertically
+          helm-swoop-pre-input-function (lambda () ""))))
 
 (use-package iedit :general ("C-c o" 'iedit-mode))
 
