@@ -156,7 +156,7 @@
   :config
   (general-define-key
    :states 'normal
-   "C-P" 'browse-kill-ring))
+   "C-S-p" 'browse-kill-ring))
 
 (use-package nlinum-relative
   :config
