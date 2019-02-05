@@ -22,7 +22,7 @@
  tab-width 2)
 
 (setq-default
- mac-command-modifier nil
+ mac-command-modifier 'meta
  mac-option-modifier 'meta
  mac-right-option-modifier nil)
 
