@@ -60,7 +60,11 @@
   ("." evil-next-buffer)
   ("," evil-prev-buffer)
   ("w" save-buffer)
-  ("x" kill-buffer))
+  ("x" kill-buffer)
+  ("-" split-window-below)
+  ("|" split-window-right)
+  ("1" delete-other-windows)
+  ("0" delete-window))
 
 (use-package general
   :config
