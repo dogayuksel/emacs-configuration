@@ -60,6 +60,7 @@
   ("." evil-next-buffer)
   ("," evil-prev-buffer)
   ("w" save-buffer)
+  ("e" er/expand-region)
   ("x" kill-buffer)
   ("-" split-window-below)
   ("|" split-window-right)
