@@ -28,6 +28,8 @@
 
 (windmove-default-keybindings)
 
+(use-package hydra)
+
 (use-package matcha :load-path "~/.emacs.d/matcha/" :config (matcha-setup))
 
 (defhydra hydra-space (:color blue :hint nil :idle .8)
@@ -238,8 +240,6 @@
     (set-face-attribute 'eyebrowse-mode-line-active nil :underline t :weight 'bold)
     (eyebrowse-mode t)
     (eyebrowse-setup-opinionated-keys)))
-
-(use-package hydra)
 
 (use-package synonyms
   :load-path "site-lisp/synonyms/"
