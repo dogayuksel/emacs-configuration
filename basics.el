@@ -55,6 +55,7 @@
   ("g" matcha-magit/body)
   ("/" matcha-evil-mc/body)
   ("a" org-agenda)
+  ("c" org-capture)
   ("h" evil-window-left)
   ("l" evil-window-right)
   ("k" evil-window-up)
