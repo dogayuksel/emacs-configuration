@@ -108,6 +108,8 @@
   :config
   (evil-collection-init))
 
+(use-package evil-escape :config (evil-escape-mode))
+
 (use-package evil-surround :after (evil) :config (global-evil-surround-mode 1))
 
 (use-package evil-mc
