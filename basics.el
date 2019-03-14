@@ -38,37 +38,37 @@
 
     ^Navigate^        ^Manage
   ^^^^--------------------------------------
-    _f_ Files         _m_ Mode Command
-    _b_ Helm Mini     _g_ Magit
+    _f f_ Files       _m_ Mode Command
+    _b b_ Helm Mini   _g_ Magit
     _p_ Projectile    _/_ Multiple Cursors
-    _r_ Bookmarks     _a_ Org Agenda
+    _r_ Bookmarks     _a a_ Org Agenda
 
     _SPC_ Jump        _s_ Swoop
 "
   ("SPC" avy-goto-char)
   ("s" helm-swoop)
-  ("f" helm-find-files)
-  ("b" helm-mini)
+  ("f f" helm-find-files)
+  ("f s" save-buffer)
+  ("b b" helm-mini)
+  ("b h" evil-next-buffer)
+  ("b l" evil-prev-buffer)
+  ("b x" kill-buffer)
   ("p" matcha-projectile/body)
   ("r" bookmark-jump)
   ("m" matcha-run-mode-command)
   ("g" matcha-magit/body)
   ("/" matcha-evil-mc/body)
-  ("a" org-agenda)
-  ("c" org-capture)
-  ("h" evil-window-left)
-  ("l" evil-window-right)
-  ("k" evil-window-up)
-  ("j" evil-window-down)
-  ("." evil-next-buffer)
-  ("," evil-prev-buffer)
-  ("w" save-buffer)
-  ("e" er/expand-region)
-  ("x" kill-buffer)
-  ("-" split-window-below)
-  ("|" split-window-right)
-  ("1" delete-other-windows)
-  ("0" delete-window))
+  ("a a" org-agenda)
+  ("a c" org-capture)
+  ("w h" evil-window-left)
+  ("w l" evil-window-right)
+  ("w k" evil-window-up)
+  ("w j" evil-window-down)
+  ("w s" split-window-below)
+  ("w v" split-window-right)
+  ("w w" delete-other-windows)
+  ("w x" delete-window)
+  ("e" er/expand-region))
 
 (use-package general
   :config
