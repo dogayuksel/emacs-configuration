@@ -157,8 +157,7 @@
            (define-key evil-mc-key-map (kbd x) nil)
            (evil-define-key 'normal evil-mc-key-map (kbd x) nil)
            (evil-define-key 'visual evil-mc-key-map (kbd x) nil)))
-     '("C-p" "C-n" "C-t" "M-p" "M-n")))
-  :delight)
+     '("C-p" "C-n" "C-t" "M-p" "M-n"))))
 
 (use-package browse-kill-ring
   :config
@@ -380,8 +379,6 @@
     (setq helm-swoop-split-with-multiple-windows t
           helm-swoop-split-direction 'split-window-vertically
           helm-swoop-pre-input-function (lambda () ""))))
-
-(use-package iedit :general ("C-c o" 'iedit-mode))
 
 (use-package drag-stuff
   :general

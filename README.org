@@ -56,8 +56,6 @@ Using them with this mac port: [[https://bitbucket.org/mituharu/emacs-mac][mituh
 ** evil-magit
 ** evil-collection
    evil-bindings for common packages
-** evil-escape
-   [[https://github.com/syl20bnr/evil-escape][link to repo]]
 ** nlinum-relative
    display relative line numbers
 ** browse-kill-ring
@@ -84,7 +82,6 @@ Using them with this mac port: [[https://bitbucket.org/mituharu/emacs-mac][mituh
 ** helm-c-yasnippet
 ** avy
 ** helm-swoop
-** iedit
 ** drag-stuff
 ** neotree
 ** undo-tree
