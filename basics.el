@@ -157,7 +157,8 @@
            (define-key evil-mc-key-map (kbd x) nil)
            (evil-define-key 'normal evil-mc-key-map (kbd x) nil)
            (evil-define-key 'visual evil-mc-key-map (kbd x) nil)))
-     '("C-p" "C-n" "C-t" "M-p" "M-n"))))
+     '("C-p" "C-n" "C-t" "M-p" "M-n")))
+  :delight)
 
 (use-package browse-kill-ring
   :config
