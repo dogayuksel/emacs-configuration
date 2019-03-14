@@ -108,12 +108,6 @@
   :config
   (evil-collection-init))
 
-(use-package evil-escape
-  :config
-  (progn
-    (setq evil-escape-delay 0.17)
-    (evil-escape-mode)))
-
 (use-package evil-surround :after (evil) :config (global-evil-surround-mode 1))
 
 (use-package evil-mc
