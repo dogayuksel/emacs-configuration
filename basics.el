@@ -52,7 +52,7 @@
   ("b b" helm-mini)
   ("b h" evil-next-buffer)
   ("b l" evil-prev-buffer)
-  ("b x" kill-buffer)
+  ("b x" kill-this-buffer)
   ("p" matcha-projectile/body)
   ("r" bookmark-jump)
   ("m" matcha-run-mode-command)
