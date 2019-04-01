@@ -121,7 +121,7 @@
 
     Multiple Cursors:
   ^^^^----------------------------------------------------------
-    _m_ Make all Cursors   _u_ Undo all Cursors
+    _m_ Make all Cursors   _u_ Undo all Cursors   _U_ Undo last Cursor
     _s_ Pause Cursors      _r_ Resume Cursors
 
       ^^          first _f_
@@ -139,6 +139,7 @@
       (">" evil-mc-append-vertical-cursors)
       ("m" evil-mc-make-all-cursors)
       ("u" evil-mc-undo-all-cursors :color blue)
+      ("U" evil-mc-undo-last-added-cursor)
       ("s" evil-mc-pause-cursors)
       ("r" evil-mc-resume-cursors)
       ("f" evil-mc-make-and-goto-first-cursor)
