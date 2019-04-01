@@ -112,10 +112,13 @@
 
 (use-package evil-mc
   :after (hydra)
+  :init
+  (setq
+   evil-mc-one-cursor-show-mode-line-text nil
+   evil-mc-mode-line-text-cursor-color nil)
   :config
   (progn
     (global-evil-mc-mode 1)
-    (setq evil-mc-one-cursor-show-mode-line-text nil)
     (defhydra matcha-evil-mc (:color red :hint nil)
       "
 
@@ -158,8 +161,7 @@
            (define-key evil-mc-key-map (kbd x) nil)
            (evil-define-key 'normal evil-mc-key-map (kbd x) nil)
            (evil-define-key 'visual evil-mc-key-map (kbd x) nil)))
-     '("C-p" "C-n" "C-t" "M-p" "M-n")))
-  :delight)
+     '("C-p" "C-n" "C-t" "M-p" "M-n"))))
 
 (use-package browse-kill-ring
   :config
