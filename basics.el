@@ -36,12 +36,12 @@
   "
    Space: %s`default-directory
 
-    ^Navigate^        ^Manage
-  ^^^^--------------------------------------
-    _f f_ Files       _m_ Mode Command
-    _b b_ Helm Mini   _g_ Magit
-    _p_ Projectile    _/_ Multiple Cursors
-    _r_ Bookmarks     _a a_ Org Agenda
+    ^Navigate^        ^Manage^           ^Org Mode^
+  ^^^^^^----------------------------------------------
+    _f f_ Files       _m_ Mode Command   _a_ Agenda
+    _b b_ Helm Mini   _g_ Magit          _c_ Capture
+    _p_ Projectile    _/_ Many Cursors
+    _r_ Bookmarks
 
     _SPC_ Jump        _s_ Swoop
 "
@@ -58,8 +58,8 @@
   ("m" matcha-run-mode-command)
   ("g" matcha-magit/body)
   ("/" matcha-evil-mc/body)
-  ("a a" org-agenda)
-  ("a c" org-capture)
+  ("a" org-agenda)
+  ("c" org-capture)
   ("w h" evil-window-left)
   ("w l" evil-window-right)
   ("w k" evil-window-up)
