@@ -203,7 +203,8 @@
   :load-path "lib/personal"
   :commands
   (my/open-iterm-here
-   my/insert-fullname)
+   my/insert-fullname
+   my/send-line-to-iterm)
   :general
   ((normal emacs)
    "C-c K" 'my/nuke-all-buffers

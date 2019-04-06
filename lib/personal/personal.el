@@ -16,6 +16,37 @@
   (interactive)
   (dired-smart-shell-command "open -a iTerm -n $PWD" nil nil))
 
+(defun last-char-p (str char)
+  "Check if given CHAR is the last in STR."
+  (let ((length (length str)))
+    (and (> length 0)
+         (char-equal (elt str (- length 1)) char))))
+
+(defun chop-newline (str)
+  "Remove new line at the end of STR if it exists."
+  (let ((length (length str)))
+    (if (last-char-p str ?\n)
+        (substring str 0 (- length 1))
+      str)))
+
+(defun my/send-line-to-iterm ()
+  "Send current line to the running iTerm instance."
+  (interactive)
+  (let* ((command (thing-at-point 'line))
+         (str (concat "osascript "
+                      "-e 'tell app \"iTerm\"' "
+                      "-e 'tell current window' "
+                      "-e 'tell current session' "
+                      "-e 'delay 0.05' "
+                      "-e 'write text \""
+                      (chop-newline command)
+                      "\"' "
+                      "-e 'end tell' "
+                      "-e 'end tell' "
+                      "-e 'end tell' ")))
+    ; (message "%s" str) ; debug
+    (shell-command str)))
+
 (defun my/nuke-all-buffers ()
   "Confirm and kill all buffers."
   (interactive)
