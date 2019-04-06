@@ -44,8 +44,13 @@
                       "-e 'end tell' "
                       "-e 'end tell' "
                       "-e 'end tell' ")))
-    ; (message "%s" str) ; debug
     (shell-command str)))
+
+(defun my/append-semicolon-to-the-end-of-line ()
+  "Add a semicolon to the end of the line."
+  (interactive)
+  (end-of-line)
+  (insert ";"))
 
 (defun my/nuke-all-buffers ()
   "Confirm and kill all buffers."

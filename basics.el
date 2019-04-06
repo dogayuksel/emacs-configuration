@@ -102,12 +102,6 @@
    :keymaps 'override
    "C-SPC" 'hydra-space/body))
 
-(defun my/append-semicolon-to-the-end-of-line ()
-  "Add a semicolon to the end of the line."
-  (interactive)
-  (end-of-line)
-  (insert ";"))
-
 (use-package evil
   :init
   (setq
@@ -116,10 +110,7 @@
   :config
   (progn
     (evil-mode 1)
-    (setq evil-want-fine-undo t)
-    (general-define-key
-     :states 'insert
-     "C-;" 'my/append-semicolon-to-the-end-of-line)))
+    (setq evil-want-fine-undo t)))
 
 (use-package evil-collection
   :after (evil)
@@ -210,6 +201,8 @@
    "C-c K" 'my/nuke-all-buffers
    "C-c s" 'my/split-and-open-shell
    "C-c t" 'my/set-frame-alpha)
+  ((insert)
+   "C-;" 'my/append-semicolon-to-the-end-of-line)
   ((override)
    "C-c 1" 'comment-region
    "C-c 2" 'uncomment-region
