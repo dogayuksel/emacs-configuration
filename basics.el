@@ -36,23 +36,19 @@
   "
    Space: %s`default-directory
 
-    ^Navigate^        ^Manage^           ^Org Mode^
-  ^^^^^^----------------------------------------------
-    _f f_ Files       _m_ Mode Command   _a_ Agenda
-    _b b_ Helm Mini   _g_ Magit          _c_ Capture
-    _p_ Projectile    _/_ Many Cursors
+    ^Navigate^        ^Manage^             ^Org Mode^
+  ^^^^^^------------------------------------------------
+    _f_ Files         _m_ Mode Command     _a_ Agenda
+    _b_ Buffers       _g_ Magit            _c_ Capture
+    _p_ Projects      _/_ Many Cursors
     _r_ Bookmarks
 
     _SPC_ Jump        _s_ Swoop
 "
   ("SPC" avy-goto-char)
   ("s" helm-swoop)
-  ("f f" helm-find-files)
-  ("f s" save-buffer)
-  ("b b" helm-mini)
-  ("b h" evil-next-buffer)
-  ("b l" evil-prev-buffer)
-  ("b x" kill-this-buffer)
+  ("f" hydra-file/body)
+  ("b" hydra-buffer/body)
   ("p" matcha-projectile/body)
   ("r" bookmark-jump)
   ("m" matcha-run-mode-command)
@@ -69,6 +65,30 @@
   ("w w" delete-other-windows)
   ("w x" delete-window)
   ("e" er/expand-region))
+
+(defhydra hydra-file (:color blue :hint nil :idle .4)
+  "
+    ^Files^
+  ^^----------
+    _f_ Find
+    _s_ Save
+"
+  ("f" helm-find-files)
+  ("s" save-buffer))
+
+(defhydra hydra-buffer (:color blue :hint nil :idle .4)
+  "
+    ^Buffers^
+  ^^---------------
+    _b_ Helm Mini
+    _h_ Next
+    _l_ Previous
+    _x_ Kill
+"
+  ("b" helm-mini)
+  ("h" evil-next-buffer)
+  ("l" evil-prev-buffer)
+  ("x" kill-this-buffer))
 
 (use-package general
   :config
