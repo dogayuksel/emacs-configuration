@@ -39,10 +39,12 @@
 (use-package flycheck-rust)
 
 (use-package rust-mode
-  :after (flycheck-rust rust-mode)
+  :after flycheck-rust
   :mode ("\\.rs\\'" . rust-mode)
   :config
   (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
+
+(use-package cargo :after rust-mode)
 
 (use-package toml-mode :mode ("\\.toml\\'" . toml-mode))
 
