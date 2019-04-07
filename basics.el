@@ -133,7 +133,7 @@
     (defhydra matcha-evil-mc (:color red :hint nil)
       "
 
-    Multiple Cursors:
+    Multiple Cursors: %(evil-mc-get-cursor-count)
   ^^^^----------------------------------------------------------
     _m_ Make all Cursors   _u_ Undo all Cursors   _U_ Undo last Cursor
     _s_ Pause Cursors      _r_ Resume Cursors
