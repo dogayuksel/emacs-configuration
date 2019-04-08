@@ -380,7 +380,10 @@
 
 (use-package evil-magit
   :after (evil magit)
-  :init (setq evil-magit-use-z-for-folds t))
+  :init
+  (setq
+   evil-magit-use-z-for-folds t
+   evil-magit-want-horizontal-movement t))
 
 (use-package git-gutter-fringe
   :config
