@@ -168,7 +168,7 @@
   (setq org-pomodoro-play-sounds nil))
 
 (use-package ox-latex
-  :ensure org
+  :straight nil
   :after (org)
   :config
   (add-to-list 'org-latex-classes
@@ -203,17 +203,16 @@
         org-latex-pdf-process
         '("latexmk -pdflatex='pdflatex -interaction nonstopmode' -pdf -bibtex -f  %f")))
 
+(use-package ox-md :straight nil :after org)
+
 (use-package reftex
   :config
   (setq reftex-default-bibliography
         '("~/Dropbox/.org/bibtex/file-1.bib"
           "~/Dropbox/.org/bibtex/file-2.bib")))
 
-(use-package ox-md :ensure org :after (org))
-
 (use-package ox-reveal
-  :ensure org
-  :after (org)
+  :after org
   :config
   (setq org-reveal-root "./reveal.js"))
 

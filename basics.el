@@ -30,7 +30,10 @@
 
 (use-package hydra)
 
-(use-package matcha :load-path "~/.emacs.d/matcha/" :config (matcha-setup))
+(use-package matcha
+  :straight (matcha :type git :host github :repo "jojojames/matcha"
+                    :fork (:host github :repo "dogayuksel/matcha"))
+  :config (matcha-setup))
 
 (defhydra hydra-space (:color blue :hint nil :idle .8)
   "
@@ -191,6 +194,7 @@
         (set-face-attribute 'linum nil :height 90)))))
 
 (use-package personal
+  :straight nil
   :load-path "lib/personal"
   :commands
   (my/open-iterm-here
@@ -419,6 +423,7 @@
   (setq neo-theme (if (display-graphic-p) 'icons 'arrow)))
 
 (use-package undo-tree
+  :straight (undo-tree :type git :host nil :repo "http://www.dr-qubit.org/git/undo-tree.git")
   :config
   (global-undo-tree-mode)
   (setq undo-tree-visualizer-timestamps t

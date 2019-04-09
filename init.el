@@ -12,33 +12,31 @@
 ;; Sets garbage collection threshold to 500mb
 (setq gc-cons-threshold (* 500 1024 1024))
 
-(require 'package)
-(setq package-enable-at-startup nil)
-
-(mapc (lambda (x) (add-to-list 'package-archives x))
-      '(("melpa" . "https://melpa.org/packages/")
-        ("elpy" . "http://jorgenschaefer.github.io/packages/")
-        ("org" . "http://orgmode.org/elpa/")))
-
-(setq load-prefer-newer t)
-(package-initialize)
+;; bootstrap straight.el
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 5))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
 
 ;; (require 'benchmark-init)
 ;; (benchmark-init/activate)
 
-;; Bootstrap use-package
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
+(straight-use-package 'use-package)
+(setq straight-use-package-by-default t)
 
 (require 'use-package)
 ;; (eval-when-compile
 ;;   (require 'use-package))
 ;; (require 'bind-key)
 ;; (require 'diminish)
-
-(setq use-package-verbose nil)
-(setq use-package-always-ensure t)
 
 (use-package delight)
 
@@ -57,10 +55,7 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("8d5f22f7dfd3b2e4fc2f2da46ee71065a9474d0ac726b98f647bc3c7e39f2819" default)))
- '(package-selected-packages
-   (quote
-    (cargo helm-swoop helm-projectile evil-collection browse-kill-ring beacon evil-magit all-the-icons-dired evil-org evil-mc general nlinum-relative evil-surround projectile evil eyebrowse ox-reveal gruvbox-theme all-the-icons git-gutter-fringe hydra flycheck-rust toml-mode rust-mode git-timemachine markdown-mode company-flow org-jira powerline alert delight tide graphql-mode org-gcal dumb-jump company-tern company helm-c-yasnippet yasnippet helm-ag auto-compile try expand-region aggressive-indent hungry-delete avy which-key rainbow-mode dash-at-point sourcemap org-pomodoro helm yaml-mode benchmark-init sass-mode coffee-mode flycheck-flow web-mode visual-fill-column use-package undo-tree smartparens scss-mode popwin org-bullets org neotree mmm-mode magit json-mode impatient-mode helm-descbinds helm-bibtex flycheck exec-path-from-shell elpy drag-stuff auto-complete airline-themes))))
+    ("8d5f22f7dfd3b2e4fc2f2da46ee71065a9474d0ac726b98f647bc3c7e39f2819" default))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
