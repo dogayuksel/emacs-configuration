@@ -15,11 +15,8 @@ eshell/
 SessionDesktop.el
 image-dired/
 
-helm-doc.org
-
-elpa/
+straight/
 mthesaur_cache.txt
 tern-project/
 yasnippet-snippets/
 emacs-solidity/
-matcha/
