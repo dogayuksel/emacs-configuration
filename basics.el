@@ -28,11 +28,12 @@
 
 (windmove-default-keybindings)
 
-(use-package hydra)
+(use-package hydra :demand t)
 
 (use-package matcha
-  :straight (matcha :type git :host github :repo "jojojames/matcha"
-                    :fork (:host github :repo "dogayuksel/matcha"))
+  :straight
+  (:type git :host github :repo "jojojames/matcha"
+         :fork (:host github :repo "dogayuksel/matcha"))
   :config (matcha-setup))
 
 (defhydra hydra-space (:color blue :hint nil :idle .8)
@@ -104,6 +105,15 @@
    :states 'emacs
    :keymaps 'override
    "C-SPC" 'hydra-space/body))
+
+(use-package undo-tree
+  :straight
+  (:type git :host nil :repo "http://www.dr-qubit.org/git/undo-tree.git")
+  :config
+  (global-undo-tree-mode)
+  (setq undo-tree-visualizer-timestamps t
+        undo-tree-visualizer-diff t)
+  :delight)
 
 (use-package evil
   :init
@@ -421,14 +431,6 @@
   ("C-c n" 'neotree)
   :config
   (setq neo-theme (if (display-graphic-p) 'icons 'arrow)))
-
-(use-package undo-tree
-  :straight (undo-tree :type git :host nil :repo "http://www.dr-qubit.org/git/undo-tree.git")
-  :config
-  (global-undo-tree-mode)
-  (setq undo-tree-visualizer-timestamps t
-        undo-tree-visualizer-diff t)
-  :delight)
 
 (use-package dash-at-point :commands (dash-at-point dash-at-point-with-docset))
 

@@ -32,12 +32,6 @@
 (straight-use-package 'use-package)
 (setq straight-use-package-by-default t)
 
-(require 'use-package)
-;; (eval-when-compile
-;;   (require 'use-package))
-;; (require 'bind-key)
-;; (require 'diminish)
-
 (use-package delight)
 
 (use-package auto-compile
