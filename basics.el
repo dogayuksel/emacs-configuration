@@ -372,9 +372,10 @@
 (use-package yasnippet
   :defer 7
   :config
-  (add-to-list 'yas-snippet-dirs "~/.emacs.d/snippets")
   (yas-global-mode 1)
   :delight yas-minor-mode)
+
+(use-package yasnippet-snippets)
 
 (use-package helm-c-yasnippet
   :general ("C-c y" 'helm-yas-complete)
