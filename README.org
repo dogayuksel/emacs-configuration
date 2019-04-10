@@ -1,126 +1,60 @@
 * Introduction
-My configuration files for Emacs.
-Using them with this mac port: [[https://bitbucket.org/mituharu/emacs-mac][mituharu/emacs-mac]].
-* General requirements
+My configuration for Emacs 26.1.
+
+
+* Dependencies
+** Silver Searcher
+   [[https://github.com/ggreer/the_silver_searcher][ggreer/the_silver_searcher]]
+
+** Fonts
   - Hack fonts - [[https://github.com/source-foundry/Hack][github]]
-  - SF Mono fonts (comes in mac os terminal)
+  - SF Mono fonts (comes in mac os terminal app)
   - Avenir book fonts (comes with mac os)
-* Bootstrapped package that ensures that rest
-** use-package
-   [[https://github.com/jwiegley/use-package][jwiegley/use-package]]
-* Ensured packages with external dependencies
-** yasnippet
-   - credits to snippets repo: [[https://github.com/AndreaCrotti/yasnippet-snippets][AndreaCrotti/yasnippet-snippets]]
-** magit
-   [[https://magit.vc/][magit documentation]] - git porcelain
-** git-gutter-fringe
-** git-timemachine
-** dash-at-point
-   needs dash software: [[https://kapeli.com/dash][web page]]
-** org
-   - mobile-org
-   [[https://mobileorg.github.io/documentation/][documentation]]
-   - uses latexmk for PDF export
-** ox-reveal
-   - depends on local Reveal.js [[https://github.com/yjwen/org-reveal/][repository]]
-** org-gcal
-   - requires calendar setup
-   - loaded only when secrets exist
+
+** TeXLive
+   Used for org mode latex exports
+   https://trac.macports.org/wiki/TeXLivePackages
+   
+** Reveal.js
+   Used by ox-reveal to export slide shows
+   [[https://github.com/yjwen/org-reveal/][repository]]
+ 
+** Ispell
+#+begin_src sh
+port install ispell
+#+end_src
+
+** Dash
+   Used by dash-at-point: [[https://kapeli.com/dash][web page]]
+   
+** Skim
+   helm-bibtex defaults to skim to open PDFs
+   - https://skim-app.sourceforge.io/
+
+
+* Installation
+** Packages
+   Following packages are bootstrapped in init.el. Fetches rest of the packages declared.
+*** straight.el
+    Package manager
+    https://github.com/raxod502/straight.el
+*** use-package.el
+    Macros for configuration
+    [[https://github.com/jwiegley/use-package][jwiegley/use-package]]
+    
+    
+** After Packages are Installed
+*** Tern 
+    - Install npm dependencies for tern
+ #+begin_src sh
+ cd ~/.emacs.d/straight/repos/tern
+ npm install
+ #+end_src
+ 
+*** Org-gcal
+    Setup google calendar
    - [[https://github.com/myuhe/org-gcal.el][github repo]]
-** company-tern
-   - needs tern repository
-   - [[http://ternjs.net/][ternjs webpage]]
-** helm-ag
-   - uses silver surfer
-   - repo here: [[https://github.com/ggreer/the_silver_searcher][ggreer/the_silver_searcher]]
-** helm-bibtex
-   - uses skim app to open PDFs
-   - points at bibtex-library
-** elpy
+
+*** Elpy
    - bunch of dependencies on python side
    - refer to: [[https://github.com/jorgenschaefer/elpy][jorgenschaefer/elpy]]
-** emacs-solidity
-   loaded only when local copy of the library exists
-** matcha
-  collection of hydras and an interface to lunch them: [[https://github.com/jojojames/matcha][github repo]]
-
-* Ensured with use-package
-** general
-   generic key bindings manager that works well with evil and use-package
-** evil
-** evil-surround
-** evil-mc
-   multiple cursors for evil-mode
-** evil-org
-   evil bindings for org-mode: [[https://github.com/edwtjo/evil-org-mode][package repo]]
-** evil-magit
-** evil-collection
-   evil-bindings for common packages
-** nlinum-relative
-   display relative line numbers
-** browse-kill-ring
-   paste by selecting from a buffer that lists the items in the kill ring
-** all-the-icons-dired
-   displays file type icons on dired-mode
-** beacon
-   highlight cursor position on scroll
-** projectile
-** helm-projectile
-   helm interface to projectile
-** eyebrowse
-** delight
-** auto-compile
-** try
-** which-key
-** popwin
-** org-pomodoro
-** org-jira
-** company
-** company-flow
-** flycheck
-** flycheck-flow
-** helm-c-yasnippet
-** avy
-** helm-swoop
-** drag-stuff
-** neotree
-** undo-tree
-** smartparens
-** hungry-delete
-** aggressive-indent
-** expand-region
-** gruvbox-theme
-** rainbow-mode
-** visual-fill-column
-** org-bullets
-** coffee-mode
-** sourcemap
-** yaml-mode
-** json-mode
-** graphql-mode
-** sass-mode
-** scss-mode
-** impatient-mode
-** web-mode
-** tide
-   [[https://github.com/ananthakumaran/tide][ananthakumaran/tide]]
-** helm
-** helm-descbinds
-** dumb-jump
-** airline-themes
-** alert
-** powerline
-** markdown-mode
-** hydra
-* Platform specific ensured packages
-** exec-path-from-shell
-* Packages in site-lisp directory
-  Copyrighted libraries from emacs-wiki
-** bookmark+
-** dired+
-** synonyms
-   [[https://www.emacswiki.org/emacs/Synonyms][package wiki]]
-* Currently disabled packages
-** benchmark-init
-** auto-complete
-** mmm-mode

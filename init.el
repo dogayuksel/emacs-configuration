@@ -30,6 +30,8 @@
 ;; (benchmark-init/activate)
 
 (straight-use-package 'use-package)
+
+;; tell straight.el to fetch packages declared by use-package
 (setq straight-use-package-by-default t)
 
 (use-package delight)
