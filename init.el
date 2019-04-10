@@ -37,6 +37,8 @@
 (use-package delight)
 
 (use-package auto-compile
+  :init
+  (setq load-prefer-newer t)
   :config
   (progn
     (auto-compile-on-load-mode)
