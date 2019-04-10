@@ -274,7 +274,6 @@
     (eyebrowse-setup-opinionated-keys)))
 
 (use-package synonyms
-  :load-path "site-lisp/synonyms/"
   :commands (synonyms)
   :init
   (setq synonyms-file "~/.emacs.d/synonyms/mthesaur.txt"
@@ -442,7 +441,6 @@
   :delight)
 
 (use-package bookmark+
-  :load-path "site-lisp/bookmark+/"
   :defines
   (bmkp-bmenu-state-file
    bookmark-default-file
@@ -455,7 +453,6 @@
         bmkp-last-as-first-bookmark-file nil))
 
 (use-package dired+
-  :load-path "~/.emacs.d/site-lisp/dired+/"
   :config
   (progn
     (put 'dired-find-alternate-file 'disabled nil)
