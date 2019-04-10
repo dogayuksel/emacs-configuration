@@ -103,17 +103,15 @@ Project root is assumed to be the folder with node_modules folder."
         "node_modules/flow-bin/vendor/flow")))))
 
 ;;; Enable tern for javascript suggestions.
-(add-to-list 'load-path "~/.emacs.d/tern-project/emacs/")
-(autoload 'tern-mode "tern.el" nil t)
+(use-package tern
+  :config
+  (setq tern-command '("~/.emacs.d/straight/repos/tern/bin/tern"))
+  (add-hook 'web-mode-hook '(lambda () (tern-mode t))))
+
 (use-package company-tern
   :after (company)
   :config
   (add-to-list 'company-backends '(company-tern company-flow)))
-
-(defun my/tern-setup ()
-  "Start tern mode."
-  (tern-mode t))
-(add-hook 'web-mode-hook 'my/tern-setup)
 
 (defun setup-tide-mode ()
   "Setup tide mode."

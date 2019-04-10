@@ -6,6 +6,7 @@ tramp
 recentf
 bookmarks
 projectile-bookmarks.eld
+projectile.cache
 .emacs-bmk-bmenu-state.el
 org-gcal/
 .org-id-locations
@@ -14,9 +15,9 @@ ac-comphist.dat
 eshell/
 SessionDesktop.el
 image-dired/
+transient/
+url/
 
 straight/
 mthesaur_cache.txt
-tern-project/
 yasnippet-snippets/
-emacs-solidity/
