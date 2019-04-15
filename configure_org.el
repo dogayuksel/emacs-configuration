@@ -212,7 +212,7 @@
           "~/Dropbox/.org/bibtex/file-2.bib")))
 
 (use-package ox-reveal
-  :after org
+  :after (org)
   :config
   (setq org-reveal-root "./reveal.js"))
 

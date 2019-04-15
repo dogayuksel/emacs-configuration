@@ -370,12 +370,12 @@
   (flycheck-add-mode 'typescript-tslint 'web-mode))
 
 (use-package yasnippet
-  :defer 7
+  :defer 10
   :config
   (yas-global-mode 1)
   :delight yas-minor-mode)
 
-(use-package yasnippet-snippets)
+(use-package yasnippet-snippets :after (yasnippet))
 
 (use-package helm-c-yasnippet
   :general ("C-c y" 'helm-yas-complete)
