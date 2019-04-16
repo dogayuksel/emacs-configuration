@@ -49,7 +49,7 @@
 
     _SPC_ Jump        _s_ Swoop
 "
-  ("SPC" avy-goto-char)
+  ("SPC" avy-goto-char-timer)
   ("s" helm-swoop)
   ("f" hydra-file/body)
   ("b" hydra-buffer/body)
