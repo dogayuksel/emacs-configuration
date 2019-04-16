@@ -480,4 +480,6 @@
 
 (use-package expand-region :general ("C-c e" 'er/expand-region))
 
+(use-package edit-indirect)
+
 ;;; basics.el ends here
