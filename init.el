@@ -53,7 +53,7 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("8d5f22f7dfd3b2e4fc2f2da46ee71065a9474d0ac726b98f647bc3c7e39f2819" default))))
+    ("21ab0b5378bd681d5374528e7eca19992249d85a62c317c217da1d1b360b754d" default))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

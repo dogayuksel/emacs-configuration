@@ -50,7 +50,13 @@
   (delight 'buffer-face-mode nil t))
 (add-hook 'prog-mode-hook 'my/buffer-face-mode-monospace)
 
-(use-package gruvbox-theme :config (load-theme 'gruvbox-dark-medium t))
+(use-package nord-theme
+  :straight
+  (:type git :host github :repo "arcticicestudio/nord-emacs" :branch "develop")
+  :config
+  (progn
+    (setq nord-comment-brightness 10)
+    (load-theme 'nord t)))
 
 (load "~/.emacs.d/my-modeline")
 
@@ -63,13 +69,13 @@
    css-mode)
   :delight)
 
-(set-face-attribute 'fringe nil :background "#282828")
+(set-face-attribute 'fringe nil :background "#434C5E")
 
 (defun my/terminal-visible-bell ()
   "A friendlier visual bell effect."
-  (set-face-background 'fringe "#3c3836")
+  (set-face-background 'fringe "#81A1C1")
   (run-with-idle-timer
-   0.1 nil (lambda () (set-face-background 'fringe "#282828"))))
+   0.1 nil (lambda () (set-face-background 'fringe "#434C5E"))))
 (setq visible-bell nil
       ring-bell-function #'my/terminal-visible-bell)
 

@@ -12,8 +12,11 @@
         powerline-display-hud t))
 
 (use-package airline-themes
+  :straight
+  (:type git :host github :repo "AnthonyDiGirolamo/airline-themes"
+         :fork (:host github :repo "marcoheisig/airline-themes"))
   :config
-  (load-theme 'airline-gruvbox-dark)
+  (load-theme 'airline-nord)
   (setq airline-utf-glyph-separator-left      #xe0b0
         airline-utf-glyph-separator-right     #xe0b2
         airline-utf-glyph-subseparator-left   #xe0b1
