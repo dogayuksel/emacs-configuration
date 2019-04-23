@@ -14,7 +14,7 @@
 (use-package airline-themes
   :straight
   (:type git :host github :repo "AnthonyDiGirolamo/airline-themes"
-         :fork (:host github :repo "marcoheisig/airline-themes"))
+         :fork (:host github :repo "dogayuksel/airline-themes"))
   :config
   (load-theme 'airline-nord)
   (setq airline-utf-glyph-separator-left      #xe0b0
