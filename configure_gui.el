@@ -69,13 +69,13 @@
    css-mode)
   :delight)
 
-(set-face-attribute 'fringe nil :background "#434C5E")
+(set-face-attribute 'fringe nil :background "#3B4252")
 
 (defun my/terminal-visible-bell ()
   "A friendlier visual bell effect."
-  (set-face-background 'fringe "#81A1C1")
+  (set-face-background 'fringe "#434C5E")
   (run-with-idle-timer
-   0.1 nil (lambda () (set-face-background 'fringe "#434C5E"))))
+   0.1 nil (lambda () (set-face-background 'fringe "#3B4252"))))
 (setq visible-bell nil
       ring-bell-function #'my/terminal-visible-bell)
 
