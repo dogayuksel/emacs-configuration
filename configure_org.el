@@ -233,12 +233,4 @@
   :config
   (add-hook 'org-agenda-mode-hook (lambda () (org-gcal-sync))))
 
-(use-package org-jira
-  :if (boundp 'my/jiralib-url)
-  :init
-  (setq jiralib-url my/jiralib-url
-        org-jira-default-jql
-        (concat "assignee = currentUser() and resolution = unresolved"
-                " ORDER BY rank ASC")))
-
 ;;; configure_org.el ends here
