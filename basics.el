@@ -193,16 +193,6 @@
    :states 'normal
    "C-S-p" 'browse-kill-ring))
 
-(use-package nlinum-relative
-  :config
-  (nlinum-relative-setup-evil)
-  (add-hook
-   'prog-mode-hook
-   '(lambda ()
-      (progn
-        (nlinum-relative-mode)
-        (set-face-attribute 'linum nil :height 90)))))
-
 (use-package personal
   :straight nil
   :load-path "lib/personal"
