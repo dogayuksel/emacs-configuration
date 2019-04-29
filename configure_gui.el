@@ -52,7 +52,8 @@
 
 (use-package nord-theme
   :straight
-  (:type git :host github :repo "arcticicestudio/nord-emacs" :branch "develop")
+  (:type git :host github :repo "arcticicestudio/nord-emacs" :branch "develop"
+         :fork (:host github :repo "dogayuksel/nord-emacs"))
   :config
   (progn
     (setq nord-comment-brightness 10)
