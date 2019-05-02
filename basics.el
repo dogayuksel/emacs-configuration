@@ -143,42 +143,6 @@
   :config
   (progn
     (global-evil-mc-mode 1)
-    (defhydra matcha-evil-mc (:color red :hint nil)
-      "
-
-    Multiple Cursors: %(evil-mc-get-cursor-count)
-  ^^^^----------------------------------------------------------
-    _m_ Make all Cursors   _u_ Undo all Cursors   _U_ Undo last Cursor
-    _s_ Pause Cursors      _r_ Resume Cursors
-
-      ^^          first _f_
-        _k_             _p_                  _P_
-      ^LINE^         CURSOR _h_ here       ^MATCH
-        _j_             _n_                  _N_
-      ^^           last _l_             skip _S_
-
-    _=_ Make in Defun
-    _<_ Insert Vertical Cursors
-    _>_ Append Vertical Cursors
-"
-      ("=" evil-mc-make-cursors-in-defun)
-      ("<" evil-mc-insert-vertical-cursors)
-      (">" evil-mc-append-vertical-cursors)
-      ("m" evil-mc-make-all-cursors)
-      ("u" evil-mc-undo-all-cursors :color blue)
-      ("U" evil-mc-undo-last-added-cursor)
-      ("s" evil-mc-pause-cursors)
-      ("r" evil-mc-resume-cursors)
-      ("f" evil-mc-make-and-goto-first-cursor)
-      ("l" evil-mc-make-and-goto-last-cursor)
-      ("h" evil-mc-make-cursor-here)
-      ("j" evil-mc-make-cursor-move-next-line)
-      ("k" evil-mc-make-cursor-move-prev-line)
-      ("n" evil-mc-make-and-goto-next-cursor)
-      ("p" evil-mc-make-and-goto-prev-cursor)
-      ("S" evil-mc-skip-and-goto-next-match)
-      ("N" evil-mc-make-and-goto-next-match)
-      ("P" evil-mc-make-and-goto-prev-match))
     (mapc
      #'(lambda (x)
          (progn
