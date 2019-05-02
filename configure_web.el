@@ -118,6 +118,13 @@ Project root is assumed to be the folder with node_modules folder."
          (my/get-executable-at-dir
           "node_modules/eslint/bin/eslint.js"))))))
 
+(use-package js2-refactor
+  :after (js2-mode)
+  :config
+  (progn
+    (setq js2-skip-preprocessor-directives t)
+    (add-hook 'js2-mode-hook #'js2-refactor-mode)))
+
 (use-package indium
   :ensure-system-package
   (indium . "npm i -g indium"))
