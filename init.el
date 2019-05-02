@@ -34,6 +34,8 @@
 ;; tell straight.el to fetch packages declared by use-package
 (setq straight-use-package-by-default t)
 
+(use-package use-package-ensure-system-package)
+
 (use-package delight)
 
 (use-package auto-compile

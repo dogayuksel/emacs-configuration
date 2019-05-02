@@ -23,6 +23,15 @@
 
 (use-package scss-mode :mode "\\.scss\\'")
 
+(defun my/get-executable-at-dir (bin-dir)
+  "Check for executable at BIN-DIR relative to project root.
+Project root is assumed to be the folder with node_modules folder."
+  (let* ((root (locate-dominating-file
+                (or (buffer-file-name) default-directory)
+                "node_modules"))
+         (exec (and root (expand-file-name bin-dir root))))
+    (if (and exec (file-executable-p exec)) exec)))
+
 (use-package css-mode
   :config
   (setq css-indent-offset 2)
@@ -34,19 +43,10 @@
        (my/get-executable-at-dir
         "node_modules/stylelint/bin/stylelint.js")))))
 
-(defun my/get-executable-at-dir (bin-dir)
-  "Check for executable at BIN-DIR relative to project root.
-Project root is assumed to be the folder with node_modules folder."
-  (let* ((root (locate-dominating-file
-                (or (buffer-file-name) default-directory)
-                "node_modules"))
-         (exec (and root (expand-file-name bin-dir root))))
-    (if (and exec (file-executable-p exec)) exec)))
-
 (use-package web-mode
   :after (flycheck company)
   :mode ("\\.html\\'"
-         "\\.jsx?\\'")
+         "\\.jsx\\'")
   :defines web-mode-content-types-alist
   :init
   (setq web-mode-content-types-alist
@@ -102,11 +102,27 @@ Project root is assumed to be the folder with node_modules folder."
        (my/get-executable-at-dir
         "node_modules/flow-bin/vendor/flow")))))
 
+(use-package js2-mode
+  :mode ("\\.js\\'")
+  :config
+  (setq js-indent-level 2))
+
+(use-package indium
+  :ensure-system-package
+  (indium . "npm i -g indium"))
+
+(defun my/add-to-multiple-hooks (function hooks)
+  "Apply given FUNCTION to a list of HOOKS."
+  (mapc (lambda (hook) (add-hook hook function)) hooks))
+
 ;;; Enable tern for javascript suggestions.
 (use-package tern
   :config
-  (setq tern-command '("~/.emacs.d/straight/repos/tern/bin/tern"))
-  (add-hook 'web-mode-hook '(lambda () (tern-mode t))))
+  (progn
+    (setq tern-command '("~/.emacs.d/straight/repos/tern/bin/tern"))
+    (my/add-to-multiple-hooks
+     '(lambda () (tern-mode t))
+     '(web-mode-hook js2-mode-hook))))
 
 (use-package company-tern
   :after (company)
