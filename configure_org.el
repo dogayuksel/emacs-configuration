@@ -203,7 +203,7 @@
         org-latex-pdf-process
         '("latexmk -pdflatex='pdflatex -interaction nonstopmode' -pdf -bibtex -f  %f")))
 
-(use-package ox-md :straight nil :after org)
+(use-package ox-md :straight nil :after (org))
 
 (use-package reftex
   :config

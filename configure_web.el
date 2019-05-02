@@ -52,30 +52,31 @@ Project root is assumed to be the folder with node_modules folder."
   (setq web-mode-content-types-alist
         '(("jsx" . "\\.jsx\\'")))
   :config
-  (flycheck-add-mode 'javascript-eslint 'web-mode)
-  (add-hook
-   'web-mode-hook
-   '(lambda ()
-      (setq-local
-       flycheck-javascript-eslint-executable
-       (my/get-executable-at-dir
-        "node_modules/eslint/bin/eslint.js"))))
-  (setq web-mode-markup-indent-offset 2
-        web-mode-code-indent-offset 2
-        web-mode-css-indent-offset 2
-        web-mode-enable-current-element-highlight t
-        web-mode-enable-current-column-highlight t
-        web-mode-enable-auto-quoting nil)
-  (set-face-attribute
-   'web-mode-current-element-highlight-face
-   nil :foreground "#aeee00")
+  (progn
+    (flycheck-add-mode 'javascript-eslint 'web-mode)
+    (add-hook
+     'web-mode-hook
+     '(lambda ()
+        (setq-local
+         flycheck-javascript-eslint-executable
+         (my/get-executable-at-dir
+          "node_modules/eslint/bin/eslint.js"))))
+    (setq web-mode-markup-indent-offset 2
+          web-mode-code-indent-offset 2
+          web-mode-css-indent-offset 2
+          web-mode-enable-current-element-highlight t
+          web-mode-enable-current-column-highlight t
+          web-mode-enable-auto-quoting nil)
+    (set-face-attribute
+     'web-mode-current-element-highlight-face
+     nil :foreground "#aeee00")
   ;;; For better jsx syntax-highlighting in web-mode.
-  (defadvice web-mode-highlight-part (around tweak-jsx activate)
-    "Some decoration for jsx mode."
-    (if (equal web-mode-content-type "jsx")
-        (let ((web-mode-enable-part-face nil))
-          ad-do-it)
-      ad-do-it)))
+    (defadvice web-mode-highlight-part (around tweak-jsx activate)
+      "Some decoration for jsx mode."
+      (if (equal web-mode-content-type "jsx")
+          (let ((web-mode-enable-part-face nil))
+            ad-do-it)
+        ad-do-it))))
 
 (use-package flycheck-flow
   :after (flycheck)
@@ -103,9 +104,19 @@ Project root is assumed to be the folder with node_modules folder."
         "node_modules/flow-bin/vendor/flow")))))
 
 (use-package js2-mode
+  :after (flycheck)
   :mode ("\\.js\\'")
   :config
-  (setq js-indent-level 2))
+  (progn
+    (setq js-indent-level 2)
+    (flycheck-add-mode 'javascript-eslint 'js2-mode)
+    (add-hook
+     'js2-mode-hook
+     '(lambda ()
+        (setq-local
+         flycheck-javascript-eslint-executable
+         (my/get-executable-at-dir
+          "node_modules/eslint/bin/eslint.js"))))))
 
 (use-package indium
   :ensure-system-package
