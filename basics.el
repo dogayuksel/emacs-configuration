@@ -28,9 +28,12 @@
 
 (windmove-default-keybindings)
 
-(use-package hydra :demand t)
+(use-package hydra)
+
+(use-package transient)
 
 (use-package matcha
+  :after (hydra transient)
   :straight
   (:type git :host github :repo "jojojames/matcha"
          :fork (:host github :repo "dogayuksel/matcha"))
