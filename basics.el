@@ -56,7 +56,7 @@
   ("s" helm-swoop)
   ("f" hydra-file/body)
   ("b" hydra-buffer/body)
-  ("p" matcha-projectile/body)
+  ("p" matcha-projectile)
   ("r" bookmark-jump)
   ("m" matcha-run-mode-command)
   ("g" matcha-magit/body)
@@ -243,51 +243,7 @@
     (projectile-mode +1))
   :delight)
 
-(use-package helm-projectile
-  :config
-  (progn
-    (helm-projectile-on)
-    (defhydra matcha-projectile (:color blue :hint nil :idle 0)
-      "
-
-    Projectile: %s(matcha-projectile-root)
-
-    ^Files^           ^Search^        ^Buffer^          ^Do^
-  ^^^^^^^^----------------------------------------------------------------------
-    _f_ File          _a_ Ag          _b_ Switch        _g_ Magit
-    _d_ Dir           _A_ Grep        _K_ Kill all      _I_ Info
-    _o_ Other         ^^              ^^                _p_ Switch Project
-    _u_ Test file
-    _h_ Root
-
-    ^^                ^Run^           ^Cache^
-  ^^^^^^^^----------------------------------------------------------------------
-    ^^                _U_ Test        _kc_ Clear
-    ^^                _m_ Compile     _kk_ Add Current
-    ^^                _c_ Shell       _ks_ Cleanup
-    ^^                _C_ Command     _kd_ Remove
-
-"
-      ("f" helm-projectile-find-file)
-      ("d" helm-projectile-find-dir)
-      ("o" projectile-find-other-file)
-      ("u" projectile-find-test-file)
-      ("h" projectile-dired)
-      ("a" helm-projectile-ag)
-      ("A" helm-projectile-grep)
-      ("b" helm-projectile-switch-to-buffer)
-      ("K" projectile-kill-buffers)
-      ("g" projectile-vc)
-      ("I" projectile-project-info)
-      ("p" helm-projectile-switch-project)
-      ("U" projectile-test-project)
-      ("m" projectile-compile-project)
-      ("c" projectile-run-async-shell-command-in-root)
-      ("C" projectile-run-command-in-root)
-      ("kc" projectile-invalidate-cache)
-      ("kk" projectile-cache-current-file)
-      ("ks" projectile-cleanup-known-projects)
-      ("kd" projectile-remove-known-project))))
+(use-package helm-projectile :config (helm-projectile-on))
 
 (use-package markdown-mode
   :commands (markdown-mode gfm-mode)
