@@ -9,9 +9,7 @@
 
 (use-package org
   :after (alert)
-  :mode
-  (("\\.org$\\'" . org-mode)
-   ("\\.md$\\'" . org-mode))
+  :mode ("\\.org$\\'" . org-mode)
   :general
   ("C-c l" 'org-store-link
    "C-c a" 'org-agenda
@@ -25,106 +23,113 @@
             org-mobile-use-encryption
             buffer-face-mode-face
             org-agenda-custom-commands)
+  :init
+  (setq
+   org-modules
+   '(ol-bbdb ol-bibtex ol-docview ol-eww ol-gnus org-habit ol-info ol-irc ol-mhe ol-rmail ol-w3m))
   :config
-  (setq org-refile-targets '((org-agenda-files :maxlevel . 3))
-        org-reverse-note-order t
-        org-outline-path-complete-in-steps nil
-        org-refile-use-outline-path t
-        org-catch-invisible-edits 'show-and-error
-        org-export-initial-scope 'subtree
-        org-todo-keywords '((sequence
-                             "TODO(t)"
-                             "WAITING(w)"
-                             "|"
-                             "DONE(d)"
-                             "CANCELLED(c)"))
-        org-show-notification-handler '(lambda (msg) (alert msg)))
-  (if (file-exists-p "~/Dropbox/.org/.doga.org")
-      (setq org-agenda-files
-            '("~/Dropbox/.org/.doga.org"
-              "~/Dropbox/.org/.working.org"
-              "~/Dropbox/.org/journal.org"
-              "~/Dropbox/.org/gcal.org")
-            org-archive-location "~/Dropbox/.org/archive/%s_archive::"
-            org-directory "~/Dropbox/.org"
-            org-capture-templates
-            '(("t" "Todo" entry
-               (file+headline "~/Dropbox/.org/.doga.org" "Tasks")
-               "* TODO %?\n  %i\n  %a")
-              ("a" "Appointment" entry
-               (file  "~/Dropbox/.org/gcal.org" )
-               "* %?\n %^T\n")
-              ("j" "Journal" entry
-               (file+datetree "~/Dropbox/.org/journal.org")
-               "* %?\nEntered on %U\n  %i\n  %a"))
-            org-tag-alist '(("@office")
-                            ("@hacking")
-                            ("@phone")
-                            ("@email")
-                            ("@home")
-                            ("@errands")
-                            ("@travelling"))
-            org-agenda-custom-commands
-            '(("g" . "GTD contexts")
-              ("go" "Office" tags-todo "@office")
-              ("gc" "Computer" tags-todo "@hacking")
-              ("gp" "Phone" tags-todo "@phone")
-              ("gm" "E-mail" tags-todo "@email")
-              ("gh" "Home" tags-todo "@home")
-              ("ge" "Errands" tags-todo "@errands")
-              ("gt" "Travelling" tags-todo "@travelling")
-              ("G" "GTD Block Agenda"
-               ((tags-todo "@office")
-                (tags-todo "@hacking")
-                (tags-todo "@phone")
-                (tags-todo "@email")
-                (tags-todo "@home")
-                (tags-todo "@errands")
-                (tags-todo "@travelling"))
-               nil                      ;; i.e., no local settings
-               ("~/Dropbox/.org/next-actions.txt"))
-              ;; exports block to this file with C-c a e
-              ;; ..other commands here
-              )))
-  ;; pull contents when org-mode is loaded
-  (if (boundp 'my/org-mobile-encryption-password)
+  (progn
+    (setq org-refile-targets '((org-agenda-files :maxlevel . 3))
+          org-reverse-note-order t
+          org-outline-path-complete-in-steps nil
+          org-refile-use-outline-path t
+          org-catch-invisible-edits 'show-and-error
+          org-export-initial-scope 'subtree
+          org-todo-keywords '((sequence
+                               "TODO(t)"
+                               "WAITING(w)"
+                               "|"
+                               "DONE(d)"
+                               "CANCELLED(c)"))
+          org-show-notification-handler '(lambda (msg) (alert msg))
+          org-log-into-drawer t)
+    (if (file-exists-p "~/Dropbox/.org/.doga.org")
+        (setq org-agenda-files
+              '("~/Dropbox/.org/.doga.org"
+                "~/Dropbox/.org/.working.org"
+                "~/Dropbox/.org/journal.org"
+                "~/Dropbox/.org/gcal.org")
+              org-archive-location "~/Dropbox/.org/archive/%s_archive::"
+              org-directory "~/Dropbox/.org"
+              org-capture-templates
+              '(("t" "Todo" entry
+                 (file+headline "~/Dropbox/.org/.doga.org" "Tasks")
+                 "* TODO %?\n  %i\n  %a")
+                ("a" "Appointment" entry
+                 (file  "~/Dropbox/.org/gcal.org" )
+                 "* %?\n %^T\n")
+                ("j" "Journal" entry
+                 (file+datetree "~/Dropbox/.org/journal.org")
+                 "* %?\nEntered on %U\n  %i\n  %a"))
+              org-tag-alist '(("@office")
+                              ("@hacking")
+                              ("@phone")
+                              ("@email")
+                              ("@home")
+                              ("@errands")
+                              ("@travelling"))
+              org-agenda-custom-commands
+              '(("g" . "GTD contexts")
+                ("go" "Office" tags-todo "@office")
+                ("gc" "Computer" tags-todo "@hacking")
+                ("gp" "Phone" tags-todo "@phone")
+                ("gm" "E-mail" tags-todo "@email")
+                ("gh" "Home" tags-todo "@home")
+                ("ge" "Errands" tags-todo "@errands")
+                ("gt" "Travelling" tags-todo "@travelling")
+                ("G" "GTD Block Agenda"
+                 ((tags-todo "@office")
+                  (tags-todo "@hacking")
+                  (tags-todo "@phone")
+                  (tags-todo "@email")
+                  (tags-todo "@home")
+                  (tags-todo "@errands")
+                  (tags-todo "@travelling"))
+                 nil                      ;; i.e., no local settings
+                 ("~/Dropbox/.org/next-actions.txt"))
+                ;; exports block to this file with C-c a e
+                ;; ..other commands here
+                )))
+    ;; pull contents when org-mode is loaded
+    (if (boundp 'my/org-mobile-encryption-password)
+        (progn
+          (setq org-mobile-directory "~/Dropbox/Apps/MobileOrg"
+                org-mobile-encryption-password
+                my/org-mobile-encryption-password
+                org-mobile-inbox-for-pull
+                "~/Dropbox/.org/from-mobile.org"
+                org-mobile-use-encryption t)
+          (org-mobile-pull)
+          ;; push changes when emacs is killed
+          ;; and org-mode is already loaded
+          (add-hook 'kill-emacs-hook 'org-mobile-push)))
+    (org-babel-do-load-languages
+     'org-babel-load-languages
+     '((emacs-lisp . t)
+       (js . t)
+       (python . t)
+       (ditaa . t)))
+    (defun my/setup-visual-line-mode ()
       (progn
-        (setq org-mobile-directory "~/Dropbox/Apps/MobileOrg"
-              org-mobile-encryption-password
-              my/org-mobile-encryption-password
-              org-mobile-inbox-for-pull
-              "~/Dropbox/.org/from-mobile.org"
-              org-mobile-use-encryption t)
-        (org-mobile-pull)
-        ;; push changes when emacs is killed
-        ;; and org-mode is already loaded
-        (add-hook 'kill-emacs-hook 'org-mobile-push)))
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '((emacs-lisp . t)
-     (js . t)
-     (python . t)
-     (ditaa . t)))
-  (defun my/setup-visual-line-mode ()
-    (progn
-      (visual-line-mode)
-      (delight 'visual-line-mode nil t)))
-  (add-hook 'org-mode-hook 'my/setup-visual-line-mode)
-  (add-hook 'latex-mode-hook 'my/setup-visual-line-mode)
-  (defun my/buffer-face-mode-variable ()
-    "Set font to a variable width fonts in current buffer."
-    (interactive)
-    (setq buffer-face-mode-face
-          '(:family "Avenir Book" :height 130 :weight light))
-    (setq line-spacing '0.15)
-    (set-face-attribute 'org-table nil :inherit 'fixed-pitch)
-    (set-face-attribute 'org-code nil :inherit 'fixed-pitch)
-    (set-face-attribute 'org-block nil :inherit 'fixed-pitch)
-    (buffer-face-mode))
-  (add-hook 'org-mode-hook 'my/buffer-face-mode-variable)
-  (add-hook 'org-mode-hook
-            '(lambda ()
-               (push '("-->" . ?➡) prettify-symbols-alist))))
+        (visual-line-mode)
+        (delight 'visual-line-mode nil t)))
+    (add-hook 'org-mode-hook 'my/setup-visual-line-mode)
+    (add-hook 'latex-mode-hook 'my/setup-visual-line-mode)
+    (defun my/buffer-face-mode-variable ()
+      "Set font to a variable width fonts in current buffer."
+      (interactive)
+      (setq buffer-face-mode-face
+            '(:family "Avenir Book" :height 130 :weight light))
+      (setq line-spacing '0.15)
+      (set-face-attribute 'org-table nil :inherit 'fixed-pitch)
+      (set-face-attribute 'org-code nil :inherit 'fixed-pitch)
+      (set-face-attribute 'org-block nil :inherit 'fixed-pitch)
+      (buffer-face-mode))
+    (add-hook 'org-mode-hook 'my/buffer-face-mode-variable)
+    (add-hook
+     'org-mode-hook
+     '(lambda ()
+        (push '("-->" . ?➡) prettify-symbols-alist)))))
 
 (use-package evil-org
   :after (org)
