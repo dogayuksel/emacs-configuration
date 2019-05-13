@@ -29,7 +29,6 @@
 (windmove-default-keybindings)
 
 (use-package hydra)
-
 (use-package transient)
 
 (use-package matcha
@@ -39,75 +38,17 @@
          :fork (:host github :repo "dogayuksel/matcha"))
   :config (matcha-setup))
 
-(defhydra hydra-space (:color blue :hint nil :idle .8)
-  "
-   Space: %s`default-directory
-
-    ^Navigate^        ^Manage^             ^Org Mode^
-  ^^^^^^------------------------------------------------
-    _f_ Files         _m_ Mode Command     _a_ Agenda
-    _b_ Buffers       _g_ Magit            _c_ Capture
-    _p_ Projects      _/_ Many Cursors
-    _r_ Bookmarks
-
-    _SPC_ Jump        _s_ Swoop
-"
-  ("SPC" avy-goto-char-timer)
-  ("s" helm-swoop)
-  ("f" hydra-file/body)
-  ("b" hydra-buffer/body)
-  ("p" matcha-projectile)
-  ("r" bookmark-jump)
-  ("m" matcha-run-mode-command)
-  ("g" matcha-magit/body)
-  ("/" matcha-evil-mc/body)
-  ("a" org-agenda)
-  ("c" org-capture)
-  ("w h" evil-window-left)
-  ("w l" evil-window-right)
-  ("w k" evil-window-up)
-  ("w j" evil-window-down)
-  ("w s" split-window-below)
-  ("w v" split-window-right)
-  ("w w" delete-other-windows)
-  ("w x" delete-window)
-  ("e" er/expand-region))
-
-(defhydra hydra-file (:color blue :hint nil :idle .4)
-  "
-    ^Files^
-  ^^----------
-    _f_ Find
-    _s_ Save
-"
-  ("f" helm-find-files)
-  ("s" save-buffer))
-
-(defhydra hydra-buffer (:color blue :hint nil :idle .4)
-  "
-    ^Buffers^
-  ^^---------------
-    _b_ Helm Mini
-    _h_ Next
-    _l_ Previous
-    _x_ Kill
-"
-  ("b" helm-mini)
-  ("h" evil-next-buffer)
-  ("l" evil-prev-buffer)
-  ("x" kill-this-buffer))
-
 (use-package general
   :config
   (general-override-mode)
   (general-define-key
    :states '(normal motion)
    :keymaps 'override
-   "SPC" 'hydra-space/body)
+   "SPC" 'matcha-me-space)
   (general-define-key
    :states 'emacs
    :keymaps 'override
-   "C-SPC" 'hydra-space/body))
+   "C-SPC" 'matcha-me-space))
 
 (use-package undo-tree
   :straight
