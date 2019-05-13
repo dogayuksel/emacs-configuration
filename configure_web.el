@@ -118,6 +118,8 @@ Project root is assumed to be the folder with node_modules folder."
          (my/get-executable-at-dir
           "node_modules/eslint/bin/eslint.js"))))))
 
+(use-package flow-js2-mode :delight)
+
 (use-package js2-refactor
   :after (js2-mode)
   :config
