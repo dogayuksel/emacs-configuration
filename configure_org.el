@@ -59,7 +59,7 @@
                  (file  "~/Dropbox/.org/gcal.org" )
                  "* %?\n %^T\n")
                 ("j" "Journal" entry
-                 (file+datetree "~/Dropbox/.org/journal.org")
+                 (file+olp+datetree "~/Dropbox/.org/journal.org")
                  "* %?\nEntered on %U\n  %i\n  %a"))
               org-tag-alist '(("@office")
                               ("@hacking")
