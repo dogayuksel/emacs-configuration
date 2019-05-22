@@ -40,6 +40,14 @@
   :config
   (setq dumb-jump-selector 'helm))
 
+(use-package helm-swoop
+  :after (helm)
+  :general ("C-s" 'helm-swoop)
+  :config
+  (progn
+    (setq helm-split-swoop-with-multiple-windows t
+          helm-swoop-split-direction 'split-window-vertically)))
+
 (use-package helm-ag
   :general ("M-g s" 'helm-do-ag-project-root)
   :commands (helm-do-ag

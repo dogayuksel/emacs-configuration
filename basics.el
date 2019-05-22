@@ -250,15 +250,6 @@
 
 (use-package git-timemachine :after (evil) :commands (git-timemachine))
 
-(use-package helm-swoop
-  :after (helm)
-  :general ("C-s" 'helm-swoop)
-  :config
-  (progn
-    (setq helm-swoop-split-with-multiple-windows t
-          helm-swoop-split-direction 'split-window-vertically
-          helm-swoop-pre-input-function (lambda () ""))))
-
 (use-package drag-stuff
   :general
   ("<M-down>" 'drag-stuff-down
