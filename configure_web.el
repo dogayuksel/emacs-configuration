@@ -141,7 +141,10 @@ Project root is assumed to be the folder with node_modules folder."
   (progn
     (setq tern-command '("~/.emacs.d/straight/repos/tern/bin/tern"))
     (my/add-to-multiple-hooks
-     '(lambda () (tern-mode t))
+     '(lambda ()
+        (progn
+          (if (not (string-equal " *helm dumb jump persistent*" (buffer-name)))
+              (tern-mode t))))
      '(web-mode-hook js2-mode-hook))))
 
 (use-package company-tern
