@@ -88,6 +88,13 @@
            (evil-define-key 'visual evil-mc-key-map (kbd x) nil)))
      '("C-p" "C-n" "C-t" "M-p" "M-n"))))
 
+(use-package evil-escape
+  :config
+  (progn
+    (setq-default evil-escape-key-sequence "fd")
+    (setq-default evil-escape-delay 0.2)
+    (evil-escape-mode)))
+
 (use-package browse-kill-ring
   :config
   (general-define-key
