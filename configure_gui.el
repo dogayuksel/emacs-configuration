@@ -54,10 +54,7 @@
   :straight
   (:type git :host github :repo "arcticicestudio/nord-emacs" :branch "develop"
          :fork (:host github :repo "dogayuksel/nord-emacs"))
-  :config
-  (progn
-    (setq nord-comment-brightness 10)
-    (load-theme 'nord t)))
+  :config (load-theme 'nord t))
 
 (load "~/.emacs.d/my-modeline")
 
