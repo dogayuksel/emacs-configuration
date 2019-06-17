@@ -74,6 +74,9 @@
 (load "~/.emacs.d/configure_web")
 (load "~/.emacs.d/configure_nonweb")
 
+(if (file-exists-p "~/.emacs.d/.vterm/emacs-libvterm")
+    (load "~/.emacs.d/configure_libvterm"))
+
 (use-package hydra)
 (use-package transient)
 (use-package matcha
