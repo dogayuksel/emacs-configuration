@@ -46,11 +46,11 @@ Project root is assumed to be the folder with node_modules folder."
 (use-package web-mode
   :after (flycheck company)
   :mode ("\\.html\\'"
-         "\\.jsx\\'")
+         "\\.[t|j]sx\\'")
   :defines web-mode-content-types-alist
   :init
   (setq web-mode-content-types-alist
-        '(("jsx" . "\\.jsx\\'")))
+        '(("jsx" . "\\.[j|t]sx\\'")))
   :config
   (progn
     (flycheck-add-mode 'javascript-eslint 'web-mode)
@@ -61,6 +61,14 @@ Project root is assumed to be the folder with node_modules folder."
          flycheck-javascript-eslint-executable
          (my/get-executable-at-dir
           "node_modules/eslint/bin/eslint.js"))))
+    (add-hook
+     'web-mode-hook
+     (lambda ()
+       (when (string-equal "tsx" (file-name-extension buffer-file-name))
+         (progn
+           (setup-tide-mode)
+           (flycheck-add-mode 'typescript-tslint 'web-mode)))))
+    ;; enable typescript-tslint checker
     (setq web-mode-markup-indent-offset 2
           web-mode-code-indent-offset 2
           web-mode-css-indent-offset 2
