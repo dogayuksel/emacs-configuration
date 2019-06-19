@@ -17,6 +17,7 @@
          :fork (:host github :repo "dogayuksel/airline-themes"))
   :config
   (load-theme 'airline-nord)
+  (setq airline-shortened-directory-length 16)
   (setq airline-utf-glyph-separator-left      #xe0b0
         airline-utf-glyph-separator-right     #xe0b2
         airline-utf-glyph-subseparator-left   #xe0b1

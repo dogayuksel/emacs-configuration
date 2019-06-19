@@ -93,7 +93,8 @@
   (progn
     (setq-default evil-escape-key-sequence "fd")
     (setq-default evil-escape-delay 0.2)
-    (evil-escape-mode)))
+    (evil-escape-mode))
+  :delight)
 
 (use-package browse-kill-ring
   :config
@@ -159,7 +160,7 @@
   :config
   (exec-path-from-shell-initialize))
 
-(use-package beacon :config (beacon-mode 1))
+(use-package beacon :config (beacon-mode 1) :delight)
 
 (use-package which-key :config (which-key-mode) :delight)
 
