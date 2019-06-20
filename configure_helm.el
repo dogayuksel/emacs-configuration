@@ -45,7 +45,7 @@
   :general ("C-s" 'helm-swoop)
   :config
   (progn
-    (setq helm-split-swoop-with-multiple-windows t
+    (setq helm-swoop-split-with-multiple-windows t
           helm-swoop-split-direction 'split-window-vertically)))
 
 (use-package helm-ag
