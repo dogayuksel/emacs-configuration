@@ -7,9 +7,9 @@ My configuration for Emacs 26.1.
    [[https://github.com/ggreer/the_silver_searcher][ggreer/the_silver_searcher]]
 
 ** Fonts
-  - Hack fonts - [[https://github.com/source-foundry/Hack][github]]
-  - SF Mono fonts (comes in mac os terminal app)
-  - Avenir book fonts (comes with mac os)
+  - Hack fonts (default) - [[https://github.com/source-foundry/Hack][font source]]
+  - SF Mono fonts (prog-mode) (comes in mac os terminal app)
+  - Inter (org mode - variable width) - [[https://rsms.me/inter/][font source]]
 
 ** TeXLive
    Used for org mode latex exports
