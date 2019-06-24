@@ -84,7 +84,10 @@
   :straight
   (:type git :host github :repo "jojojames/matcha"
          :fork (:host github :repo "dogayuksel/matcha"))
-  :config (matcha-setup))
+  :config
+  (progn
+    (matcha-setup)
+    (evil-declare-not-repeat 'matcha-me-space)))
 
 ;; Sets garbage collection threshold back to 5mb
 (setq gc-cons-threshold (* 5 1024 1024))
