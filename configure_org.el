@@ -236,6 +236,6 @@
    '(("dogayuksel@gmail.com" . "~/Dropbox/.org/gcal.org")))
   :after (org)
   :config
-  (add-hook 'org-agenda-mode-hook (lambda () (org-gcal-sync))))
+  (add-hook 'org-agenda-mode-hook (lambda () (org-gcal-fetch))))
 
 ;;; configure_org.el ends here
