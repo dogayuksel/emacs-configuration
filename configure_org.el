@@ -222,6 +222,9 @@
   (setq org-reveal-root "./reveal.js"))
 
 (use-package org-gcal
+  :straight
+  (:type git :host github :repo "kidd/org-gcal.el"
+         :fork (:host github :repo "dogayuksel/org-gcal.el"))
   :if (boundp 'my/org-gcal-client-secret)
   :defines (org-gcal-client-id
             org-gcal-client-secret
