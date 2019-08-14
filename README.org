@@ -44,7 +44,7 @@ port install ispell
     
     
 ** After Packages are Installed
-*** Tern 
+*** Tern
     - Install npm dependencies for tern
  #+begin_src sh
  cd ~/.emacs.d/straight/repos/tern
@@ -58,3 +58,8 @@ port install ispell
 *** Elpy
    - bunch of dependencies on python side
    - refer to: [[https://github.com/jorgenschaefer/elpy][jorgenschaefer/elpy]]
+
+** Additional Packages
+*** emacs-libvterm
+    clone into directory ".vterm"
+    [[https://github.com/akermu/emacs-libvterm][github repo]]
