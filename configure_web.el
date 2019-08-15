@@ -190,4 +190,6 @@ Project root is assumed to be the folder with node_modules folder."
   (add-hook 'coffee-after-compile-hook
             'my/coffee-after-compile-hook))
 
+(use-package js-doc)
+
 ;;; configure_web.el ends here
