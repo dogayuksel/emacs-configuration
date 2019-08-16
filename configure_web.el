@@ -190,6 +190,9 @@ Project root is assumed to be the folder with node_modules folder."
   (add-hook 'coffee-after-compile-hook
             'my/coffee-after-compile-hook))
 
-(use-package js-doc)
+(use-package js-doc
+  :straight
+  (:type git :host github :repo "mooz/js-doc" :branch "master"
+         :fork (:host github :repo "dogayuksel/js-doc")))
 
 ;;; configure_web.el ends here
