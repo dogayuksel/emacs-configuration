@@ -151,9 +151,6 @@
   :delight)
 
 (use-package org-brain
-  :straight
-  (:type git :host github :repo "Kungsgeten/org-brain" :branch "master"
-         :fork (:host github :repo "dogayuksel/org-brain"))
   :init
   (setq org-brain-path "~/Dropbox/.org/brain")
   ;; For Evil users
