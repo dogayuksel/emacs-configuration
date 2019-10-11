@@ -25,6 +25,8 @@
         helm-recentf-fuzzy-match t
         helm-buffers-fuzzy-matching t
         helm-M-x-fuzzy-match t)
+  ;; https://github.com/emacs-helm/helm/wiki/FAQ#slow-frame-and-window-popup-in-emacs-26
+  (setq x-wait-for-event-timeout nil)
   :delight)
 
 (use-package helm-descbinds :general ("C-h b" 'helm-descbinds) :after (helm))
