@@ -288,6 +288,7 @@
   :delight)
 
 (use-package bookmark+
+  :straight bookmark-plus
   :defines
   (bmkp-bmenu-state-file
    bookmark-default-file
@@ -300,6 +301,7 @@
         bmkp-last-as-first-bookmark-file nil))
 
 (use-package dired+
+  :straight dired-plus
   :config
   (progn
     (put 'dired-find-alternate-file 'disabled nil)
