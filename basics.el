@@ -324,7 +324,8 @@
                     python-mode
                     web-mode
                     typescript-mode
-                    sass-mode)))))
+                    sass-mode
+                    rjsx-mode)))))
 
 (use-package expand-region :general ("C-c e" 'er/expand-region))
 

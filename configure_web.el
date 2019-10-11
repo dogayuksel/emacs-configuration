@@ -23,44 +23,22 @@
 
 (use-package scss-mode :mode "\\.scss\\'")
 
-(defun my/get-executable-at-dir (bin-dir)
-  "Check for executable at BIN-DIR relative to project root.
-Project root is assumed to be the folder with node_modules folder."
-  (let* ((root (locate-dominating-file
-                (or (buffer-file-name) default-directory)
-                "node_modules"))
-         (exec (and root (expand-file-name bin-dir root))))
-    (if (and exec (file-executable-p exec)) exec)))
+(use-package add-node-modules-path)
 
 (use-package css-mode
   :config
-  (setq css-indent-offset 2)
-  (add-hook
-   'css-mode-hook
-   '(lambda ()
-      (setq-local
-       flycheck-css-stylelint-executable
-       (my/get-executable-at-dir
-        "node_modules/stylelint/bin/stylelint.js")))))
+  (progn
+    (setq css-indent-offset 2)
+    (add-hook 'css-mode-hook #'add-node-modules-path)))
 
 (use-package web-mode
   :after (flycheck company)
-  :mode ("\\.html\\'"
-         "\\.[t|j]sx\\'")
+  :mode ("\\.html\\'")
   :defines web-mode-content-types-alist
-  :init
-  (setq web-mode-content-types-alist
-        '(("jsx" . "\\.[j|t]sx\\'")))
   :config
   (progn
     (flycheck-add-mode 'javascript-eslint 'web-mode)
-    (add-hook
-     'web-mode-hook
-     '(lambda ()
-        (setq-local
-         flycheck-javascript-eslint-executable
-         (my/get-executable-at-dir
-          "node_modules/eslint/bin/eslint.js"))))
+    (add-hook 'web-mode-hook #'add-node-modules-path)
     (add-hook
      'web-mode-hook
      (lambda ()
@@ -89,51 +67,43 @@ Project root is assumed to be the folder with node_modules folder."
 (use-package flycheck-flow
   :after (flycheck)
   :config
-  (flycheck-add-mode 'javascript-flow 'web-mode)
-  (flycheck-add-next-checker 'javascript-flow 'javascript-eslint)
-  (add-hook
-   'web-mode-hook
-   '(lambda ()
-      (setq-local
-       flycheck-javascript-flow-executable
-       (my/get-executable-at-dir
-        "node_modules/flow-bin/vendor/flow")))))
+  (progn
+    (flycheck-add-mode 'javascript-flow 'web-mode)
+    (flycheck-add-next-checker 'javascript-flow 'javascript-eslint)
+    (add-hook 'web-mode-hook #'add-node-modules-path)))
 
 ;;; Company-flow is added to backends below grouped with tern.
 (use-package company-flow
   :after (company)
   :config
-  (add-hook
-   'web-mode-hook
-   '(lambda ()
-      (setq-local
-       company-flow-executable
-       (my/get-executable-at-dir
-        "node_modules/flow-bin/vendor/flow")))))
+  (add-hook 'web-mode-hook #'add-node-modules-path))
 
 (use-package js2-mode
   :after (flycheck)
-  :mode ("\\.js\\'")
   :config
   (progn
     (setq js-indent-level 2)
     (flycheck-add-mode 'javascript-eslint 'js2-mode)
-    (add-hook
-     'js2-mode-hook
-     '(lambda ()
-        (setq-local
-         flycheck-javascript-eslint-executable
-         (my/get-executable-at-dir
-          "node_modules/eslint/bin/eslint.js"))))))
+    (add-hook 'web-mode-hook #'add-node-modules-path)))
 
 (use-package flow-js2-mode :delight)
 
 (use-package js2-refactor
+  :delight
   :after (js2-mode)
   :config
   (progn
     (setq js2-skip-preprocessor-directives t)
     (add-hook 'js2-mode-hook #'js2-refactor-mode)))
+
+(use-package prettier-js :delight)
+
+(use-package rjsx-mode
+  :mode ("\\.js\\'")
+  :config
+  (progn
+    (add-hook 'rjsx-mode-hook #'add-node-modules-path)
+    (add-hook 'rjsx-mode-hook #'prettier-js-mode)))
 
 (use-package indium
   :ensure-system-package
@@ -145,6 +115,7 @@ Project root is assumed to be the folder with node_modules folder."
 
 ;;; Enable tern for javascript suggestions.
 (use-package tern
+  :delight
   :config
   (progn
     (setq tern-command '("~/.emacs.d/straight/repos/tern/bin/tern"))
@@ -153,7 +124,7 @@ Project root is assumed to be the folder with node_modules folder."
         (progn
           (if (not (string-equal " *helm dumb jump persistent*" (buffer-name)))
               (tern-mode t))))
-     '(web-mode-hook js2-mode-hook))))
+     '(web-mode-hook js2-mode-hook rjsx-mode-hook))))
 
 (use-package company-tern
   :after (company)
