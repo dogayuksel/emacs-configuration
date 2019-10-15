@@ -67,6 +67,7 @@
 (if (file-exists-p "~/.emacs.d/.emacs_secrets.el")
     (load "~/.emacs.d/.emacs_secrets"))
 
+(load "~/.emacs.d/evil")
 (load "~/.emacs.d/basics")
 (load "~/.emacs.d/configure_gui")
 (load "~/.emacs.d/configure_helm")
@@ -76,18 +77,6 @@
 
 (if (file-exists-p "~/.emacs.d/.vterm/emacs-libvterm")
     (load "~/.emacs.d/configure_libvterm"))
-
-(use-package hydra)
-(use-package transient)
-(use-package matcha
-  :after (hydra transient)
-  :straight
-  (:type git :host github :repo "jojojames/matcha"
-         :fork (:host github :repo "dogayuksel/matcha"))
-  :config
-  (progn
-    (matcha-setup)
-    (evil-declare-not-repeat 'matcha-me-space)))
 
 ;; Sets garbage collection threshold back to 5mb
 (setq gc-cons-threshold (* 5 1024 1024))
