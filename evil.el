@@ -52,7 +52,7 @@
 (use-package evil-surround :after (evil) :config (global-evil-surround-mode 1))
 
 (use-package evil-mc
-  :after (hydra)
+  :after (hydra evil)
   :init
   (setq
    evil-mc-one-cursor-show-mode-line-text nil
@@ -69,6 +69,7 @@
      '("C-p" "C-n" "C-t" "M-p" "M-n"))))
 
 (use-package evil-escape
+  :after (evil)
   :config
   (progn
     (setq-default evil-escape-key-sequence "fd")
