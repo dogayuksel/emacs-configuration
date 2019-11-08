@@ -12,6 +12,9 @@
 ;; Sets garbage collection threshold to 500mb
 (setq gc-cons-threshold (* 500 1024 1024))
 
+;; Increase all font sizes with the following offset
+(setq my/fontsize-offset 0)
+
 ;; bootstrap straight.el
 (defvar bootstrap-version)
 (let ((bootstrap-file
