@@ -70,6 +70,23 @@
    css-mode)
   :delight)
 
+(use-package golden-ratio
+  :after (helm)
+  :init (golden-ratio-mode 1)
+  :config
+  (progn
+    (defun add-to-excluded-buffer-names (name)
+      (add-to-list 'golden-ratio-exclude-buffer-names name))
+    (mapc 'add-to-excluded-buffer-names '(" *transient*"
+                                          " *Agenda Commands*"))
+    (defun pl/helm-alive-p ()
+      (and (boundp 'helm-alive-p)
+           (symbol-value 'helm-alive-p)))
+    (add-to-list 'golden-ratio-inhibit-functions 'pl/helm-alive-p)
+    (setq golden-ratio-auto-scale t)
+    (setq golden-ratio-max-width 120))
+  :delight)
+
 (set-face-attribute 'fringe nil :background "#3B4252")
 
 (defun my/terminal-visible-bell ()
