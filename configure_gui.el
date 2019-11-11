@@ -88,7 +88,8 @@
     (defun pl/helm-alive-p ()
       (and (boundp 'helm-alive-p)
            (symbol-value 'helm-alive-p)))
-    (add-to-list 'golden-ratio-inhibit-functions 'pl/helm-alive-p))
+    (add-to-list 'golden-ratio-inhibit-functions 'pl/helm-alive-p)
+    (setq golden-ratio-recenter t))
   :delight)
 
 (set-face-attribute 'fringe nil :background "#3B4252")
