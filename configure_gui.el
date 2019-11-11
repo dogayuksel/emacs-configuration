@@ -79,12 +79,16 @@
       (add-to-list 'golden-ratio-exclude-buffer-names name))
     (mapc 'add-to-excluded-buffer-names '(" *transient*"
                                           " *Agenda Commands*"))
+    (defun add-to-extra-commands (name)
+      (add-to-list 'golden-ratio-extra-commands name))
+    (mapc 'add-to-extra-commands '(evil-window-left
+                                   evil-window-right
+                                   evil-window-up
+                                   evil-window-down))
     (defun pl/helm-alive-p ()
       (and (boundp 'helm-alive-p)
            (symbol-value 'helm-alive-p)))
-    (add-to-list 'golden-ratio-inhibit-functions 'pl/helm-alive-p)
-    (setq golden-ratio-auto-scale t)
-    (setq golden-ratio-max-width 120))
+    (add-to-list 'golden-ratio-inhibit-functions 'pl/helm-alive-p))
   :delight)
 
 (set-face-attribute 'fringe nil :background "#3B4252")
