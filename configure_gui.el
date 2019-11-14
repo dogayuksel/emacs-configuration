@@ -84,7 +84,8 @@
     (mapc 'add-to-extra-commands '(evil-window-left
                                    evil-window-right
                                    evil-window-up
-                                   evil-window-down))
+                                   evil-window-down
+                                   magit-status))
     (defun pl/helm-alive-p ()
       (and (boundp 'helm-alive-p)
            (symbol-value 'helm-alive-p)))
