@@ -42,8 +42,7 @@
 (use-package evil-collection
   :after (evil)
   :straight
-  (:type git :host github :repo "emacs-evil/evil-collection"
-         :fork (:host github :repo "dogayuksel/evil-collection"))
+  (:type git :host github :repo "emacs-evil/evil-collection")
   :custom
   (evil-collection-setup-minibuffer t)
   :config
