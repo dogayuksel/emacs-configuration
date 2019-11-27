@@ -5,6 +5,6 @@
 
 ;;; Code:
 
-(setq my/org-mobile-encryption-password ""
-      my/org-gcal-client-secret ""
-      my/org-gcal-client-id "")
+(setq 
+ my/org-gcal-client-secret ""
+ my/org-gcal-client-id "")

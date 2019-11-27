@@ -58,7 +58,6 @@
   (setq recentf-max-saved-items 50)
   (setq recentf-exclude '("recentf$"
                           "bookmarks$"
-                          "mobileorg\.org"
                           "\.org-gcal-token$"
                           "orgtmpcrypt$"
                           "\.emacs-bmk-bmenu-state\.el$"))

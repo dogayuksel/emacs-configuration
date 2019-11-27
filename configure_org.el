@@ -16,11 +16,6 @@
    "C-c c" 'org-capture)
   :defines (org-export-initial-scope
             org-capture-templates
-            org-mobile-directory
-            org-mobile-encryption-password
-            my/org-mobile-encryption-password
-            org-mobile-inbox-for-pull
-            org-mobile-use-encryption
             buffer-face-mode-face
             org-agenda-custom-commands)
   :init
@@ -90,19 +85,6 @@
                 ;; exports block to this file with C-c a e
                 ;; ..other commands here
                 )))
-    ;; pull contents when org-mode is loaded
-    (if (boundp 'my/org-mobile-encryption-password)
-        (progn
-          (setq org-mobile-directory "~/Dropbox/Apps/MobileOrg"
-                org-mobile-encryption-password
-                my/org-mobile-encryption-password
-                org-mobile-inbox-for-pull
-                "~/Dropbox/.org/from-mobile.org"
-                org-mobile-use-encryption t)
-          (org-mobile-pull)
-          ;; push changes when emacs is killed
-          ;; and org-mode is already loaded
-          (add-hook 'kill-emacs-hook 'org-mobile-push)))
     (org-babel-do-load-languages
      'org-babel-load-languages
      '((emacs-lisp . t)
