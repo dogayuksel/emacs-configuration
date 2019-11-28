@@ -225,20 +225,18 @@
 (use-package org-gcal
   :straight
   (:type git :host github :repo "kidd/org-gcal.el")
+  :after (org)
   :if (boundp 'my/org-gcal-client-secret)
   :defines (org-gcal-client-id
             org-gcal-client-secret
             my/org-gcal-client-id
             my/org-gcal-client-secret
-            org-gcal-file-alist)
+            org-gcal-fetch-file-alist)
   :init
   (setq
    org-gcal-client-id my/org-gcal-client-id
    org-gcal-client-secret my/org-gcal-client-secret
-   org-gcal-file-alist
-   '(("dogayuksel@gmail.com" . "~/Dropbox/.org/gcal.org")))
-  :after (org)
-  :config
-  (add-hook 'org-agenda-mode-hook (lambda () (org-gcal-sync))))
+   org-gcal-fetch-file-alist
+   '(("dogayuksel@gmail.com" . "~/Dropbox/.org/gcal.org"))))
 
 ;;; configure_org.el ends here
