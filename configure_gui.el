@@ -86,10 +86,15 @@
                                    evil-window-up
                                    evil-window-down
                                    magit-status))
-    (defun pl/helm-alive-p ()
+    (defun add-to-inhibit-functions (function)
+      (add-to-list 'golden-ratio-inhibit-functions function))
+    (defun gr-helm-alive-p ()
       (and (boundp 'helm-alive-p)
            (symbol-value 'helm-alive-p)))
-    (add-to-list 'golden-ratio-inhibit-functions 'pl/helm-alive-p)
+    (defun gr-ispell-alive-p ()
+      (get-buffer ispell-choices-buffer))
+    (mapc 'add-to-inhibit-functions '(gr-helm-alive-p
+                                      gr-ispell-alive-p))
     (setq golden-ratio-recenter t))
   :delight)
 
