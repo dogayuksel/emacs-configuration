@@ -95,7 +95,9 @@
       (get-buffer ispell-choices-buffer))
     (mapc 'add-to-inhibit-functions '(gr-helm-alive-p
                                       gr-ispell-alive-p))
-    (setq golden-ratio-recenter t))
+    (setq
+     golden-ratio-recenter t
+     golden-ratio-auto-scale t))
   :delight)
 
 (set-face-attribute 'fringe nil :background "#3B4252")
