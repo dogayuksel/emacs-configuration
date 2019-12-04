@@ -70,36 +70,6 @@
    css-mode)
   :delight)
 
-(use-package golden-ratio
-  :after (helm)
-  :init (golden-ratio-mode 1)
-  :config
-  (progn
-    (defun add-to-excluded-buffer-names (name)
-      (add-to-list 'golden-ratio-exclude-buffer-names name))
-    (mapc 'add-to-excluded-buffer-names '(" *transient*"
-                                          " *Agenda Commands*"))
-    (defun add-to-extra-commands (name)
-      (add-to-list 'golden-ratio-extra-commands name))
-    (mapc 'add-to-extra-commands '(evil-window-left
-                                   evil-window-right
-                                   evil-window-up
-                                   evil-window-down
-                                   magit-status))
-    (defun add-to-inhibit-functions (function)
-      (add-to-list 'golden-ratio-inhibit-functions function))
-    (defun gr-helm-alive-p ()
-      (and (boundp 'helm-alive-p)
-           (symbol-value 'helm-alive-p)))
-    (defun gr-ispell-alive-p ()
-      (get-buffer ispell-choices-buffer))
-    (mapc 'add-to-inhibit-functions '(gr-helm-alive-p
-                                      gr-ispell-alive-p))
-    (setq
-     golden-ratio-recenter t
-     golden-ratio-auto-scale t))
-  :delight)
-
 (set-face-attribute 'fringe nil :background "#3B4252")
 
 (defun my/terminal-visible-bell ()
