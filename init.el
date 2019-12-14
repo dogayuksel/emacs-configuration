@@ -73,8 +73,7 @@
 (load "~/.emacs.d/configure_gui")
 (load "~/.emacs.d/configure_helm")
 (load "~/.emacs.d/configure_org")
-(load "~/.emacs.d/configure_web")
-(load "~/.emacs.d/configure_nonweb")
+(load "~/.emacs.d/configure_prog")
 
 (if (file-exists-p "~/.emacs.d/.vterm/emacs-libvterm")
     (load "~/.emacs.d/configure_libvterm"))
