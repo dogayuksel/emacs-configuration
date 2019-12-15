@@ -145,6 +145,10 @@
   (global-company-mode)
   :delight)
 
+(use-package company-quickhelp
+  :after (company)
+  :config (company-quickhelp-mode))
+
 (use-package flycheck
   :init (global-flycheck-mode)
   :config
