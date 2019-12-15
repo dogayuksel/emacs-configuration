@@ -211,4 +211,35 @@
 
 (use-package solidity-mode)
 
+(defun shell-cmd (cmd)
+  "Return the stdout output of a CMD if the command returned an error."
+  (car (ignore-errors (apply 'process-lines (split-string cmd)))))
+
+;; https://github.com/reasonml/reason-cli
+(use-package reason-mode
+  :after (merlin)
+  :init
+  (let* ((refmt-bin (shell-cmd "which refmt")))
+    ;; Add merlin.el to the emacs load path and tell emacs where to find ocamlmerlin
+    (when refmt-bin
+      (setq refmt-command refmt-bin)))
+  :config
+  (add-hook
+   'reason-mode-hook
+   (lambda () (add-hook 'before-save-hook 'refmt-before-save)
+     (merlin-mode))))
+
+(use-package merlin
+  :init
+  (let* ((merlin-bin (shell-cmd "which ocamlmerlin"))
+         (merlin-base-dir
+          (when merlin-bin
+            (replace-regexp-in-string "bin/ocamlmerlin$" "" merlin-bin))))
+    ;; Add merlin.el to the emacs load path and tell emacs where to find ocamlmerlin
+    (when merlin-bin
+      (add-to-list 'load-path (concat merlin-base-dir "share/emacs/site-lisp/"))
+      (setq merlin-command merlin-bin)))
+  :config
+  (add-to-list 'company-backends 'merlin-company-backend))
+
 ;;; configure_progn.el ends here
