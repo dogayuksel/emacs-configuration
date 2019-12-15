@@ -260,7 +260,8 @@
                     web-mode
                     typescript-mode
                     sass-mode
-                    rjsx-mode)))))
+                    rjsx-mode
+                    reason-mode)))))
 
 (use-package expand-region :general ("C-c e" 'er/expand-region))
 

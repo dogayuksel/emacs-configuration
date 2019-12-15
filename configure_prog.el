@@ -219,7 +219,7 @@
 (use-package reason-mode
   :after (merlin)
   :init
-  (let* ((refmt-bin (shell-cmd "which refmt")))
+  (let* ((refmt-bin (shell-cmd "which bsrefmt")))
     ;; Add merlin.el to the emacs load path and tell emacs where to find ocamlmerlin
     (when refmt-bin
       (setq refmt-command refmt-bin)))
