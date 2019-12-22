@@ -26,6 +26,9 @@
  mac-option-modifier 'meta
  mac-right-option-modifier nil)
 
+(setq-default
+ dabbrev-case-fold-search nil)
+
 (windmove-default-keybindings)
 
 (use-package browse-kill-ring
