@@ -26,8 +26,8 @@
  mac-option-modifier 'meta
  mac-right-option-modifier nil)
 
-(setq-default
- dabbrev-case-fold-search nil)
+(setq-default dabbrev-case-fold-search nil)
+(general-define-key "M-/" 'hippie-expand)
 
 (windmove-default-keybindings)
 
