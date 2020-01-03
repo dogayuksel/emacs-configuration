@@ -26,7 +26,18 @@
  mac-option-modifier 'meta
  mac-right-option-modifier nil)
 
-(setq-default dabbrev-case-fold-search nil)
+(setq-default
+ dabbrev-case-fold-search nil
+ hippie-expand-try-functions-list
+ '(try-expand-dabbrev-visible
+   try-expand-dabbrev
+   try-expand-dabbrev-from-kill
+   try-expand-dabbrev-all-buffers
+   try-complete-file-name-partially
+   try-complete-file-name
+   try-expand-all-abbrevs
+   try-expand-list
+   try-expand-line))
 (general-define-key "M-/" 'hippie-expand)
 
 (windmove-default-keybindings)
