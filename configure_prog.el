@@ -76,7 +76,9 @@
 (use-package company-flow
   :after (company)
   :config
-  (add-hook 'web-mode-hook #'add-node-modules-path))
+  (progn
+    (add-hook 'web-mode-hook #'add-node-modules-path)
+    (add-to-list 'company-backends 'company-flow)))
 
 (use-package js2-mode
   :after (flycheck)
@@ -129,7 +131,7 @@
 (use-package company-tern
   :after (company)
   :config
-  (add-to-list 'company-backends '(company-tern company-flow)))
+  (add-to-list 'company-backends 'company-tern))
 
 (defun setup-tide-mode ()
   "Setup tide mode."
