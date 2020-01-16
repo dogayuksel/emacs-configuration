@@ -24,7 +24,8 @@
 (setq-default
  mac-command-modifier 'meta
  mac-option-modifier 'meta
- mac-right-option-modifier nil)
+ mac-right-option-modifier nil
+ mac-pass-command-to-system nil)
 
 (setq-default
  dabbrev-case-fold-search nil
