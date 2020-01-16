@@ -10,6 +10,9 @@
 
 (global-prettify-symbols-mode t)
 
+(setq line-spacing 0.125)
+(mac-auto-operator-composition-mode)
+
 (setq-default
  ns-use-proxy-icon nil
  frame-title-format nil
@@ -19,8 +22,8 @@
       `((width . 84)
         (height . 44)
         (font . ,(format
-                  "Hack %d"
-                  (+ 12 my/fontsize-offset)))
+                  "JetBrains Mono %d"
+                  (+ 13 my/fontsize-offset)))
         (ns-transparent-titlebar . t)
         (ns-appearance . dark)))
 
@@ -47,8 +50,8 @@
   "Set font to a constant width fonts in current buffer."
   (interactive)
   (setq buffer-face-mode-face
-        `(:family "SF Mono"
-                  :height ,(+ 120 (* my/fontsize-offset 10))))
+        `(:family "JetBrains Mono"
+                  :height ,(+ 130 (* my/fontsize-offset 10))))
   (buffer-face-mode)
   (delight 'buffer-face-mode nil t))
 (add-hook 'prog-mode-hook 'my/buffer-face-mode-monospace)

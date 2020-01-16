@@ -108,11 +108,7 @@
       (set-face-attribute 'org-code nil :inherit 'fixed-pitch)
       (set-face-attribute 'org-block nil :inherit 'fixed-pitch)
       (buffer-face-mode))
-    (add-hook 'org-mode-hook 'my/buffer-face-mode-variable)
-    (add-hook
-     'org-mode-hook
-     '(lambda ()
-        (push '("-->" . ?➡) prettify-symbols-alist)))))
+    (add-hook 'org-mode-hook 'my/buffer-face-mode-variable)))
 
 (use-package evil-org
   :after (org)
