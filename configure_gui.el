@@ -8,24 +8,22 @@
 (tool-bar-mode 0)
 (menu-bar-mode 0)
 
-(global-prettify-symbols-mode t)
+(setq frame-title-format nil)
 
 (setq line-spacing 0.125)
+
+;; Ligature support from emacs-mac port
 (mac-auto-operator-composition-mode)
 
-(setq-default
- ns-use-proxy-icon nil
- frame-title-format nil
- frame-background-mode nil)
+;; Replace lambda with λ (mode dependent)
+(global-prettify-symbols-mode t)
 
 (setq default-frame-alist
       `((width . 84)
         (height . 44)
         (font . ,(format
                   "JetBrains Mono %d"
-                  (+ 13 my/fontsize-offset)))
-        (ns-transparent-titlebar . t)
-        (ns-appearance . dark)))
+                  (+ 13 my/fontsize-offset)))))
 
 (defun my/prepare-ui ()
   (setq ns-use-native-fullscreen nil)

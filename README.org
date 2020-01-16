@@ -1,5 +1,5 @@
 * Introduction
-My configuration for emacs-mac. [[https://bitbucket.org/mituharu/emacs-mac/src/master/][source repo]]
+My configuration for emacs-mac ([[https://bitbucket.org/mituharu/emacs-mac/src/master/][source repo]]).
 
 
 * Dependencies
@@ -19,9 +19,9 @@ My configuration for emacs-mac. [[https://bitbucket.org/mituharu/emacs-mac/src/m
    [[https://github.com/yjwen/org-reveal/][repository]]
  
 ** Ispell
-#+begin_src sh
+#+BEGIN_SRC sh
 port install ispell
-#+end_src
+#+END_SRC 
 
 ** Dash
    Used by dash-at-point: [[https://kapeli.com/dash][web page]]
@@ -32,6 +32,24 @@ port install ispell
 
 
 * Installation
+#+BEGIN_SRC sh
+./autogen.sh
+./configure --with-modules --enable-mac-app --without-makeinfo
+./make
+./sudo make install
+#+END_SRC
+
+
+** Transparent titlebar without the icon 
+   - Apply this patch: [[https://gist.githubusercontent.com/lululau/f2e6314a14cc95586721272dd85a7c51/raw/f5a92d3e654cc41d0eab2b229a98ed63da82ee1c/emacs-mac-title-bar-7.4.patch][raw source]]
+   - Build and install again
+   - Update defaults: [[https://github.com/railwaycat/homebrew-emacsmacport/wiki/Natural-Title-Bar][docs]]
+#+BEGIN_SRC sh
+defaults write org.gnu.Emacs TransparentTitleBar DARK
+defaults write org.gnu.Emacs HideDocumentIcon YES
+#+END_SRC
+
+
 ** Packages
    Following packages are bootstrapped in init.el. Fetches rest of the packages declared.
 *** straight.el
@@ -45,10 +63,10 @@ port install ispell
 ** After Packages are Installed
 *** Tern
     - Install npm dependencies for tern
- #+begin_src sh
- cd ~/.emacs.d/straight/repos/tern
- npm install
- #+end_src
+#+BEGIN_SRC sh
+cd ~/.emacs.d/straight/repos/tern
+npm install
+#+END_SRC
  
 *** Org-gcal
     Setup google calendar
@@ -61,5 +79,5 @@ port install ispell
 
 ** Additional Packages
 *** emacs-libvterm
-    clone into directory ".vterm"
+    clone into directory ".vterm" and build it.
     [[https://github.com/akermu/emacs-libvterm][github repo]]
