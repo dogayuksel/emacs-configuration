@@ -1,5 +1,5 @@
 * Introduction
-My configuration for Emacs 26.1.
+My configuration for emacs-mac. [[https://bitbucket.org/mituharu/emacs-mac/src/master/][source repo]]
 
 
 * Dependencies
@@ -7,8 +7,7 @@ My configuration for Emacs 26.1.
    [[https://github.com/ggreer/the_silver_searcher][ggreer/the_silver_searcher]]
 
 ** Fonts
-  - Hack fonts (default) - [[https://github.com/source-foundry/Hack][font source]]
-  - SF Mono fonts (prog-mode) (comes in mac os terminal app)
+  - JetBrains Mono (prog-mode) - [[https://www.jetbrains.com/lp/mono/][font source]]
   - Inter (org mode - variable width) - [[https://rsms.me/inter/][font source]]
 
 ** TeXLive
@@ -58,6 +57,7 @@ port install ispell
 *** Elpy
    - bunch of dependencies on python side
    - refer to: [[https://github.com/jorgenschaefer/elpy][jorgenschaefer/elpy]]
+
 
 ** Additional Packages
 *** emacs-libvterm
