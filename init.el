@@ -50,6 +50,10 @@
     (auto-compile-on-load-mode)
     (auto-compile-on-save-mode)))
 
+(defun my/add-to-multiple-hooks (function hooks)
+  "Apply given FUNCTION to a list of HOOKS."
+  (mapc (lambda (hook) (add-hook hook function)) hooks))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

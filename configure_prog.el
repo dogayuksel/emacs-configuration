@@ -111,10 +111,6 @@
   :ensure-system-package
   (indium . "npm i -g indium"))
 
-(defun my/add-to-multiple-hooks (function hooks)
-  "Apply given FUNCTION to a list of HOOKS."
-  (mapc (lambda (hook) (add-hook hook function)) hooks))
-
 ;;; Enable tern for javascript suggestions.
 (use-package tern
   :delight

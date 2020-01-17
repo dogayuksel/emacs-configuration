@@ -230,9 +230,14 @@
 
 (use-package smartparens
   :config
-  (add-hook 'web-mode-hook #'smartparens-mode)
-  (add-hook 'emacs-lisp-mode-hook #'smartparens-mode)
-  (add-hook 'lisp-interaction-mode-hook #'smartparens-mode)
+  (progn
+    (setq sp-show-pair-delay 1.2)
+    (my/add-to-multiple-hooks
+     '(lambda ()
+        (progn
+          (smartparens-mode)
+          (show-smartparens-mode)))
+     `(rjsx-mode-hook web-mode-hook emacs-lisp-mode-hook lisp-interaction-mode-hook)))
   :delight)
 
 (use-package bookmark+
