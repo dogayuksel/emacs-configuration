@@ -41,18 +41,15 @@
     (if (file-exists-p "~/Dropbox/.org/.doga.org")
         (setq org-agenda-files
               '("~/Dropbox/.org/.doga.org"
-                "~/Dropbox/.org/.working.org"
+                "~/Dropbox/.org/inbox.org"
                 "~/Dropbox/.org/journal.org"
                 "~/Dropbox/.org/gcal.org")
               org-archive-location "~/Dropbox/.org/archive/%s_archive::"
               org-directory "~/Dropbox/.org"
               org-capture-templates
               '(("t" "Todo" entry
-                 (file+headline "~/Dropbox/.org/.doga.org" "Tasks")
+                 (file "~/Dropbox/.org/inbox.org")
                  "* TODO %?\n  %i\n  %a")
-                ("a" "Appointment" entry
-                 (file  "~/Dropbox/.org/gcal.org" )
-                 "* %?\n %^T\n")
                 ("j" "Journal" entry
                  (file+olp+datetree "~/Dropbox/.org/journal.org")
                  "* %?\nEntered on %U\n  %i\n  %a"))
