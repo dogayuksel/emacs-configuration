@@ -6,8 +6,11 @@
 ;;; Code:
 
 ;; User Info
-(setq user-full-name "Doğa Yüksel")
-(setq user-mail-address "dogayuksel@gmail.com")
+(if (file-exists-p "~/.emacs.d/.emacs_secrets.el")
+    (progn
+      (load "~/.emacs.d/.emacs_secrets")
+      (setq user-full-name my/full-name
+            user-email my/email)))
 
 ;; Sets garbage collection threshold to 500mb
 (setq gc-cons-threshold (* 500 1024 1024))
@@ -69,9 +72,6 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-
-(if (file-exists-p "~/.emacs.d/.emacs_secrets.el")
-    (load "~/.emacs.d/.emacs_secrets"))
 
 (load "~/.emacs.d/evil")
 (load "~/.emacs.d/basics")

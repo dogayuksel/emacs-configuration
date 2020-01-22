@@ -230,6 +230,6 @@
    org-gcal-client-id my/org-gcal-client-id
    org-gcal-client-secret my/org-gcal-client-secret
    org-gcal-fetch-file-alist
-   '(("dogayuksel@gmail.com" . "~/Dropbox/.org/gcal.org"))))
+   `((,my/calendar-address . "~/Dropbox/.org/gcal.org"))))
 
 ;;; configure_org.el ends here
