@@ -54,7 +54,7 @@
   :load-path "lib/personal"
   :commands
   (my/open-iterm-here
-   my/insert-fullname
+   my/insert-full-name
    my/send-line-to-iterm)
   :general
   ((normal emacs)
