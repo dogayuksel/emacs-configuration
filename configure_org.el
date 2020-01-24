@@ -87,25 +87,11 @@
      '((emacs-lisp . t)
        (js . t)
        (python . t)
-       (ditaa . t)))
-    (defun my/setup-visual-line-mode ()
-      (progn
-        (visual-line-mode)
-        (delight 'visual-line-mode nil t)))
-    (add-hook 'org-mode-hook 'my/setup-visual-line-mode)
-    (add-hook 'latex-mode-hook 'my/setup-visual-line-mode)
-    (defun my/buffer-face-mode-variable ()
-      "Set font to a variable width fonts in current buffer."
-      (interactive)
-      (setq buffer-face-mode-face
-            `(:family "Inter"
-                      :height ,(+ 130 (* my/fontsize-offset 10)) :weight light))
-      (setq line-spacing '0.15)
-      (set-face-attribute 'org-table nil :inherit 'fixed-pitch)
-      (set-face-attribute 'org-code nil :inherit 'fixed-pitch)
-      (set-face-attribute 'org-block nil :inherit 'fixed-pitch)
-      (buffer-face-mode))
-    (add-hook 'org-mode-hook 'my/buffer-face-mode-variable)))
+       (ditaa . t)))))
+
+(use-package emacs
+  :delight visual-line-mode
+  :hook ((org-mode latex-mode) . visual-line-mode))
 
 (use-package evil-org
   :after (org)
@@ -127,6 +113,7 @@
   :delight)
 
 (use-package org-brain
+  :after (org)
   :if (file-exists-p "~/Dropbox/.org/brain/index.org")
   :init
   (progn
