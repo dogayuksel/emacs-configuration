@@ -76,22 +76,20 @@
   :commands (helm-bibtex)
   :after (helm)
   :config
-  (setq bibtex-completion-bibliography
-        '("~/Dropbox/.org/bibtex/file-1.bib"
-          "~/Dropbox/.org/bibtex/file-2.bib")
-        bibtex-entry-format
-        '(opts-or-alts required-fields numerical-fields realign)
-        bibtex-completion-library-path
-        '("~/Dropbox/Ebooks/bibtex-library")
-        bibtex-completion-notes-path
-        "~/Dropbox/.org/bibtex/bibtex-notes.org"
-        bibtex-completion-pdf-symbol "⌘"
-        bibtex-completion-notes-symbol "✎"
-        bibtex-completion-pdf-open-function
-        (lambda (fpath)
-          (call-process "open" nil 0 nil "-a" "/Applications/Skim.app" fpath))
-        bibtex-completion-format-citation-functions
-        '((org-mode . bibtex-completion-format-citation-cite)
-          (latex-mode . bibtex-completion-format-citation-cite))))
+  (setq
+   bibtex-completion-bibliography
+   '("~/Dropbox/.org/bibtex/file-1.bib"
+     "~/Dropbox/.org/bibtex/file-2.bib")
+   bibtex-entry-format
+   '(opts-or-alts required-fields numerical-fields realign)
+   bibtex-completion-library-path
+   '("~/Dropbox/Ebooks/bibtex-library")
+   bibtex-completion-notes-path
+   "~/Dropbox/.org/bibtex/bibtex-notes.org"
+   bibtex-completion-pdf-symbol "⌘"
+   bibtex-completion-notes-symbol "✎"
+   bibtex-completion-format-citation-functions
+   '((org-mode . bibtex-completion-format-citation-cite)
+     (latex-mode . bibtex-completion-format-citation-cite))))
 
 ;;; configure_helm.el ends here
