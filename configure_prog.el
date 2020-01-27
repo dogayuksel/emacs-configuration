@@ -33,7 +33,8 @@
 
 (use-package web-mode
   :after (flycheck company)
-  :mode ("\\.html\\'")
+  :mode ("\\.html\\'"
+         "\\.tsx?\\'")
   :defines web-mode-content-types-alist
   :config
   (progn
