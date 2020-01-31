@@ -51,10 +51,52 @@
           helm-swoop-split-direction 'split-window-vertically)))
 
 (use-package helm-ag
-  :general ("M-g s" 'helm-do-ag-project-root)
-  :commands (helm-do-ag
-             helm-ag)
-  :after (helm))
+  :after (helm)
+  :general ("M-g s" 'helm-ag-transient)
+  :commands
+  (helm-do-ag
+   helm-ag
+   helm-do-ag-project-root
+   helm-ag-project-root)
+  :config
+  (progn
+    (setq helm-ag-base-command "rg --no-heading")
+    (define-transient-command helm-ag-transient ()
+      "Search with ripgrep."
+      :man-page "rg"
+      ["Arguments"
+       (ripgrep-glob)
+       (ripgrep-case)
+       ("-c" "Count" ("-c" "--count"))
+       ("-v" "Invert match" ("-v" "--invert-match"))]
+      [["Search"
+        ("s" "Helm Ripgrep" helm-ag-do-ripgrep)]])
+    (defclass transient-multi-option (transient-option) ())
+    (cl-defmethod transient-infix-value ((obj transient-multi-option))
+      (when-let (values (oref obj value))
+        (mapconcat
+         (lambda (value) (format "%s%s" (oref obj argument) value))
+         values
+         " ")))
+    (define-infix-argument ripgrep-glob ()
+      :description "Include exclude files"
+      :class 'transient-multi-option
+      :key "-g"
+      :argument "--glob="
+      :prompt "glob(s): "
+      :multi-value t)
+    (define-infix-argument ripgrep-case ()
+      :description "Case sensitivity"
+      :class 'transient-switches
+      :key "-i"
+      :argument-format "--%s"
+      :argument-regexp "\\(--\\(ignore-case\\|case-sensitive\\|smart-case\\)\\)"
+      :choices '("ignore-case" "case-sensitive" "smart-case"))
+    (define-suffix-command helm-ag-do-ripgrep (&optional args)
+      "Helm-ag do custom ripgrep"
+      (interactive (list (transient-args 'helm-ag-transient)))
+      (setq helm-ag--extra-options (mapconcat 'identity args " "))
+      (helm-do-ag))))
 
 (defun *-popwin-help-mode-off ()
   "Turn `popwin-mode' off for *Help* buffers."
