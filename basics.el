@@ -143,7 +143,12 @@
   :init
   (setq markdown-command "multimarkdown"))
 
-(use-package popwin :config (popwin-mode 1))
+(use-package popwin
+  :config
+  (progn
+    (general-define-key "C-c z" popwin:keymap)
+    (push "*Kill Ring*" popwin:special-display-config)
+    (popwin-mode 1)))
 
 (use-package alert
   :if (memq window-system '(mac ns))
