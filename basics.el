@@ -242,7 +242,11 @@
         (progn
           (smartparens-mode)
           (show-smartparens-mode)))
-     `(rjsx-mode-hook web-mode-hook emacs-lisp-mode-hook lisp-interaction-mode-hook)))
+     `(rjsx-mode-hook
+       web-mode-hook
+       emacs-lisp-mode-hook
+       lisp-interaction-mode-hook
+       reason-mode-hook)))
   :delight)
 
 (use-package bookmark+
