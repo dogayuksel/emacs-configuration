@@ -5,8 +5,8 @@ My configuration for emacs-mac ([[https://bitbucket.org/mituharu/emacs-mac/src/m
 
 
 * Dependencies
-** Silver Searcher
-   [[https://github.com/ggreer/the_silver_searcher][ggreer/the_silver_searcher]]
+** ripgrep
+   [[https://github.com/BurntSushi/ripgrep][BurntSushi/ripgrep]]
 
 ** Fonts
   - JetBrains Mono (prog-mode) - [[https://www.jetbrains.com/lp/mono/][font source]]
