@@ -75,9 +75,17 @@
        buffer-face-mode-face
        `(:family ,my/variable-width-font :height ,(* 10 my/scaled-font-height)))
       (set-face-attribute 'fixed-pitch nil :family my/monospace-font)
-      (set-face-attribute 'org-table nil :inherit 'fixed-pitch)
-      (set-face-attribute 'org-code nil :inherit 'fixed-pitch)
-      (set-face-attribute 'org-block nil :inherit 'fixed-pitch)
+      (mapc
+       (lambda (face) (set-face-attribute face nil :inherit 'fixed-pitch))
+       (list 'org-code
+             'org-link
+             'org-block
+             'org-table
+             'org-verbatim
+             'org-block-begin-line
+             'org-block-end-line
+             'org-meta-line
+             'org-document-info-keyword))
       (buffer-face-mode))
     (add-hook 'org-mode-hook 'my/buffer-face-mode-variable)))
 

@@ -14,16 +14,9 @@
   ("C-c l" 'org-store-link
    "C-c a" 'org-agenda
    "C-c c" 'org-capture)
-  :defines (org-export-initial-scope
-            org-capture-templates
-            buffer-face-mode-face
-            org-agenda-custom-commands)
-  :init
-  (setq
-   org-modules
-   '(ol-bbdb ol-bibtex ol-docview ol-eww ol-gnus org-habit ol-info ol-irc ol-mhe ol-rmail ol-w3m))
   :config
   (progn
+    (add-to-list 'org-modules 'org-habit t)
     (setq org-refile-targets '((org-agenda-files :maxlevel . 3))
           org-reverse-note-order t
           org-outline-path-complete-in-steps nil
@@ -68,20 +61,7 @@
                 ("gm" "E-mail" tags-todo "@email")
                 ("gh" "Home" tags-todo "@home")
                 ("ge" "Errands" tags-todo "@errands")
-                ("gt" "Travelling" tags-todo "@travelling")
-                ("G" "GTD Block Agenda"
-                 ((tags-todo "@office")
-                  (tags-todo "@hacking")
-                  (tags-todo "@phone")
-                  (tags-todo "@email")
-                  (tags-todo "@home")
-                  (tags-todo "@errands")
-                  (tags-todo "@travelling"))
-                 nil                      ;; i.e., no local settings
-                 ("~/Dropbox/.org/next-actions.txt"))
-                ;; exports block to this file with C-c a e
-                ;; ..other commands here
-                )))
+                ("gt" "Travelling" tags-todo "@travelling"))))
     (org-babel-do-load-languages
      'org-babel-load-languages
      '((emacs-lisp . t)
@@ -111,6 +91,25 @@
    "j" 'evil-next-visual-line
    "k" 'evil-previous-visual-line)
   :delight)
+
+(use-package org-super-agenda
+  :after (org)
+  :config
+  (progn
+    (setq org-super-agenda-header-map (make-sparse-keymap))
+    (org-super-agenda-mode)
+    (add-to-list
+     'org-agenda-custom-commands
+     '("G" "All Todos"
+       ((todo "" ((org-super-agenda-groups
+                   '((:name "Office" :and (:tag "@office" :todo "TODO"))
+                     (:name "Hacking" :and (:tag "@hacking" :todo "TODO"))
+                     (:name "Phone" :and (:tag "@phone" :todo "TODO"))
+                     (:name "E-mail" :and (:tag "@email" :todo "TODO"))
+                     (:name "Home" :and (:tag "@home" :todo "TODO"))
+                     (:name "Errands" :and (:tag "@errands" :todo "TODO"))
+                     (:name "Travelling" :and (:tag "@travelling" :todo "TODO"))
+                     (:discard (:habit t)))))))))))
 
 (use-package org-brain
   :after (org)
