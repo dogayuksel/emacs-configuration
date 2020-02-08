@@ -135,6 +135,40 @@
 
 (use-package helm-projectile :config (helm-projectile-on))
 
+(use-package ansi-color
+  :config
+  (progn
+    (setq ansi-color-map
+          [default bold default italic underline success warning error nil nil
+            nil nil nil nil nil nil nil nil nil nil
+            nil nil nil nil nil nil nil nil nil nil
+            (foreground-color . #1="#2E3440")
+            (foreground-color . #2="#BF616A")
+            (foreground-color . #3="#A3BE8C")
+            (foreground-color . #4="#EBCB8B")
+            (foreground-color . #5="#81A1C1")
+            (foreground-color . #6="#B48EAD")
+            (foreground-color . #7="#8FBCBB")
+            (foreground-color . #8="#E5E9F0")
+            nil nil
+            (background-color . #1#)
+            (background-color . #2#)
+            (background-color . #3#)
+            (background-color . #4#)
+            (background-color . #5#)
+            (background-color . #6#)
+            (background-color . #7#)
+            (background-color . #8#)
+            nil nil])
+    (defun colorize-compilation-buffer ()
+      (let ((inhibit-read-only t))
+        (ansi-color-apply-on-region (point-min) (point-max))))
+    (defun rename-compilation-buffer ()
+      (if (boundp 'compilation-in-progress)
+          (rename-uniquely)))
+    (add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
+    (add-hook 'compilation-mode-hook 'rename-compilation-buffer)))
+
 (use-package markdown-mode
   :commands (markdown-mode gfm-mode)
   :mode (("README\\.md\\'" . gfm-mode)
