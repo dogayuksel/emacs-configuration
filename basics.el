@@ -163,11 +163,7 @@
     (defun colorize-compilation-buffer ()
       (let ((inhibit-read-only t))
         (ansi-color-apply-on-region (point-min) (point-max))))
-    (defun rename-compilation-buffer ()
-      (if (boundp 'compilation-in-progress)
-          (rename-uniquely)))
-    (add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
-    (add-hook 'compilation-mode-hook 'rename-compilation-buffer)))
+    (add-hook 'compilation-filter-hook 'colorize-compilation-buffer)))
 
 (use-package markdown-mode
   :commands (markdown-mode gfm-mode)
