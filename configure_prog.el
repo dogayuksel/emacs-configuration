@@ -216,13 +216,19 @@
 
 ;; https://github.com/reasonml/reason-cli
 (use-package reason-mode
-  :after (merlin)
+  :after (merlin projectile)
   :init
   (let* ((refmt-bin (shell-cmd "which bsrefmt")))
     ;; Add merlin.el to the emacs load path and tell emacs where to find ocamlmerlin
     (when refmt-bin
       (setq refmt-command refmt-bin)))
   :config
+  (projectile-register-project-type
+   'reasonml '("bsconfig.json")
+   :compile "yarn start"
+   :test "yarn test"
+   :run "yarn server"
+   :test-suffix "_test")
   (add-hook
    'reason-mode-hook
    (lambda () (add-hook 'before-save-hook 'refmt-before-save)
