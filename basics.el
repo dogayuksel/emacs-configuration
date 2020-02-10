@@ -280,6 +280,8 @@
   :delight)
 
 (use-package bookmark+
+  ;; ensure that org is loaded through means of straight.el
+  :after org 
   :straight bookmark-plus
   :defines
   (bmkp-bmenu-state-file
