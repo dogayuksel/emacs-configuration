@@ -9,11 +9,12 @@
   :demand
   :general
   ("M-x" 'helm-M-x
-   "C-x C-f" 'helm-find-files
-   "C-x C-b" 'helm-mini
+   "C-c C-f" 'helm-find-files
+   "C-c C-b" 'helm-mini
+   "C-c C-a" 'helm-apropos
    "C-c C-o" 'helm-imenu
-   "C-x c a" 'helm-apropos
-   "C-c m" 'helm-all-mark-rings)
+   "C-c C-m" 'helm-all-mark-rings
+   "C-c C-p" 'helm-show-kill-ring)
   :defines (helm-recentf-fuzzy-match
             helm-buffers-fuzzy-matching
             helm-M-x-fuzzy-match)

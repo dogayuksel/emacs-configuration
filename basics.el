@@ -43,12 +43,6 @@
 
 (windmove-default-keybindings)
 
-(use-package browse-kill-ring
-  :config
-  (general-define-key
-   :states 'normal
-   "C-S-p" 'browse-kill-ring))
-
 (use-package personal
   :straight nil
   :load-path "lib/personal"
