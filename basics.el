@@ -49,7 +49,8 @@
   :commands
   (my/open-iterm-here
    my/insert-full-name
-   my/send-line-to-iterm)
+   my/send-line-to-iterm
+   my/byte-compile-init-files)
   :general
   ((normal emacs)
    "C-c K" 'my/nuke-all-buffers

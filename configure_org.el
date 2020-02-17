@@ -145,13 +145,6 @@
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
   :after (org))
 
-(use-package org-pomodoro
-  :defines (org-pomodoro-play-sounds)
-  :commands (org-pomodoro)
-  :after (org)
-  :config
-  (setq org-pomodoro-play-sounds nil))
-
 (use-package ox-latex
   :straight nil
   :after (org)

@@ -80,5 +80,32 @@
       (push `(alpha ,@new) default-frame-alist))
     (set-frame-parameter nil 'alpha new)))
 
+(defvar my/init-files
+  '("./init.el"
+    "./.emacs_secrets.el"
+    "./basics.el"
+    "./configure_gui.el"
+    "./configure_helm.el"
+    "./configure_libvterm.el"
+    "./configure_org.el"
+    "./configure_prog.el"
+    "./constants.el"
+    "./evil.el"
+    "./my-modeline.el"
+    "./lib/personal/personal.el"
+    "./lib/personal/ripgrep-transient.el"
+    "./lib/personal/commercetools.el"))
+
+(defun my/byte-compile-init-files ()
+  "Compile all init files."
+  (interactive)
+  (mapc
+   (lambda (file-path)
+     (let ((expanded-path (expand-file-name file-path)))
+       (if (file-exists-p expanded-path)
+           (byte-compile-file (expand-file-name expanded-path))
+         (message (format "file missing: %s" expanded-path)))))
+   my/init-files))
+
 (provide 'personal)
 ;;; personal.el ends here
