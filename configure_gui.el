@@ -20,8 +20,8 @@
 ;; Ligature support from emacs-mac port
 (mac-auto-operator-composition-mode)
 
-;; Replace lambda with λ (mode dependent)
-(global-prettify-symbols-mode t)
+;; Replace lambda with λ
+(add-hook 'emacs-lisp-mode-hook 'prettify-symbols-mode)
 
 (setq default-frame-alist
       `((width . 84)
