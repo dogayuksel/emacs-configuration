@@ -101,7 +101,7 @@
   (interactive)
   (mapc
    (lambda (file-path)
-     (let ((expanded-path (expand-file-name file-path)))
+     (let ((expanded-path (expand-file-name file-path "~/.emacs.d/")))
        (if (file-exists-p expanded-path)
            (byte-compile-file (expand-file-name expanded-path))
          (message (format "file missing: %s" expanded-path)))))
