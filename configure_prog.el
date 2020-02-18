@@ -5,6 +5,17 @@
 
 ;;; Code:
 
+(use-package compile
+  :config
+  (progn
+    ;; Parse error messages emitted by node.js
+    ;; https://emacs.stackexchange.com/questions/27213/how-can-i-add-a-compilation-error-regex-for-node-js
+    (push 'node compilation-error-regexp-alist)
+    (push
+     '(node
+       "at [^ ]+ (\\(.+?\\):\\([[:digit:]]+\\):\\([[:digit:]]+\\)" 1 2 3)
+     compilation-error-regexp-alist-alist)))
+
 (use-package impatient-mode :commands (impatient-mode))
 
 (use-package yaml-mode :mode "\\.yml\\'")
