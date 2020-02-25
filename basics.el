@@ -171,6 +171,7 @@
 (use-package popwin
   :config
   (progn
+    (setq popwin:popup-window-height 30)
     (general-define-key "C-c z" popwin:keymap)
     (push "*Kill Ring*" popwin:special-display-config)
     (popwin-mode 1)))
