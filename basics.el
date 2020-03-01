@@ -119,13 +119,25 @@
   (progn
     (ivy-mode 1)
     (setq ivy-use-virtual-buffers t)
-    (setq ivy-count-format "(%d/%d) ")))
+    (setq ivy-count-format "(%d/%d) ")
+    (general-define-key
+     :keymaps 'ivy-minibuffer-map
+     "C-f" 'ivy-scroll-up-command)))
+
+(use-package ivy-hydra
+  :config
+  (general-define-key
+   :keymaps 'ivy-minibuffer-map
+   "C-l" 'hydra-ivy/body))
 
 (use-package counsel
   :general
   ("M-x" 'counsel-M-x)
   ("C-x C-f" 'counsel-find-file)
-  ("C-h b" 'counsel-descbinds))
+  ("C-h b" 'counsel-descbinds)
+  ("C-h f" 'counsel-describe-function)
+  ("C-h v" 'counsel-describe-variable)
+  ("C-x 8 RET" 'counsel-unicode-char))
 
 (use-package ivy-rich
   :after (ivy counsel)
