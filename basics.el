@@ -107,13 +107,47 @@
 
 (use-package which-key :config (which-key-mode) :delight)
 
+(use-package smex :config (smex-initialize))
+
+(use-package flx)
+
+(use-package ivy
+  :after flx
+  :general
+  ("C-c C-r" 'ivy-resume)
+  :config
+  (progn
+    (ivy-mode 1)
+    (setq ivy-use-virtual-buffers t)
+    (setq ivy-count-format "(%d/%d) ")))
+
+(use-package counsel
+  :general
+  ("M-x" 'counsel-M-x)
+  ("C-x C-f" 'counsel-find-file)
+  ("C-h b" 'counsel-descbinds))
+
+(use-package ivy-rich
+  :after (ivy counsel)
+  :config
+  (progn
+    (ivy-rich-mode 1)
+    (setcdr (assq t ivy-format-functions-alist) #'ivy-format-function-line)))
+
+(use-package ripgrep-transient
+  :after (counsel transient)
+  :straight nil
+  :load-path "lib/personal")
+
+(use-package swiper
+  :general ("C-s" 'swiper-isearch))
+
 (use-package eyebrowse
   :after (evil)
   :config
   (progn
     (set-face-attribute 'eyebrowse-mode-line-active nil :underline t :weight 'bold)
-    (eyebrowse-mode t)
-    (eyebrowse-setup-opinionated-keys)))
+    (eyebrowse-mode t)))
 
 (use-package synonyms
   :commands (synonyms)
@@ -124,11 +158,9 @@
 (use-package projectile
   :config
   (progn
-    (setq projectile-completion-system 'helm)
+    (setq projectile-completion-system 'ivy)
     (projectile-mode +1))
   :delight)
-
-(use-package helm-projectile :config (helm-projectile-on))
 
 (use-package ansi-color
   :config
@@ -211,13 +243,16 @@
 
 (use-package yasnippet-snippets :after (yasnippet))
 
-(use-package helm-c-yasnippet
-  :general ("C-c y" 'helm-yas-complete)
-  :after (yasnippet)
-  :config
-  (setq helm-yas-space-match-any-greedy t))
-
 (use-package avy :general ((override) "C-c SPC" 'avy-goto-char))
+
+(use-package dumb-jump
+  :after ivy
+  :general
+  ("M-g o" 'dumb-jump-go-other-window
+   "M-g j" 'dumb-jump-go
+   "M-g i" 'dumb-jump-go-prompt)
+  :config
+  (setq dumb-jump-selector 'ivy))
 
 (use-package magit
   :general ("C-x g" 'magit-status)

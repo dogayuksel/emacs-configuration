@@ -181,6 +181,26 @@
         org-latex-pdf-process
         '("latexmk -pdflatex='pdflatex -interaction nonstopmode' -pdf -bibtex -f  %f")))
 
+(use-package ivy-bibtex
+  :commands (ivy-bibtex)
+  :after (ivy)
+  :config
+  (setq
+   bibtex-completion-bibliography
+   '("~/Dropbox/.org/bibtex/file-1.bib"
+     "~/Dropbox/.org/bibtex/file-2.bib")
+   bibtex-entry-format
+   '(opts-or-alts required-fields numerical-fields realign)
+   bibtex-completion-library-path
+   '("~/Dropbox/Ebooks/bibtex-library")
+   bibtex-completion-notes-path
+   "~/Dropbox/.org/bibtex/bibtex-notes.org"
+   bibtex-completion-pdf-symbol "⌘"
+   bibtex-completion-notes-symbol "✎"
+   bibtex-completion-format-citation-functions
+   '((org-mode . bibtex-completion-format-citation-cite)
+     (latex-mode . bibtex-completion-format-citation-cite))))
+
 (use-package ox-md :straight nil :after (org))
 
 (use-package reftex

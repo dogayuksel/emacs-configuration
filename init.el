@@ -73,7 +73,6 @@
 (load "~/.emacs.d/evil")
 (load "~/.emacs.d/basics")
 (load "~/.emacs.d/configure_gui")
-(load "~/.emacs.d/configure_helm")
 (load "~/.emacs.d/configure_org")
 (load "~/.emacs.d/configure_prog")
 

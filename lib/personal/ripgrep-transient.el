@@ -1,28 +1,26 @@
 ;;; package --- ripgrep transient
 
 ;;; Commentary:
-;;; Transient interface for ripgrep through helm-ag.
+;;; Transient interface for ripgrep through counsel-rg.
 
 ;;; Code:
 
 (require 'transient)
-(require 'helm-ag)
+(require 'counsel)
 
-(setq helm-ag-base-command "rg --no-heading")
-
-(define-transient-command helm-ag-transient ()
+(define-transient-command counsel-rg-transient ()
   "Search with ripgrep."
   :man-page "rg"
   ["Arguments"
    (ripgrep-glob)
    (ripgrep-case)
+   ("-l" "Files with matches" ("-l" "--files-with-matches"))
    ("-c" "Count" ("-c" "--count"))
    ("-v" "Invert match" ("-v" "--invert-match"))]
   [["Search"
-    ("s" "Choose root" helm-ag-do-ripgrep)
-    ("r" "Project root" helm-ag-do-ripgrep-project-root)]])
+    ("s" "Ripgrep" counsel-ripgrep)]])
 
-(defclass transient-multi-value-option (transient-option) ())
+(defclass transient-multi-glob (transient-option) ())
 
 (defun first-match-in-list (re string-list)
   "Return first string in STRING-LIST that match RE.
@@ -33,8 +31,8 @@ Return nil when there is no match"
           (string-match re v)))
    string-list))
 
-;; Parse values from history prefix history
-(cl-defmethod transient-init-value ((obj transient-multi-value-option))
+;; Parse values from prefix history
+(cl-defmethod transient-init-value ((obj transient-multi-glob))
   (when-let
       ((re (format "\\`%s\\(.*\\)" (oref obj argument)))
        ;; (oref transient--prefix value) returns a list of
@@ -55,8 +53,8 @@ Return nil when there is no match"
 
 ;; Read and parse user input in minibuffer
 ;; Provide minibuffer with history
-(cl-defmethod transient-infix-read ((obj transient-multi-value-option))
-  (with-slots (value) obj
+(cl-defmethod transient-infix-read ((obj transient-multi-glob))
+  (with-slots (value choices) obj
     (let* ((overriding-terminal-local-map nil)
            (prompt (transient-prompt obj))
            (value (mapconcat #'identity value ","))
@@ -80,7 +78,7 @@ Return nil when there is no match"
             ;; comma seperated values as input value
             ;; Returns a list of strings
             (completing-read-multiple
-             prompt nil nil nil
+             prompt choices nil nil
              (or value initial-input)
              history)))
       (cond ((equal value "") (setq value nil)))
@@ -91,14 +89,14 @@ Return nil when there is no match"
 
 ;; Format value stored on inflix object
 ;; for command line use when transient-args is called
-(cl-defmethod transient-infix-value ((obj transient-multi-value-option))
+(cl-defmethod transient-infix-value ((obj transient-multi-glob))
   ;; Read value from inflix object, which is a list of strings
   ;; e.g. ("input-value-1" "input-value-2")
   (when-let (values (oref obj value))
     ;; Format list of values the way command line expects
     ;; e.g. "--glob:input-value-1 --glob:input-value-2"
     (mapconcat
-     (lambda (value) (format "%s%s" (oref obj argument) value))
+     (lambda (value) (format "%s\"%s\"" (oref obj argument) value))
      values
      " ")))
 
@@ -107,7 +105,7 @@ Return nil when there is no match"
 ;; A function passed into `reader` slot won't be used.
 (define-infix-argument ripgrep-glob ()
   :description "Include exclude files"
-  :class 'transient-multi-value-option
+  :class 'transient-multi-glob
   :key "-g"
   :argument "--glob="
   :prompt "glob(s): "
@@ -121,17 +119,13 @@ Return nil when there is no match"
   :argument-regexp "\\(--\\(ignore-case\\|case-sensitive\\|smart-case\\)\\)"
   :choices '("ignore-case" "case-sensitive" "smart-case"))
 
-(define-suffix-command helm-ag-do-ripgrep (&optional args)
-  "Helm-ag do custom ripgrep"
-  (interactive (list (transient-args 'helm-ag-transient)))
-  (setq helm-ag--extra-options (mapconcat 'identity args " "))
-  (helm-do-ag))
-
-(define-suffix-command helm-ag-do-ripgrep-project-root (&optional args)
-  "Helm-ag do custom ripgrep"
-  (interactive (list (transient-args 'helm-ag-transient)))
-  (setq helm-ag--extra-options (mapconcat 'identity args " "))
-  (helm-do-ag-project-root))
+(define-suffix-command counsel-ripgrep (&optional args)
+  "counsel-ag do custom ripgrep"
+  (interactive (list (transient-args 'counsel-rg-transient)))
+  (let ((counsel-ag-extra-args (mapconcat 'identity args " ")))
+    (progn
+      (message counsel-ag-extra-args)
+      (counsel-rg nil nil counsel-ag-extra-args))))
 
 (provide 'ripgrep-transient)
 

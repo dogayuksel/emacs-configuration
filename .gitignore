@@ -17,6 +17,7 @@ eshell/
 SessionDesktop.el
 image-dired/
 transient/
+smex-items
 request/
 reveal.js/
 url/
