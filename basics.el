@@ -68,6 +68,8 @@
   (setq recentf-max-saved-items 50)
   (setq recentf-exclude '("recentf$"
                           "bookmarks$"
+                          "/straight/build/.*"
+                          "/brain/.*.org"
                           "\.org-gcal-token$"
                           "orgtmpcrypt$"
                           "\.emacs-bmk-bmenu-state\.el$"))
