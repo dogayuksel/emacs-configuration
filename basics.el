@@ -155,12 +155,9 @@
   (setq synonyms-file "~/.emacs.d/synonyms/mthesaur.txt"
         synonyms-cache-file  "~/.emacs.d/synonyms/mthesaur_cache.txt"))
 
-(use-package projectile
-  :config
-  (progn
-    (setq projectile-completion-system 'ivy)
-    (projectile-mode +1))
-  :delight)
+(use-package projectile :config (setq projectile-completion-system 'ivy) :delight)
+
+(use-package counsel-projectile :config (counsel-projectile-mode))
 
 (use-package ansi-color
   :config
