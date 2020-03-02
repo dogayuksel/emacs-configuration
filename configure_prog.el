@@ -5,6 +5,8 @@
 
 ;;; Code:
 
+(use-package emr)
+
 (use-package compile
   :config
   (progn

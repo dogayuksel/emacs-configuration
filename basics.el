@@ -114,17 +114,24 @@
 (use-package flx)
 
 (use-package ivy
+  :delight
   :after flx
   :general
   ("C-c C-r" 'ivy-resume)
   :config
   (progn
     (ivy-mode 1)
-    (setq ivy-use-virtual-buffers t)
-    (setq ivy-count-format "(%d/%d) ")
+    (setq ivy-use-virtual-buffers t
+          ivy-count-format "(%d/%d) "
+          ivy-height 15)
     (general-define-key
      :keymaps 'ivy-minibuffer-map
-     "C-f" 'ivy-scroll-up-command)))
+     "C-f" 'ivy-scroll-up-command
+     "M-j" 'ivy-next-line
+     "M-k" 'ivy-previous-line
+     "M-h" 'ivy-backward-delete-char
+     "M-l" 'ivy-alt-done
+     "M-y" 'ivy-yank-word)))
 
 (use-package ivy-hydra
   :config
@@ -139,7 +146,8 @@
   ("C-h b" 'counsel-descbinds)
   ("C-h f" 'counsel-describe-function)
   ("C-h v" 'counsel-describe-variable)
-  ("C-x 8 RET" 'counsel-unicode-char))
+  ("C-x 8 RET" 'counsel-unicode-char)
+  :config (setq counsel-preselect-current-file t))
 
 (use-package ivy-rich
   :after (ivy counsel)
