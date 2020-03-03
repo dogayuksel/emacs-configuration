@@ -134,12 +134,18 @@
      "M-y" 'ivy-yank-word)))
 
 (use-package ivy-hydra
+  :after ivy
   :config
   (general-define-key
    :keymaps 'ivy-minibuffer-map
    "C-l" 'hydra-ivy/body))
 
+(use-package swiper
+  :after ivy
+  :general ("C-s" 'swiper-isearch))
+
 (use-package counsel
+  :after swiper
   :general
   ("M-x" 'counsel-M-x)
   ("C-x C-f" 'counsel-find-file)
@@ -147,7 +153,13 @@
   ("C-h f" 'counsel-describe-function)
   ("C-h v" 'counsel-describe-variable)
   ("C-x 8 RET" 'counsel-unicode-char)
-  :config (setq counsel-preselect-current-file t))
+  :config
+  (progn
+    (setq counsel-preselect-current-file t)
+    (general-define-key
+     :keymaps 'counsel-ag-map
+     "M-l" 'ivy-call-and-recenter
+     "C-l" 'hydra-ivy/body)))
 
 (use-package ivy-rich
   :after (ivy counsel)
@@ -160,9 +172,6 @@
   :after (counsel transient)
   :straight nil
   :load-path "lib/personal")
-
-(use-package swiper
-  :general ("C-s" 'swiper-isearch))
 
 (use-package eyebrowse
   :after (evil)
