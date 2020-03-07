@@ -13,10 +13,11 @@
   :man-page "rg"
   ["Arguments"
    (ripgrep-glob)
-   (ripgrep-case)
+   ;; (ripgrep-case)
    ("-l" "Files with matches" ("-l" "--files-with-matches"))
    ("-c" "Count" ("-c" "--count"))
-   ("-v" "Invert match" ("-v" "--invert-match"))]
+   ("-v" "Invert match" ("-v" "--invert-match"))
+   (ripgrep-directory)]
   [["Search"
     ("s" "Ripgrep" counsel-ripgrep)]])
 
@@ -37,10 +38,10 @@ Return nil when there is no match"
       ((re (format "\\`%s.*" (oref obj argument)))
        ;; (oref transient--prefix value) returns a list of
        ;; all the prefix/infix values in the prefix.
-       (match (first-match-in-list re (oref transient--prefix value) ))
+       (match (first-match-in-list re (oref transient--prefix value)))
        ;; match will be a string, the part used by the command line for glob
        ;; e.g. "--glob=\"input-value-1\" --glob=\"input-value-2\""
-       (list-of-values (if (stringp match) (split-string match " ") ))
+       (list-of-values (if (stringp match) (split-string match " ")))
        ;; parse in values as a list of strings
        ;; e.g.
        ;; ("--glob=\"input-value-1\"" "--glob=\"input-value-2\"")
@@ -114,21 +115,38 @@ Return nil when there is no match"
   :prompt "glob(s): "
   :multi-value t)
 
-(define-infix-argument ripgrep-case ()
-  :description "Case sensitivity"
-  :class 'transient-switches
-  :key "-i"
-  :argument-format "--%s"
-  :argument-regexp "\\(--\\(ignore-case\\|case-sensitive\\|smart-case\\)\\)"
-  :choices '("ignore-case" "case-sensitive" "smart-case"))
+(define-infix-argument ripgrep-directory ()
+  :description "Target Directory"
+  :class transient-option
+  :key "-d"
+  :argument "--directory="
+  :prompt "target directory: "
+  :reader 'transient-read-directory)
+
+;; (define-infix-argument ripgrep-case ()
+;;   :description "Case sensitivity"
+;;   :class 'transient-switches
+;;   :key "-i"
+;;   :argument-format "--%s"
+;;   :argument-regexp "\\(--\\(ignore-case\\|case-sensitive\\|smart-case\\)\\)"
+;;   :choices '("ignore-case" "case-sensitive" "smart-case"))
 
 (define-suffix-command counsel-ripgrep (&optional args)
   "counsel-ag do custom ripgrep"
   (interactive (list (transient-args 'counsel-rg-transient)))
-  (let ((counsel-ag-extra-args (mapconcat 'identity args " ")))
+  (let*
+      ((directory-re "\\`--directory=\\(.*\\)")
+       (directory-argument (first-match-in-list directory-re args))
+       (directory
+        (if (stringp directory-argument)
+            (progn
+              (string-match directory-re directory-argument)
+              (match-string 1 directory-argument))))
+       (arguments-without-directory (remove directory-argument args))
+       (counsel-ag-extra-args
+        (mapconcat 'identity arguments-without-directory " ")))
     (progn
-      (message counsel-ag-extra-args)
-      (counsel-rg nil nil counsel-ag-extra-args))))
+      (counsel-rg nil directory counsel-ag-extra-args))))
 
 (provide 'ripgrep-transient)
 
