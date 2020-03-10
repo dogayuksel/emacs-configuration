@@ -17,6 +17,7 @@
   :config
   (progn
     (add-to-list 'org-modules 'org-habit t)
+    (add-hook 'org-mode-hook 'org-indent-mode)
     (setq org-refile-targets '((org-agenda-files :maxlevel . 3))
           org-reverse-note-order t
           org-outline-path-complete-in-steps nil

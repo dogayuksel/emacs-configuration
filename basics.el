@@ -373,7 +373,8 @@
     (global-aggressive-indent-mode 1)
     (setq aggressive-indent-excluded-modes
           (append aggressive-indent-excluded-modes
-                  '(coffee-mode
+                  '(org-mode
+                    coffee-mode
                     python-mode
                     web-mode
                     typescript-mode
