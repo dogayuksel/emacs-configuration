@@ -85,7 +85,6 @@
     "./.emacs_secrets.el"
     "./basics.el"
     "./configure_gui.el"
-    "./configure_helm.el"
     "./configure_libvterm.el"
     "./configure_org.el"
     "./configure_prog.el"

@@ -155,7 +155,9 @@
   ("C-x 8 RET" 'counsel-unicode-char)
   :config
   (progn
-    (setq counsel-preselect-current-file t)
+    (setq counsel-preselect-current-file t
+          ivy-initial-inputs-alist
+          (remove '(counsel-M-x . "^") ivy-initial-inputs-alist))
     (general-define-key
      :keymaps 'counsel-ag-map
      "M-l" 'ivy-call-and-recenter
