@@ -139,6 +139,11 @@
      '(web-mode-hook js2-mode-hook rjsx-mode-hook))))
 
 (use-package company-tern
+  :straight
+  (company-tern
+   :type git
+   :host github
+   :repo "emacsmirror/company-tern")
   :after (company)
   :config
   (add-to-list 'company-backends 'company-tern))
