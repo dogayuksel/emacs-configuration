@@ -8,7 +8,6 @@
 (load "~/.emacs.d/constants")
 
 (use-package org
-  :after (alert)
   :mode ("\\.org$\\'" . org-mode)
   :general
   ("C-c l" 'org-store-link

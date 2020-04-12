@@ -18,7 +18,7 @@
  my/variable-width-font "Inter")
 
 ;; Ligature support from emacs-mac port
-(mac-auto-operator-composition-mode)
+;; (mac-auto-operator-composition-mode)
 
 ;; Replace lambda with λ
 (add-hook 'emacs-lisp-mode-hook 'prettify-symbols-mode)
@@ -26,6 +26,7 @@
 (setq default-frame-alist
       `((width . 84)
         (height . 44)
+        (undecorated . t)
         (font . ,(format
                   "%s %d"
                   my/monospace-font
@@ -37,7 +38,7 @@
    ns-use-native-fullscreen nil
    frame-title-format nil
    line-spacing 0.2)
-  (menu-bar-mode 1)
+  (menu-bar-mode 0)
   (tool-bar-mode 0)
   (scroll-bar-mode 0)
   (fringe-mode 8))

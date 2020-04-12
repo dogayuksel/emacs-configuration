@@ -10,7 +10,8 @@
 (setq-default
  inhibit-startup-screen t
  initial-scratch-message nil
- calendar-week-start-day 1)
+ calendar-week-start-day 1
+ system-time-locale "C")
 
 (setq-default
  comint-completion-autolist t
@@ -99,7 +100,7 @@
 (use-package autorevert :delight auto-revert-mode :config (auto-revert-mode))
 
 (use-package exec-path-from-shell
-  :if (memq window-system '(mac ns))
+  :if (memq window-system '(mac ns x))
   :init
   (setq exec-path-from-shell-check-startup-files nil)
   :config
