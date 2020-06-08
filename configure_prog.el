@@ -143,7 +143,7 @@
   (company-tern
    :type git
    :host github
-   :repo "emacsmirror/company-tern")
+   :repo "emacsattic/company-tern")
   :after (company)
   :config
   (add-to-list 'company-backends 'company-tern))
