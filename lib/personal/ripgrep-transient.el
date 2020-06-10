@@ -8,7 +8,7 @@
 (require 'transient)
 (require 'counsel)
 
-(define-transient-command counsel-rg-transient ()
+(transient-define-prefix counsel-rg-transient ()
   "Search with ripgrep."
   :man-page "rg"
   ["Arguments"
@@ -100,14 +100,14 @@ Return nil when there is no match"
     ;; Format list of values the way command line expects
     ;; e.g. "--glob=\"input-value-1\" --glob=\"input-value-2\""
     (mapconcat
-     (lambda (value) (format "%s\"%s\"" (oref obj argument) value))
+     (lambda (value) (format "%s%s" (oref obj argument) value))
      values
      " ")))
 
 ;; multi-value inflix arguments by default
 ;; use completing-read-multiple to parse user input.
 ;; A function passed into `reader` slot won't be used.
-(define-infix-argument ripgrep-glob ()
+(transient-define-argument ripgrep-glob ()
   :description "Include exclude files"
   :class 'transient-multi-glob
   :key "-g"
@@ -115,7 +115,7 @@ Return nil when there is no match"
   :prompt "glob(s): "
   :multi-value t)
 
-(define-infix-argument ripgrep-directory ()
+(transient-define-argument ripgrep-directory ()
   :description "Target Directory"
   :class transient-option
   :key "-d"
@@ -131,7 +131,7 @@ Return nil when there is no match"
 ;;   :argument-regexp "\\(--\\(ignore-case\\|case-sensitive\\|smart-case\\)\\)"
 ;;   :choices '("ignore-case" "case-sensitive" "smart-case"))
 
-(define-suffix-command counsel-ripgrep (&optional args)
+(transient-define-suffix counsel-ripgrep (&optional args)
   "counsel-ag do custom ripgrep"
   (interactive (list (transient-args 'counsel-rg-transient)))
   (let*
