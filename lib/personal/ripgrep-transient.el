@@ -35,18 +35,19 @@ Return nil when there is no match"
 ;; Parse values from prefix history
 (cl-defmethod transient-init-value ((obj transient-multi-glob))
   (when-let
+      ;; construct regex from argument (e.g. "--glob=")
       ((re (format "\\`%s.*" (oref obj argument)))
        ;; (oref transient--prefix value) returns a list of
        ;; all the prefix/infix values in the prefix.
        (match (first-match-in-list re (oref transient--prefix value)))
        ;; match will be a string, the part used by the command line for glob
-       ;; e.g. "--glob=\"input-value-1\" --glob=\"input-value-2\""
+       ;; e.g. "--glob=input-value-1 --glob=input-value-2"
        (list-of-values (if (stringp match) (split-string match " ")))
        ;; parse in values as a list of strings
        ;; e.g.
-       ;; ("--glob=\"input-value-1\"" "--glob=\"input-value-2\"")
+       ;; ("--glob=input-value-1" "--glob=input-value-2")
        ;; ("input-value-1" "input-value-2")
-       (re-inner (format "\\`%s\\\"\\(.*?\\)\\\"" (oref obj argument)))
+       (re-inner (format "\\`%s\\(.*\\)" (oref obj argument)))
        (parsed-values (mapcar
                        (lambda (val)
                          (progn
@@ -98,7 +99,7 @@ Return nil when there is no match"
   ;; e.g. ("input-value-1" "input-value-2")
   (when-let (values (oref obj value))
     ;; Format list of values the way command line expects
-    ;; e.g. "--glob=\"input-value-1\" --glob=\"input-value-2\""
+    ;; e.g. "--glob=input-value-1 --glob=input-value-2"
     (mapconcat
      (lambda (value) (format "%s%s" (oref obj argument) value))
      values
