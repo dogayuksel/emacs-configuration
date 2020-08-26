@@ -94,15 +94,6 @@
       ("N" evil-mc-make-and-goto-next-match)
       ("P" evil-mc-make-and-goto-prev-match))))
 
-(use-package evil-escape
-  :after (evil)
-  :config
-  (progn
-    (setq-default evil-escape-key-sequence "fd")
-    (setq-default evil-escape-delay 0.2)
-    (evil-escape-mode))
-  :delight)
-
 (use-package hydra)
 (use-package transient)
 (use-package matcha
