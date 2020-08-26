@@ -37,8 +37,8 @@ port install ispell
 #+BEGIN_SRC sh
 ./autogen.sh
 ./configure --with-modules --enable-mac-app --without-makeinfo
-./make
-./sudo make install
+make
+sudo make install
 #+END_SRC
 
 
