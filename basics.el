@@ -278,9 +278,10 @@
 (use-package dumb-jump
   :after ivy
   :general
-  ("M-g o" 'dumb-jump-go-other-window
-   "M-g j" 'dumb-jump-go
-   "M-g i" 'dumb-jump-go-prompt)
+  ("M-g j" 'xref-find-definitions
+   "M-g b" 'xref-pop-marker-stack)
+  :init
+  (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
   :config
   (setq dumb-jump-selector 'ivy))
 
