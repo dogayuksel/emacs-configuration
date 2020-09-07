@@ -131,6 +131,10 @@
     (setq org-brain-visualize-default-choices 'all)
     (setq org-brain-title-max-length 20)))
 
+(use-package org-roam
+  :init
+  (setq org-roam-directory "~/Dropbox/.org/roam"))
+
 (use-package visual-fill-column
   :init
   (setq visual-fill-column-center-text t
