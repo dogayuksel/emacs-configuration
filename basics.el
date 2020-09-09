@@ -192,6 +192,18 @@
 
 (use-package counsel-projectile :config (counsel-projectile-mode))
 
+(use-package ibuffer-projectile)
+
+(use-package ibuffer
+  :init
+  (add-hook
+   'ibuffer-hook
+   (lambda ()
+     (ibuffer-projectile-set-filter-groups)
+     (unless (eq ibuffer-sorting-mode 'alphabetic)
+       (ibuffer-do-sort-by-alphabetic))))
+  :general ("C-x C-b" 'ibuffer))
+
 (use-package ansi-color
   :config
   (progn
