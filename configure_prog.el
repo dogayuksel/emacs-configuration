@@ -214,6 +214,8 @@
 
 ;; (setq-default mmm-submode-decoration-level 0)
 
+(use-package glsl-mode)
+
 (use-package flycheck-rust)
 
 (use-package rust-mode
