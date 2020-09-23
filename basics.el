@@ -287,6 +287,8 @@
 
 (use-package avy :general ((override) "C-c SPC" 'avy-goto-char))
 
+(use-package imenu :general ("C-c C-o" 'imenu))
+
 (use-package dumb-jump
   :after ivy
   :general
