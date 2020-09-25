@@ -45,6 +45,7 @@
   (:type git :host github :repo "emacs-evil/evil-collection")
   :custom
   (evil-collection-setup-minibuffer t)
+  (evil-collection-want-unimpaired-p nil)
   :config
   (evil-collection-init))
 
