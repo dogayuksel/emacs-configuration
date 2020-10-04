@@ -317,6 +317,8 @@
    evil-magit-use-z-for-folds t
    evil-magit-want-horizontal-movement t))
 
+(use-package git-link)
+
 (use-package git-gutter-fringe
   :config
   (global-git-gutter-mode 1)
