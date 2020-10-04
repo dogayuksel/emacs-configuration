@@ -1,5 +1,5 @@
 * Introduction
-My configuration for emacs-mac ([[https://bitbucket.org/mituharu/emacs-mac/src/master/][source repo]]).
+My configuration for emacs-mac (v.27) ([[https://bitbucket.org/mituharu/emacs-mac/src/master/][source repo]]).
 
 [[./screenshots/1.png]]
 

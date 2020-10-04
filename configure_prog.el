@@ -18,8 +18,6 @@
        "at [^ ]+ (\\(.+?\\):\\([[:digit:]]+\\):\\([[:digit:]]+\\)" 1 2 3)
      compilation-error-regexp-alist-alist)))
 
-(use-package impatient-mode :commands (impatient-mode))
-
 (use-package yaml-mode :mode "\\.yml\\'")
 
 (use-package json-mode
@@ -44,121 +42,45 @@
     (setq css-indent-offset 2)
     (add-hook 'css-mode-hook #'add-node-modules-path)))
 
-(use-package web-mode
-  :after (flycheck company)
-  :mode ("\\.html\\'"
-         "\\.tsx?\\'")
-  :defines web-mode-content-types-alist
+(use-package lsp-mode
+  :defines (lsp-keymap-prefix lsp-eslint-server-command)
+  :init
+  (progn
+    (setq read-process-output-max (* 1024 1024))
+    (setq lsp-keymap-prefix "M-s M-l")
+    (setq lsp-eslint-server-command
+          `("node"
+            ,(expand-file-name
+              "~/.emacs.d/.cache/lsp/vscode-eslint/server/out/eslintServer.js")
+            "--stdio"))
+    (setq lsp-disabled-clients '((json-mode . eslint))))
+  :hook
+  ((js-mode . lsp)
+   (lsp-mode . lsp-enable-which-key-integration))
   :config
   (progn
-    (flycheck-add-mode 'javascript-eslint 'web-mode)
-    (add-hook 'web-mode-hook #'add-node-modules-path)
-    (add-hook
-     'web-mode-hook
-     (lambda ()
-       (when (string-equal "tsx" (file-name-extension buffer-file-name))
-         (progn
-           (setup-tide-mode)
-           (flycheck-add-mode 'typescript-tslint 'web-mode)))))
-    ;; enable typescript-tslint checker
-    (setq web-mode-markup-indent-offset 2
-          web-mode-code-indent-offset 2
-          web-mode-css-indent-offset 2
-          web-mode-enable-current-element-highlight t
-          web-mode-enable-current-column-highlight t
-          web-mode-enable-auto-quoting nil)
-    (set-face-attribute
-     'web-mode-current-element-highlight-face
-     nil :foreground "#aeee00")
-  ;;; For better jsx syntax-highlighting in web-mode.
-    (defadvice web-mode-highlight-part (around tweak-jsx activate)
-      "Some decoration for jsx mode."
-      (if (equal web-mode-content-type "jsx")
-          (let ((web-mode-enable-part-face nil))
-            ad-do-it)
-        ad-do-it))))
+    (setq lsp-enable-indentation nil))
+  :commands lsp)
 
-(use-package flycheck-flow
-  :after (flycheck)
-  :config
-  (progn
-    (flycheck-add-mode 'javascript-flow 'web-mode)
-    (flycheck-add-next-checker 'javascript-flow 'javascript-eslint)
-    (add-hook 'web-mode-hook #'add-node-modules-path)))
-
-;;; Company-flow is added to backends below grouped with tern.
-(use-package company-flow
-  :after (company)
-  :config
-  (progn
-    (add-hook 'web-mode-hook #'add-node-modules-path)
-    (add-to-list 'company-backends 'company-flow)))
-
-(use-package js2-mode
-  :after (flycheck)
-  :config
-  (progn
-    (setq js-indent-level 2)
-    (flycheck-add-mode 'javascript-eslint 'js2-mode)
-    (add-hook 'web-mode-hook #'add-node-modules-path)))
-
-(use-package flow-js2-mode :delight)
-
-(use-package js2-refactor
-  :delight
-  :after (js2-mode)
-  :config
-  (progn
-    (setq js2-skip-preprocessor-directives t)
-    (add-hook 'js2-mode-hook #'js2-refactor-mode)))
+(use-package lsp-ui :commands lsp-ui-mode)
+(use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
+(use-package lsp-treemacs :commands lsp-treemacs-errors-list)
 
 (use-package prettier-js :delight)
 
-(use-package rjsx-mode
-  :mode ("\\.js\\'")
+(use-package js
+  :after (flycheck)
+  :mode
+  ("\\.[j|t]sx?\\'" . js-mode)
   :config
-  (progn
-    (add-hook 'rjsx-mode-hook #'add-node-modules-path)
-    (add-hook 'rjsx-mode-hook #'prettier-js-mode)))
+  (setq js-indent-level 2)
+  :hook
+  ((js-mode . add-node-modules-path)
+   (js-mode . prettier-js-mode)))
 
 (use-package indium
   :ensure-system-package
   (indium . "npm i -g indium"))
-
-;;; Enable tern for javascript suggestions.
-(use-package tern
-  :delight
-  :config
-  (progn
-    (setq tern-command '("~/.emacs.d/straight/repos/tern/bin/tern"))
-    (my/add-to-multiple-hooks
-     '(lambda ()
-        (progn
-          (if (not (string-equal " *helm dumb jump persistent*" (buffer-name)))
-              (tern-mode t))))
-     '(web-mode-hook js2-mode-hook rjsx-mode-hook))))
-
-(use-package company-tern
-  :straight
-  (company-tern
-   :type git
-   :host github
-   :repo "emacsattic/company-tern")
-  :after (company)
-  :config
-  (add-to-list 'company-backends 'company-tern))
-
-(defun setup-tide-mode ()
-  "Setup tide mode."
-  (tide-setup)
-  (tide-hl-identifier-mode +1)
-  ;; aligns annotation to the right hand side
-  (setq company-tooltip-align-annotations t)
-  ;; formats the buffer before saving
-  (add-hook 'before-save-hook 'tide-format-before-save)
-  (setq tide-format-options '(:indentSize 2 :tabSize 2)))
-
-(use-package tide :init (add-hook 'typescript-mode-hook #'setup-tide-mode))
 
 (use-package coffee-mode
   :mode "\\.coffee\\'"

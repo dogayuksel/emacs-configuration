@@ -267,6 +267,10 @@
   (global-company-mode)
   :delight)
 
+(use-package company-box
+  :delight
+  :hook (company-mode . company-box-mode))
+
 (use-package flycheck
   :init (global-flycheck-mode)
   :config
@@ -397,6 +401,7 @@
                     typescript-mode
                     sass-mode
                     rjsx-mode
+                    js-mode
                     reason-mode)))))
 
 (use-package expand-region :general ("C-c e" 'er/expand-region))

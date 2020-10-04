@@ -10,6 +10,8 @@ projectile.cache
 .emacs-bmk-bmenu-state.el
 org-gcal/
 persist/
+.cache/
+.lsp-session-v*
 .org-id-locations
 .mc-lists.el
 ac-comphist.dat

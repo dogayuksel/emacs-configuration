@@ -80,7 +80,7 @@
     (load "~/.emacs.d/configure_libvterm"))
 
 ;; Sets garbage collection threshold back to 5mb
-(setq gc-cons-threshold (* 5 1024 1024))
+(setq gc-cons-threshold (* 100 1024 1024))
 
 ;; (benchmark-init/deactivate)
 
