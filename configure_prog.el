@@ -59,10 +59,16 @@
    (lsp-mode . lsp-enable-which-key-integration))
   :config
   (progn
-    (setq lsp-enable-indentation nil))
+    (setq lsp-enable-indentation nil
+          lsp-eldoc-hook nil))
   :commands lsp)
 
-(use-package lsp-ui :commands lsp-ui-mode)
+(use-package lsp-ui
+  :config
+  (progn
+    (setq lsp-ui-doc-include-signature t
+          lsp-ui-doc-delay 2))
+  :commands lsp-ui-mode)
 (use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
 (use-package lsp-treemacs :commands lsp-treemacs-errors-list)
 
