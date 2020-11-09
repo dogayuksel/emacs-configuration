@@ -192,6 +192,8 @@
 
 (use-package counsel-projectile :config (counsel-projectile-mode))
 
+(use-package bufler)
+
 (use-package ibuffer-projectile)
 
 (use-package ibuffer
