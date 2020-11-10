@@ -90,7 +90,6 @@
     "./configure_prog.el"
     "./constants.el"
     "./evil.el"
-    "./my-modeline.el"
     "./lib/personal/personal.el"
     "./lib/personal/ripgrep-transient.el"
     "./lib/personal/commercetools.el"))

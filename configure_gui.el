@@ -95,7 +95,29 @@
          :fork (:host github :repo "dogayuksel/nord-emacs"))
   :config (load-theme 'nord t))
 
-(load "~/.emacs.d/my-modeline")
+(use-package telephone-line
+  :init
+  (progn
+    (telephone-line-defsegment* my-telephone-line-vc-segment ()
+      (telephone-line-raw
+       (if (> (length vc-mode) 15)
+           (format "%s…" (substring vc-mode 5 13))
+         vc-mode)
+       t))
+    (setq telephone-line-lhs
+          '((evil   . (telephone-line-evil-tag-segment))
+            (accent . (telephone-line-buffer-modified-segment
+                       my-telephone-line-vc-segment))
+            (nil    . (telephone-line-projectile-buffer-segment))))
+    (setq telephone-line-rhs
+          '((nil    . (telephone-line-misc-info-segment
+                       telephone-line-process-segment))
+            (accent . (telephone-line-major-mode-segment))
+            (evil   . (telephone-line-position-segment))))
+    (setq telephone-line-evil-use-short-tag t
+          telephone-line-height 22))
+  :config
+  (telephone-line-mode 1))
 
 (use-package rainbow-mode
   :hook
