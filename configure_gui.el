@@ -96,7 +96,7 @@
   :config (load-theme 'nord t))
 
 (use-package telephone-line
-  :init
+  :config
   (progn
     (telephone-line-defsegment* my-telephone-line-vc-segment ()
       (telephone-line-raw
@@ -115,9 +115,8 @@
             (accent . (telephone-line-major-mode-segment))
             (evil   . (telephone-line-position-segment))))
     (setq telephone-line-evil-use-short-tag t
-          telephone-line-height 22))
-  :config
-  (telephone-line-mode 1))
+          telephone-line-height 22)
+    (telephone-line-mode 1)))
 
 (use-package rainbow-mode
   :hook
