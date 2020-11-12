@@ -156,6 +156,7 @@
   :config
   (progn
     (setq counsel-preselect-current-file t
+          counsel-find-file-at-point t
           ivy-initial-inputs-alist
           (remove '(counsel-M-x . "^") ivy-initial-inputs-alist))
     (general-define-key
@@ -261,7 +262,9 @@
 (use-package company
   :demand
   :defines (company-dabbrev-downcase)
-  :general ("<M-tab>" 'company-complete)
+  :general
+  ("<M-tab>" 'company-complete
+   "C-c C-f" 'company-files)
   :config
   (setq company-global-modes '(not org-mode)
         company-dabbrev-downcase nil
