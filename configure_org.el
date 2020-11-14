@@ -63,12 +63,15 @@
                 ("gh" "Home" tags-todo "@home")
                 ("ge" "Errands" tags-todo "@errands")
                 ("gt" "Travelling" tags-todo "@travelling"))))
+    (setq org-src-preserve-indentation t
+          org-src-tab-acts-natively t)
     (org-babel-do-load-languages
      'org-babel-load-languages
      '((emacs-lisp . t)
        (js . t)
        (python . t)
-       (ditaa . t)))))
+       (ditaa . t)
+       (makefile . t)))))
 
 (use-package emacs
   :delight visual-line-mode
@@ -132,6 +135,7 @@
     (setq org-brain-title-max-length 20)))
 
 (use-package org-roam
+  :delight
   :init
   (setq org-roam-directory "~/Dropbox/.org/roam"))
 
