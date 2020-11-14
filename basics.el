@@ -375,11 +375,14 @@
    bookmark-default-file
    bmkp-last-as-first-bookmark-file)
   :init
-  (setq bmkp-bmenu-state-file
-        "~/.emacs.d/.emacs-bmk-bmenu-state.el"
-        bookmark-default-file
-        "~/.emacs.d/bookmarks"
-        bmkp-last-as-first-bookmark-file nil))
+  (progn
+    (general-define-key
+     :keymaps '(Info-mode-map Man-mode-map woman-mode-map)
+     "j" 'evil-next-line)
+    (setq
+     bmkp-bmenu-state-file "~/.emacs.d/.emacs-bmk-bmenu-state.el"
+     bookmark-default-file "~/.emacs.d/bookmarks"
+     bmkp-last-as-first-bookmark-file nil)))
 
 (use-package dired+
   :straight dired-plus
