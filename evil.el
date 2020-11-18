@@ -38,7 +38,9 @@
   :config
   (progn
     (evil-mode 1)
-    (setq evil-want-fine-undo t)))
+    (setq
+     evil-undo-system 'undo-tree
+     evil-want-fine-undo t)))
 
 (use-package evil-collection
   :after (evil)
