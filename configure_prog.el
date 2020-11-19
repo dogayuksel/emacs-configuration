@@ -43,16 +43,10 @@
     (add-hook 'css-mode-hook #'add-node-modules-path)))
 
 (use-package lsp-mode
-  :defines (lsp-keymap-prefix lsp-eslint-server-command)
   :init
   (progn
     (setq read-process-output-max (* 1024 1024))
     (setq lsp-keymap-prefix "M-s M-l")
-    (setq lsp-eslint-server-command
-          `("node"
-            ,(expand-file-name
-              "~/.emacs.d/.cache/lsp/vscode-eslint/server/out/eslintServer.js")
-            "--stdio"))
     (setq lsp-disabled-clients '((json-mode . eslint))))
   :hook
   ((js-mode . lsp)
