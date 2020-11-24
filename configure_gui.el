@@ -98,6 +98,10 @@
 (use-package telephone-line
   :config
   (progn
+    (telephone-line-defsegment* my-telephone-line-buffer-modified-segment ()
+      (if (buffer-modified-p)
+          (telephone-line-raw "*")
+        (telephone-line-raw "-")))
     (telephone-line-defsegment* my-telephone-line-vc-segment ()
       (telephone-line-raw
        (if (> (length vc-mode) 15)
@@ -106,7 +110,7 @@
        t))
     (setq telephone-line-lhs
           '((evil   . (telephone-line-evil-tag-segment))
-            (accent . (telephone-line-buffer-modified-segment
+            (accent . (my-telephone-line-buffer-modified-segment
                        my-telephone-line-vc-segment))
             (nil    . (telephone-line-projectile-buffer-segment))))
     (setq telephone-line-rhs
