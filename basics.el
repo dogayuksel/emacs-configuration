@@ -418,4 +418,6 @@
 
 (use-package edit-indirect)
 
+(use-package vterm)
+
 ;;; basics.el ends here
