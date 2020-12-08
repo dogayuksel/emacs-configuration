@@ -54,7 +54,8 @@
   :config
   (progn
     (setq lsp-enable-indentation nil
-          lsp-eldoc-hook nil))
+          lsp-eldoc-hook nil
+          lsp-enable-file-watchers nil))
   :commands lsp)
 
 (use-package lsp-ui

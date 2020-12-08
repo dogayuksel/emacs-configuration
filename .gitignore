@@ -25,6 +25,8 @@ request/
 reveal.js/
 url/
 
+org-roam.db
+
 straight/
 .vterm
 
