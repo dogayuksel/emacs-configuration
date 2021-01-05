@@ -43,13 +43,15 @@
      evil-want-fine-undo t)))
 
 (use-package evil-collection
-  :after (evil)
+  :after (evil magit)
   :straight
   (:type git :host github :repo "emacs-evil/evil-collection"
          :fork (:host github :repo "dogayuksel/evil-collection"))
   :custom
   (evil-collection-setup-minibuffer t)
   (evil-collection-want-unimpaired-p nil)
+  (evil-collection-magit-use-z-for-folds t)
+  (evil-collection-magit-want-horizontal-movement t)
   :config
   (evil-collection-init))
 
