@@ -43,7 +43,7 @@
      evil-want-fine-undo t)))
 
 (use-package evil-collection
-  :after (evil magit)
+  :after (evil)
   :straight
   (:type git :host github :repo "emacs-evil/evil-collection"
          :fork (:host github :repo "dogayuksel/evil-collection"))

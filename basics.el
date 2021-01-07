@@ -261,7 +261,6 @@
 
 (use-package company
   :demand
-  :defines (company-dabbrev-downcase)
   :general
   ("<M-tab>" 'company-complete
    "C-c C-f" 'company-files)
