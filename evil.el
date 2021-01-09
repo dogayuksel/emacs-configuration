@@ -60,9 +60,16 @@
 (use-package evil-mc
   :after (hydra evil)
   :init
-  (setq
-   evil-mc-one-cursor-show-mode-line-text nil
-   evil-mc-mode-line-text-cursor-color nil)
+  (progn
+    (setq
+     evil-mc-one-cursor-show-mode-line-text nil
+     evil-mc-mode-line-text-cursor-color nil)
+    (add-hook
+     'evil-mc-before-cursors-created
+     (lambda () (set-face-background 'fringe "#5E81AC")))
+    (add-hook
+     'evil-mc-after-cursors-deleted
+     (lambda () (set-face-background 'fringe "#3B4252"))))
   :config
   (progn
     (global-evil-mc-mode 1)

@@ -132,12 +132,20 @@
   :delight)
 
 (set-face-attribute 'fringe nil :background "#3B4252")
+(setq my/fringe-bell-on nil)
 
 (defun my/terminal-visible-bell ()
   "A friendlier visual bell effect."
-  (set-face-background 'fringe "#434C5E")
-  (run-with-idle-timer
-   0.1 nil (lambda () (set-face-background 'fringe "#3B4252"))))
+  (unless my/fringe-bell-on
+    (progn
+      (setq my/fringe-bell-on t)
+      (setq my/current-fringe-color (face-attribute 'fringe :background))
+      (set-face-background 'fringe "#434C5E")
+      (run-with-idle-timer
+       0.1 nil
+       (lambda () (progn
+               (set-face-background 'fringe my/current-fringe-color)
+               (setq my/fringe-bell-on nil)))))))
 
 (setq visible-bell nil
       ring-bell-function #'my/terminal-visible-bell)
