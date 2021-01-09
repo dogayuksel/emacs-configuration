@@ -190,4 +190,7 @@
   :config
   (add-to-list 'company-backends 'merlin-company-backend))
 
+(use-package arduino-mode)
+(use-package company-arduino)
+
 ;;; configure_progn.el ends here
