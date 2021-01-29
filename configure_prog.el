@@ -6,6 +6,7 @@
 ;;; Code:
 
 (use-package emr)
+(use-package macrostep)
 
 (use-package compile
   :config
