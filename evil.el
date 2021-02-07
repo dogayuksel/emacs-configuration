@@ -20,8 +20,6 @@
    "C-SPC" 'matcha-me-space))
 
 (use-package undo-tree
-  :straight
-  (:type git :host nil :repo "http://www.dr-qubit.org/git/undo-tree.git")
   :config
   (global-undo-tree-mode)
   (setq undo-tree-visualizer-timestamps t
